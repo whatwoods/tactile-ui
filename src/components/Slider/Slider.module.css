@@ -1,0 +1,154 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.marksContainer {
+  position: relative;
+  height: 24px;
+  margin: 0 16px; /* Match the track horizontal bounds to align labels perfectly */
+  margin-bottom: 8px;
+}
+
+.markLabel {
+  position: absolute;
+  transform: translateX(-50%);
+  font-size: 15px;
+  color: #B0B0B0;
+  transition: color var(--s-transition-fast);
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.markLabelActive {
+  color: #333333;
+  font-weight: 500;
+}
+
+.controlArea {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.icon {
+  color: #8E8E93; /* Smooth grey for icons */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.slider {
+  position: relative;
+  flex: 1;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  touch-action: none;
+  padding: 0 16px; /* Bleed space for thumb, track ends are inset by 16px */
+}
+
+/* The physical groove/track for continuous and stepped sliders */
+.track {
+  width: 100%;
+  height: 8px;
+  border-radius: var(--s-radius-pill);
+  background: var(--s-color-track-bg);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 
+              0 1px 0 rgba(255, 255, 255, 0.85);
+  position: relative;
+}
+
+/* Physical nodes on the track (stepped slider holes) - hollow ring style */
+.trackNode {
+  position: absolute;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #FFFFFF; /* Pure white center, matches card background */
+  border: 4px solid var(--s-color-track-bg); /* Symmetrical border matching 8px track height */
+  box-shadow: var(--s-slider-node-shadow);
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+/* The fill */
+.fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  border-radius: var(--s-radius-pill);
+  z-index: 2;
+}
+
+/* Fill Colors */
+.fill-blue {
+  background: var(--s-slider-fill-blue-bg);
+  box-shadow: var(--s-slider-fill-shadow);
+}
+
+.fill-grey {
+  background: var(--s-slider-fill-grey-bg);
+  box-shadow: var(--s-slider-fill-shadow);
+}
+
+.fill-none {
+  background: transparent;
+}
+
+/* The sliding physical thumb */
+.thumb {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 30px; /* Unified diameter */
+  height: 30px; /* Unified diameter */
+  border-radius: 50%;
+  /* Convex surface (highlight at top-left) */
+  background: radial-gradient(circle at 30% 30%, #FFFFFF 0%, #F5F5F5 55%, #E6E6E6 100%);
+  /* Rich protruding 3D drop shadow + crisp edge light */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 
+              0 1px 3px rgba(0, 0, 0, 0.1), 
+              inset 0 1px 1px rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  transition: left 0.1s ease-out; /* Slight damping for movement */
+}
+
+/* The central physical dimple for continuous sliders */
+.thumbDimple {
+  width: 12px; /* Unified area */
+  height: 12px; /* Unified area */
+  border-radius: 50%;
+  /* Concave surface (highlight at bottom-right) - flatter gradient */
+  background: radial-gradient(circle at 70% 70%, #FFFFFF 0%, #FAFAFA 55%, #F0F0F0 100%);
+  /* Shallower inner shadows for a flatter curve */
+  box-shadow: inset 1px 1.5px 3px rgba(0, 0, 0, 0.035), 
+              inset -1px -1.5px 3px rgba(255, 255, 255, 0.95), 
+              0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+/* The central blue dot for stepped sliders - convex blue protruding dot, matches Switch indicator dot */
+.thumbDot {
+  width: 12px; /* Unified 12px size */
+  height: 12px; /* Unified 12px size */
+  border-radius: 50%;
+  background: var(--s-indicator-dot-blue-bg);
+  box-shadow: var(--s-indicator-dot-blue-shadow);
+}
+
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+

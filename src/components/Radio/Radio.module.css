@@ -1,0 +1,98 @@
+.container {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.radioWrapper {
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+
+.input {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  margin: 0;
+  z-index: 2;
+}
+
+/* The physical groove for the radio */
+.circle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #EAEAEA;
+  border-radius: 50%;
+  box-shadow: var(--s-shadow-inset-groove);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--s-transition-physics);
+  z-index: 1;
+}
+
+/* The metallic center dot */
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #FFFFFF 0%, #DCDCDC 100%);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.8);
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all var(--s-transition-physics);
+}
+
+/* Hover state */
+.container:hover .circle {
+  background: #F0F0F0;
+}
+
+/* Active (pressing) state */
+.input:active + .circle {
+  box-shadow: inset 0 3px 6px rgba(0,0,0,0.15), inset 0 5px 10px rgba(0,0,0,0.05), 0 1px 0 rgba(255,255,255,0.8);
+}
+
+/* Checked state */
+.input:checked + .circle .dot {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Checked Primary variant (could add red glow, but metallic is classic Smartisan) */
+.input:checked + .circle .dot {
+  /* To make it look like an LED or primary brand colored dot if desired.
+     We'll stick to a red LED/metallic look. */
+  background: linear-gradient(180deg, #E53935 0%, #B71C1C 100%);
+  box-shadow: 0 1px 3px rgba(211, 47, 47, 0.4), inset 0 1px 0 rgba(255,255,255,0.4);
+}
+
+/* Focus */
+.input:focus-visible + .circle {
+  outline: 2px solid var(--s-color-primary);
+  outline-offset: 2px;
+}
+
+/* Disabled */
+.input:disabled + .circle {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.input:disabled ~ .label {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.label {
+  font-size: 16px;
+  color: var(--s-color-text-primary);
+  user-select: none;
+  cursor: pointer;
+}

@@ -1,0 +1,82 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn var(--s-transition-fast);
+}
+
+.dialog {
+  background: #FFFFFF;
+  border-radius: 12px; /* Very rounded corners */
+  width: 90%;
+  max-width: 400px;
+  box-shadow: var(--s-shadow-panel);
+  position: relative;
+  animation: slideUp var(--s-transition-physics);
+}
+
+.header {
+  padding: 32px 24px 16px;
+  text-align: center;
+}
+
+.title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+  color: #333333;
+}
+
+.content {
+  padding: 0 32px 32px;
+  color: #666666;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* The iconic floating close button */
+.closeButton {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #4A4A4A;
+  color: #FFFFFF;
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  transition: transform var(--s-transition-fast), background var(--s-transition-fast);
+  z-index: 10;
+}
+
+.closeButton:hover {
+  background: #333333;
+  transform: scale(1.05);
+}
+
+.closeButton:active {
+  transform: scale(0.95);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}

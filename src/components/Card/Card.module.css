@@ -1,0 +1,36 @@
+.card {
+  background: #FFFFFF;
+  border-radius: 12px;
+  box-shadow: var(--s-shadow-panel);
+  overflow: hidden; /* Ensure header background doesn't leak out of rounded corners */
+}
+
+.header {
+  background: #F9F9F9; /* Very faint grey top */
+  border-bottom: 1px solid #EAEAEA;
+  padding: 16px 24px;
+  text-align: center; /* Smartisan style is usually centered or strictly left-aligned. The screenshot has it centered. */
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 500;
+  color: #333333;
+  margin: 0;
+}
+
+.padding-none {
+  padding: 0;
+}
+
+.padding-sm {
+  padding: 16px;
+}
+
+.padding-md {
+  padding: 24px;
+}
+
+.padding-lg {
+  padding: 32px;
+}

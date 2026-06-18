@@ -1,0 +1,75 @@
+/* Smartisan UI Design Tokens */
+
+:root {
+  /* --- Colors --- */
+  --s-color-bg: #EAEAEA;           /* General app background */
+  --s-color-surface: #F5F5F5;      /* Component surface background */
+  --s-color-text-primary: #333333; /* Main text */
+  --s-color-text-secondary: #777777; /* Subtitle/muted text */
+  
+  /* Primary Action Color (Smartisan Blue) - Softened saturation */
+  --s-color-primary: #6B88E6;
+  --s-color-primary-hover: #5A77D4;
+  --s-color-primary-active: #4B65C0;
+  
+  /* Success / Positive Color */
+  --s-color-success: #43A047;
+  --s-color-success-hover: #4CAF50;
+  --s-color-success-active: #388E3C;
+
+  /* --- Textures --- */
+  --s-texture-noise: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+  
+  /* Official Smartisan Login Background Texture: Fine vertical ribbed stripes */
+  --s-texture-bg: repeating-linear-gradient(
+    90deg,
+    #FAFAFA 0px,
+    #FAFAFA 3px,
+    #F8F8F8 3px,
+    #F8F8F8 5px
+  );
+  
+
+
+  /* --- Shadows & Depth --- */
+  /* Ambient shadow for base elevation */
+  --s-shadow-ambient: 0 1px 3px rgba(0, 0, 0, 0.05);
+  
+  /* Shadows - Extremely soft and diffused for panels */
+  --s-shadow-dropdown: 0 8px 24px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.06);
+  --s-shadow-panel: 0 4px 24px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.02);
+  
+  /* Inner highlights to simulate light catching the top edge */
+  --s-highlight-inner: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  
+  /* Inner shadow for pressed/depressed state */
+  --s-shadow-pressed: inset 0 3px 6px rgba(0, 0, 0, 0.2), inset 0 1px 2px rgba(0, 0, 0, 0.1);
+
+  /* Deep inset groove for inputs and sliders */
+  --s-shadow-inset-groove: inset 0 2px 4px rgba(0,0,0,0.1), inset 0 4px 8px rgba(0,0,0,0.05), 0 1px 0 rgba(255,255,255,0.8);
+
+  /* Slider track colors & protrusion styles */
+  --s-color-track-bg: #ECECEC;
+  --s-slider-fill-blue-bg: linear-gradient(180deg, #94ADFF 0%, #6B88E6 50%, #4761BE 100%);
+  --s-slider-fill-grey-bg: linear-gradient(180deg, #E2E2E2 0%, #C2C2C2 50%, #A8A8A8 100%);
+  --s-slider-fill-shadow: 0 1.5px 3px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  --s-slider-node-shadow: inset 0 1.2px 2.5px rgba(0, 0, 0, 0.08), 0 1px 0 rgba(255, 255, 255, 0.95);
+
+  /* Convex Blue Indicator Dot (Switch, Stepped Slider active dots, Circular Checkbox) - soft matte gradient */
+  --s-indicator-dot-blue-bg: linear-gradient(180deg, #6085F7 0%, #4668E3 100%);
+  --s-indicator-dot-blue-shadow: 0 1.2px 2px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+
+  /* Combined common shadow variables */
+  --s-shadow-button-idle: var(--s-highlight-inner), var(--s-shadow-drop), var(--s-shadow-ambient);
+  --s-shadow-button-pressed: var(--s-shadow-pressed);
+  
+  /* --- Border Radii --- */
+  --s-radius-sm: 4px;
+  --s-radius-md: 8px;
+  --s-radius-lg: 12px;
+  --s-radius-pill: 9999px;
+
+  /* --- Transitions --- */
+  --s-transition-physics: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Spring-like easing */
+  --s-transition-fast: 0.15s ease-out;
+}

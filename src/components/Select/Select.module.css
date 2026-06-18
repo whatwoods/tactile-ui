@@ -1,0 +1,119 @@
+.container {
+  position: relative;
+  width: 100%;
+}
+
+.trigger {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: var(--s-radius-md);
+  /* The physical groove of the input */
+  background: #FAFAFA;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.06), 0 1px 0 rgba(255,255,255,1);
+  border: 1px solid #EAEAEA;
+  cursor: pointer;
+  user-select: none;
+  transition: all var(--s-transition-fast);
+  box-sizing: border-box;
+}
+
+.trigger:hover {
+  background: #FDFDFD;
+}
+
+.trigger.active {
+  background: #FFFFFF;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.05), 0 0 0 2px rgba(90, 124, 235, 0.4);
+}
+
+.placeholder {
+  font-size: 16px;
+  color: #999999;
+}
+
+.valueArea {
+  display: flex;
+  align-items: center;
+}
+
+.value {
+  font-size: 16px;
+  color: #666666;
+}
+
+.icon {
+  color: #AAAAAA;
+  display: flex;
+  align-items: center;
+  margin-left: 8px;
+}
+
+/* The dropdown menu */
+.dropdown {
+  position: absolute;
+  top: -4px; /* Slight overlap */
+  right: 0; /* Align to the right */
+  width: 60%; /* Narrower than the trigger */
+  min-width: 160px;
+  background: #FFFFFF;
+  border-radius: var(--s-radius-md);
+  box-shadow: var(--s-shadow-dropdown);
+  z-index: 100;
+  animation: slideDown var(--s-transition-fast);
+  overflow: hidden;
+  border: 1px solid #EAEAEA;
+}
+
+.menuHeader {
+  background: #FAFAFA;
+  padding: 10px 16px;
+  border-bottom: 1px solid #EAEAEA;
+}
+
+.menuTitle {
+  font-size: 14px;
+  color: #999999;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.item {
+  padding: 14px 16px;
+  font-size: 16px;
+  color: #666666;
+  cursor: pointer;
+  transition: background-color var(--s-transition-fast);
+  border-bottom: 1px solid #F2F2F2;
+}
+
+.item:last-child {
+  border-bottom: none;
+}
+
+.item:hover {
+  background: #F5F5F5;
+}
+
+.selected {
+  background: #F5F5F5;
+  color: #333333;
+}
+
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}

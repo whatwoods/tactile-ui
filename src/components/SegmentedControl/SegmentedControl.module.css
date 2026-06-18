@@ -1,0 +1,54 @@
+.container {
+  display: flex;
+  position: relative;
+  background: transparent;
+  border-radius: 10px;
+  border: 1px solid #D1D1D1;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 
+              inset 0 1px 0 rgba(255, 255, 255, 1);
+  overflow: hidden;
+}
+
+.item {
+  flex: 1;
+  border: none;
+  /* Convex raised button gradient */
+  background: linear-gradient(180deg, #FFFFFF 0%, #FAFAFA 50%, #F4F4F4 100%);
+  color: #9E9E9E; /* Muted inactive text */
+  font-size: 15px;
+  font-weight: 400;
+  padding: 13px 20px;
+  cursor: pointer;
+  transition: all var(--s-transition-fast);
+  position: relative;
+  text-align: center;
+  border-right: 1px solid #E2E2E2;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.item:last-child {
+  border-right: none;
+}
+
+.item:hover:not(.active) {
+  background: linear-gradient(180deg, #FFFFFF 0%, #FAFAFA 80%, #EEEEEE 100%);
+  color: #777777;
+}
+
+/* Sunken, depressed active state */
+.active {
+  background: #EBEBEB; /* Recessed panel background */
+  color: #333333; /* Dark active text */
+  font-weight: 500;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.08), 
+              inset 0 4px 10px rgba(0, 0, 0, 0.05), 
+              0 1px 0 rgba(255, 255, 255, 0.8);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.item:focus-visible {
+  outline: 2px solid var(--s-color-primary);
+  outline-offset: -2px;
+}
+

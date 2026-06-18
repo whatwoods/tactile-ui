@@ -1,0 +1,159 @@
+.container {
+  position: fixed;
+  right: 24px; /* Position it safely away from the scrollbar */
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  z-index: 100;
+}
+
+.pill {
+  background: #FFFFFF;
+  border-radius: 999px;
+  padding: 24px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.04), inset 0 0 0 1px rgba(0,0,0,0.05);
+  width: 44px;
+}
+
+.dotWrapper {
+  position: relative;
+  width: 100%;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* The glossy bead */
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #E0E0E0;
+  /* Physical bead shading: inset dark at bottom, inset light at top, drop shadow */
+  box-shadow: 
+    inset 0 -1px 2px rgba(0,0,0,0.1),
+    inset 0 1px 2px rgba(255,255,255,0.8),
+    0 1px 2px rgba(0,0,0,0.2);
+  transition: all var(--s-transition-fast);
+}
+
+.active {
+  background: var(--s-color-primary); /* The blue bead */
+  box-shadow: 
+    inset 0 -1px 2px rgba(0,0,0,0.2),
+    inset 0 1px 2px rgba(255,255,255,0.6),
+    0 1px 3px rgba(90,124,235,0.4);
+  transform: scale(1.1); /* slightly larger when active */
+}
+
+/* Tooltip container */
+.tooltip {
+  position: absolute;
+  right: 48px; /* Push to the left of the pill */
+  top: 50%;
+  transform: translateY(-50%) translateX(10px); /* Start slightly to the right for animation */
+  background: #FFFFFF;
+  border-radius: 6px;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.05), inset 0 0 0 1px rgba(0,0,0,0.05);
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--s-transition-fast);
+  white-space: nowrap;
+  pointer-events: none; /* Let mouse pass through to dot */
+}
+
+/* The physical triangle pointer on the right side of the tooltip */
+.tooltip::after {
+  content: '';
+  position: absolute;
+  right: -5px; /* Pull out of the right side */
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 6px 0 6px 6px;
+  border-style: solid;
+  border-color: transparent transparent transparent #FFFFFF;
+  /* Ideally we'd use a drop shadow on the arrow, but filter: drop-shadow works on the whole tooltip instead. We'll stick to a clean white arrow here. */
+}
+
+.showTooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) translateX(0); /* Slide in to place */
+}
+
+.tooltipIcon {
+  color: #AAAAAA;
+  display: flex;
+  align-items: center;
+}
+
+.tooltipDivider {
+  width: 1px;
+  height: 14px;
+  background: #EEEEEE;
+}
+
+.tooltipLabel {
+  color: #666666;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.divider {
+  width: 20px;
+  height: 1px;
+  background: #EEEEEE;
+  margin: 16px 0;
+}
+
+.socialBtn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+  transition: transform var(--s-transition-fast);
+}
+
+.socialBtn:last-child {
+  margin-bottom: 0;
+}
+
+.socialBtn:hover {
+  transform: scale(1.1);
+}
+
+/* Independent Back to top button */
+.backToTop {
+  width: 44px;
+  height: 44px;
+  background: #FFFFFF;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.04), inset 0 0 0 1px rgba(0,0,0,0.05);
+  transition: transform var(--s-transition-fast);
+}
+
+.backToTop:hover {
+  transform: scale(1.05);
+}
+
+.backToTop:active {
+  transform: scale(0.95);
+}
