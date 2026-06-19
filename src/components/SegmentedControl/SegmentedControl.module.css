@@ -1,8 +1,9 @@
 .container {
-  display: flex;
+  display: inline-flex;
+  min-width: 280px;
   position: relative;
   background: transparent;
-  border-radius: 10px;
+  border-radius: var(--s-radius-md);
   border: 1px solid var(--s-color-border-strong);
   box-shadow: var(--s-shadow-raised);
   overflow: hidden;
@@ -13,9 +14,9 @@
   border: none;
   background: var(--s-gradient-button-gray);
   color: var(--s-color-text-tertiary);
-  font-size: var(--s-font-size-chip);
+  font-size: var(--s-font-size-title-button);
   font-weight: 400;
-  padding: 13px 20px;
+  padding: 8px 16px;
   cursor: pointer;
   transition:
     background var(--s-transition-fast),
@@ -30,6 +31,16 @@
 
 .item:last-child {
   border-right: none;
+}
+
+/* Hide divider on the right of the active item */
+.item.active {
+  border-right-color: transparent;
+}
+
+/* Hide divider on the right of the item immediately preceding the active item */
+.item:has(+ .active) {
+  border-right-color: transparent;
 }
 
 .item:hover:not(.active) {
