@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Switch } from './components/Switch/Switch';
 import { Input } from './components/Input/Input';
 import { Checkbox } from './components/Checkbox/Checkbox';
@@ -11,6 +11,8 @@ import { Header } from './components/Header/Header';
 import { ActionSheet } from './components/ActionSheet/ActionSheet';
 import { Chip } from './components/Chip/Chip';
 import { SettingItem } from './components/SettingItem/SettingItem';
+import { List } from './components/List/List';
+import { ListItem } from './components/List/ListItem';
 import { TitleBar } from './components/TitleBar/TitleBar';
 import { ProgressDialog } from './components/ProgressDialog/ProgressDialog';
 import { DragBubble } from './components/DragBubble/DragBubble';
@@ -18,6 +20,12 @@ import { BigBangOptionPopup } from './components/BigBangOptionPopup/BigBangOptio
 import { BigBangSearchPanel } from './components/BigBangSearchPanel/BigBangSearchPanel';
 import type { BigBangSearchMode } from './components/BigBangSearchPanel/BigBangSearchPanel';
 import { OneStepItem, OneStepPanel } from './components/OneStepItem/OneStepItem';
+import { OneStepPhotoGrid } from './components/OneStepPhotoGrid/OneStepPhotoGrid';
+import { OneStepShortcut } from './components/OneStepShortcut/OneStepShortcut';
+import { OneStepTopBar } from './components/OneStepTopBar/OneStepTopBar';
+import { Hero } from './components/Hero/Hero';
+import { SideNav } from './components/SideNav/SideNav';
+
 
 const BIGBANG_SEARCH_OPTIONS = [
   { label: '百度', icon: '百' },
@@ -25,11 +33,53 @@ const BIGBANG_SEARCH_OPTIONS = [
   { label: '必应词典', icon: 'B' },
 ];
 
+const SIDE_NAV_ITEMS = [
+  {
+    id: 'hero-section',
+    label: '系统介绍',
+    icon: (
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+        <line x1="8" y1="21" x2="16" y2="21" />
+        <line x1="12" y1="17" x2="12" y2="21" />
+      </svg>
+    )
+  },
+  {
+    id: 'playground-section',
+    label: '组件演练',
+    icon: (
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+        <line x1="4" y1="21" x2="4" y2="14" />
+        <line x1="4" y1="10" x2="4" y2="3" />
+        <line x1="12" y1="21" x2="12" y2="12" />
+        <line x1="12" y1="8" x2="12" y2="3" />
+        <line x1="20" y1="21" x2="20" y2="16" />
+        <line x1="20" y1="12" x2="20" y2="3" />
+        <line x1="1" y1="14" x2="7" y2="14" />
+        <line x1="9" y1="8" x2="15" y2="8" />
+        <line x1="17" y1="16" x2="23" y2="16" />
+      </svg>
+    )
+  },
+  {
+    id: 'tokens-section',
+    label: '设计令牌',
+    icon: (
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+      </svg>
+    )
+  }
+];
+
+
 function App() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isActionSheetOpen, setIsActionSheetOpen] = useState(false);
   const [isProgressDialogOpen, setIsProgressDialogOpen] = useState(false);
   const [isBigBangOptionOpen, setIsBigBangOptionOpen] = useState(true);
+  const [progressDialogTone, setProgressDialogTone] = useState<'light' | 'dark'>('light');
   
   // Interactive Settings States
   const [isMute, setIsMute] = useState(true);
@@ -43,38 +93,13 @@ function App() {
   const [bigBangSearchMode, setBigBangSearchMode] = useState<BigBangSearchMode>('dict');
   const [bigBangSearchLoading, setBigBangSearchLoading] = useState(false);
 
-  // Active section for floating bullet navigation
-  const [activeSection, setActiveSection] = useState('hero');
+  // Active section for navigation states
+  const [activeNav, setActiveNav] = useState('hero-section');
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPos = window.scrollY;
-      const windowHeight = window.innerHeight;
-      
-      const playgroundEl = document.getElementById('playground-section');
-      const tokensEl = document.getElementById('tokens-section');
 
-      if (tokensEl && scrollPos >= tokensEl.offsetTop - windowHeight / 2) {
-        setActiveSection('tokens');
-      } else if (playgroundEl && scrollPos >= playgroundEl.offsetTop - windowHeight / 2) {
-        setActiveSection('playground');
-      } else {
-        setActiveSection('hero');
-      }
-    };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const scrollToSection = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const showProgressDialog = () => {
+  const showProgressDialog = (tone: 'light' | 'dark' = 'light') => {
+    setProgressDialogTone(tone);
     setIsProgressDialogOpen(true);
     window.setTimeout(() => setIsProgressDialogOpen(false), 1400);
   };
@@ -92,33 +117,8 @@ function App() {
       <Header />
 
       {/* 2. Section 1: Hero Section - Smartisan UI Introduction */}
-      <section id="hero-section" className="heroSection">
-        <div className="deviceContainer">
-          {/* Skeuomorphic CSS Instrument Panel */}
-          <div className="heroDevice">
-            <div className="deviceScreen">
-              <div className="deviceText">smartisan ui</div>
-            </div>
-            <div className="deviceControls">
-              <div className="deviceDials">
-                <div className="deviceDial"></div>
-                <div className="deviceDial" style={{ transform: 'rotate(45deg)' }}></div>
-                <div className="deviceDial" style={{ transform: 'rotate(-90deg)' }}></div>
-              </div>
-              <div className="deviceIndicators">
-                <div className="deviceLED"></div>
-                <div className="deviceSwitch"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <h2 className="heroTitle">Smartisan UI 设计系统</h2>
-        <p className="heroSubtitle">
-          {`面向现代 Web 应用的精致拟物主义设计系统。
-          通过细致入微的光影、物理深度、边缘高光与触觉阻尼，为用户重塑真实而饱满的交互感官。
-          告别扁平的单调，回归物理世界的温暖触感与细腻质感。`}
-        </p>
-      </section>
+      <Hero />
+
 
       {/* 3. Section 2: Skeuomorphic Settings Playground */}
       <section 
@@ -142,7 +142,7 @@ function App() {
           }}>
             
             {/* Control Panel 1: Sound Control (Switch & Sliders) */}
-            <Card title="静音与阻尼滑块" padding="lg">
+            <Card id="switch-card" title="静音与阻尼滑块" padding="lg">
               <div style={{ display: 'flex', flexDirection: 'column' }}>
                 <div style={{ 
                   display: 'flex', 
@@ -254,6 +254,32 @@ function App() {
               />
             </Card>
 
+            <Card title="通用列表项校准" padding="none">
+              <List>
+                <ListItem
+                  title="设备名称"
+                  subtitle="基础 item_text_layout 读线"
+                  value="Smartisan T2"
+                  accessory="chevron"
+                  onClick={() => undefined}
+                />
+                <ListItem
+                  title="经典提示音"
+                  subtitle="item_check_layout 选择行"
+                  accessory="check"
+                  selected={selectedSound === 'classic'}
+                  onClick={() => setSelectedSound('classic')}
+                />
+                <ListItem
+                  title="轻触提示音"
+                  subtitle="右侧勾选仅表达当前状态"
+                  accessory="check"
+                  selected={selectedSound === 'tap'}
+                  onClick={() => setSelectedSound('tap')}
+                />
+              </List>
+            </Card>
+
             {/* Control Panel 3: Official Title Bar */}
             <Card padding="none">
               <TitleBar
@@ -280,7 +306,7 @@ function App() {
             </Card>
 
             {/* Control Panel 2: Account Login Card */}
-            <Card title="拟物账户表单" padding="lg">
+            <Card id="form-card" title="拟物账户表单" padding="lg">
               <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
                 <Input label="手机号/邮箱" placeholder="请输入您的账号" defaultValue="17856916674" />
                 <Input label="密码" type="password" placeholder="请输入密码" defaultValue="wl000625" />
@@ -306,7 +332,7 @@ function App() {
             </Card>
 
             {/* Control Panel 3: Other Component Demos */}
-            <Card title="分段选择与弹窗" padding="lg">
+            <Card id="dialog-card" title="分段选择与弹窗" padding="lg">
               <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
                 <div>
                   <span style={{ display: 'block', fontSize: '14px', color: 'var(--s-color-text-secondary)', marginBottom: '8px' }}>物理分段选项</span>
@@ -362,7 +388,8 @@ function App() {
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginTop: '8px' }}>
                   <Button variant="secondary" onClick={() => setIsDialogOpen(true)}>展示悬浮弹窗</Button>
                   <Button variant="danger" onClick={() => setIsActionSheetOpen(true)}>展示底部操作菜单</Button>
-                  <Button variant="secondary" onClick={showProgressDialog}>展示官方进度弹窗</Button>
+                  <Button variant="secondary" onClick={() => showProgressDialog('light')}>展示官方进度弹窗</Button>
+                  <Button variant="secondary" onClick={() => showProgressDialog('dark')}>展示深色进度弹窗</Button>
                   <Button variant="secondary" disabled>物理禁用按钮</Button>
                 </div>
               </div>
@@ -381,8 +408,8 @@ function App() {
               </div>
             </Card>
 
-            <Card title="OneStep 内容列表" padding="lg">
-              <div style={{ padding: '24px', borderRadius: '8px', background: 'var(--s-color-onestep-dim)' }}>
+            <Card title="OneStep 内容列表" padding="sm">
+              <div style={{ padding: 'var(--s-space-3)', borderRadius: '8px', background: 'var(--s-color-onestep-dim)' }}>
                 <OneStepPanel title="剪贴板与最近文件" onClear={() => undefined}>
                   <OneStepItem
                     date="今天 16:48"
@@ -402,8 +429,38 @@ function App() {
                     variant="bookmark"
                     onClick={() => undefined}
                   />
+                  <OneStepPhotoGrid
+                    date="最近图片"
+                    items={[
+                      { state: 'image', alt: '最近图片预览', onClick: () => undefined },
+                      { state: 'openGallery', onClick: () => undefined },
+                      { state: 'more', onClick: () => undefined },
+                    ]}
+                  />
                   <OneStepItem title="加载更多" variant="more" onClick={() => undefined} />
                 </OneStepPanel>
+              </div>
+            </Card>
+
+            <Card title="OneStep 顶部入口与侧栏快捷方式" padding="sm">
+              <div style={{ background: 'var(--s-color-onestep-root-dim)', borderRadius: '8px', overflow: 'hidden' }}>
+                <OneStepTopBar
+                  items={[
+                    { id: 'photos', label: '近期图片', onClick: () => undefined },
+                    { id: 'files', label: '近期文件', onClick: () => undefined },
+                    { id: 'clipboard', label: '剪贴板', onClick: () => undefined },
+                  ]}
+                />
+                <div style={{ display: 'flex', gap: 'var(--s-space-3)', alignItems: 'flex-start', padding: 'var(--s-space-4)' }}>
+                  <div style={{ width: 'var(--s-size-sidebar-width)', background: 'var(--s-color-onestep-root-dim)' }}>
+                    <OneStepShortcut label="邮件" onClick={() => undefined} />
+                    <OneStepShortcut variant="contact" label="罗永浩" badge="微" onClick={() => undefined} />
+                    <OneStepShortcut variant="previous" label="上个应用" onClick={() => undefined} />
+                  </div>
+                  <div style={{ minWidth: 0, color: 'var(--s-color-onestep-title-text)', fontSize: '13px', lineHeight: 1.6 }}>
+                    官方侧栏入口固定为 48dp 宽；应用和联系人头像内容为 32dp，顶部入口使用三等分布局。
+                  </div>
+                </div>
               </div>
             </Card>
 
@@ -488,30 +545,14 @@ function App() {
       </section>
 
       {/* 5. Floating Bullet Navigation (Vertical pill menu on the right edge) */}
-      <nav className="bulletNav">
-        <div 
-          className={`bulletDot ${activeSection === 'hero' ? 'bulletDotActive' : ''}`} 
-          onClick={() => scrollToSection('hero-section')}
-          title="系统介绍"
-        ></div>
-        <div 
-          className={`bulletDot ${activeSection === 'playground' ? 'bulletDotActive' : ''}`} 
-          onClick={() => scrollToSection('playground-section')}
-          title="组件演练"
-        ></div>
-        <div 
-          className={`bulletDot ${activeSection === 'tokens' ? 'bulletDotActive' : ''}`} 
-          onClick={() => scrollToSection('tokens-section')}
-          title="设计令牌"
-        ></div>
-        
-        {/* Scroll back to top */}
-        <div className="bulletScrollTop" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <polyline points="18 15 12 9 6 15" />
-          </svg>
-        </div>
-      </nav>
+      <SideNav
+        items={SIDE_NAV_ITEMS}
+        activeId={activeNav}
+        onChange={setActiveNav}
+        onGithubClick={() => {
+          window.open('https://github.com/SmartisanTech/android_frameworks_smartisanos-base', '_blank');
+        }}
+      />
 
       {/* 6. System Dialog */}
       <Dialog isOpen={isDialogOpen} onClose={() => setIsDialogOpen(false)} title="系统提示">
@@ -533,6 +574,7 @@ function App() {
 
       <ProgressDialog
         isOpen={isProgressDialogOpen}
+        tone={progressDialogTone}
         title="正在同步"
         message="请稍候，正在处理系统设置"
       />

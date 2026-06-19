@@ -1,0 +1,100 @@
+.grid {
+  width: 100%;
+}
+
+.dateLabel {
+  height: var(--s-size-onestep-date-height);
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--s-size-onestep-photo-bottom-padding);
+  padding-left: var(--s-size-onestep-item-padding-left);
+  background: var(--s-color-onestep-date-bg);
+  color: var(--s-color-onestep-title-text);
+  font-size: var(--s-font-size-onestep-date);
+  line-height: 1;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+}
+
+.item {
+  position: relative;
+  width: min(var(--s-size-onestep-photo), calc((100% - (var(--s-size-onestep-photo-gap) * 6)) / 3));
+  flex: 0 0 min(var(--s-size-onestep-photo), calc((100% - (var(--s-size-onestep-photo-gap) * 6)) / 3));
+  aspect-ratio: 1;
+  margin-inline: var(--s-size-onestep-photo-gap);
+  margin-bottom: var(--s-size-onestep-photo-bottom-padding);
+  overflow: hidden;
+  border: none;
+  background: var(--s-gradient-onestep-photo-thumb);
+  color: var(--s-color-onestep-item-text);
+  text-align: center;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.clickable::after {
+  position: absolute;
+  inset: 0;
+  content: '';
+  background: var(--s-color-transparent);
+  transition: background-color var(--s-transition-fast);
+}
+
+.clickable:active::after {
+  background: var(--s-color-onestep-photo-pressed-mask);
+}
+
+.imageMedia,
+.placeholder {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.imageMedia {
+  object-fit: cover;
+}
+
+.placeholder {
+  background: var(--s-gradient-onestep-photo-thumb);
+}
+
+.failed {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--s-color-onestep-photo-fail-bg);
+}
+
+.openGallery,
+.more {
+  background: var(--s-gradient-onestep-photo-action);
+}
+
+.failLabel,
+.actionLabel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  color: var(--s-color-onestep-item-text);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.failLabel {
+  top: 50%;
+  font-size: var(--s-font-size-drag);
+  transform: translateY(-50%);
+}
+
+.actionLabel {
+  bottom: var(--s-size-onestep-gallery-text-bottom);
+  color: var(--s-color-onestep-more-text);
+  font-size: var(--s-font-size-onestep-date);
+}

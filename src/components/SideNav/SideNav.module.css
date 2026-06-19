@@ -7,91 +7,111 @@
   flex-direction: column;
   align-items: center;
   gap: var(--s-space-4);
-  z-index: 100;
+  z-index: 1000;
 }
 
+/* Pill Panel (Frosted White Capsule Panel matching image) */
 .pill {
-  background: var(--s-color-surface-flat);
-  border-radius: var(--s-radius-pill);
+  background: var(--s-color-surface-frosted);
+  border: 1px solid var(--s-color-border-muted);
+  border-radius: 22px; /* Smooth pill borders */
   padding: var(--s-space-5) 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: var(--s-shadow-floating-control);
+  box-shadow: var(--s-shadow-panel);
   width: 44px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .dotWrapper {
   position: relative;
   width: 100%;
-  height: 32px;
+  height: 38px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
 }
 
+/* Skeuomorphic Dot (soft, flatter gray dot matching image) */
 .dot {
-  width: var(--s-space-2);
-  height: var(--s-space-2);
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
-  background: var(--s-color-border-muted);
-  box-shadow: var(--s-shadow-grey-dot);
-  transition:
-    background var(--s-transition-fast),
-    box-shadow var(--s-transition-fast),
-    transform var(--s-transition-fast);
+  background-color: var(--s-color-nav-dot);
+  box-shadow: var(--s-shadow-nav-dot);
+  transform: scale(0.75);
+  transition: 
+    transform var(--s-duration-normal) var(--s-ease-standard),
+    background-color var(--s-duration-normal) var(--s-ease-standard),
+    box-shadow var(--s-duration-normal) var(--s-ease-standard);
+  position: relative;
 }
 
+/* Active Dot (solid blue circle, no outer ring by default when not hovered) */
 .active {
-  background: var(--s-color-primary);
-  box-shadow: var(--s-indicator-dot-blue-shadow);
-  transform: scale(1.1);
+  background-color: var(--s-color-primary) !important;
+  transform: scale(1);
+  box-shadow: var(--s-shadow-nav-dot-active);
+  border: none !important;
 }
 
+/* Hover outer ring: regardless of selected or unselected, hovering on the dot wrapper triggers the blue ring! */
+.dotWrapper:hover .dot {
+  box-shadow: var(--s-shadow-nav-dot-hover);
+  transform: scale(1.05);
+}
+
+/* Popover Card Tooltip (Weibo style: [Icon] | [Text]) */
 .tooltip {
   position: absolute;
-  right: 48px;
+  right: 56px; /* distance from the pill panel */
   top: 50%;
   transform: translateY(-50%) translateX(10px);
   background: var(--s-color-surface-flat);
-  border-radius: var(--s-radius-sm);
-  padding: var(--s-space-2) var(--s-space-4);
+  border: 1px solid var(--s-color-border-muted);
+  border-radius: var(--s-radius-lg); /* Rounded 12px card */
+  padding: 12px 20px;
   display: flex;
   align-items: center;
   gap: 12px;
   box-shadow: var(--s-shadow-dropdown);
   opacity: 0;
-  visibility: hidden;
   transition:
-    opacity var(--s-transition-fast),
-    visibility var(--s-transition-fast),
-    transform var(--s-transition-fast);
+    opacity var(--s-duration-normal) var(--s-ease-standard),
+    transform var(--s-duration-normal) var(--s-ease-standard);
   white-space: nowrap;
   pointer-events: none;
+  z-index: 1001;
 }
 
+/* Perfect alignment arrow notch (45 deg rotated box) */
 .tooltip::after {
   content: '';
   position: absolute;
-  right: -5px;
+  right: -5px; /* Aligns border nicely */
   top: 50%;
-  transform: translateY(-50%);
-  border-width: 6px 0 6px 6px;
-  border-style: solid;
-  border-color: transparent transparent transparent var(--s-color-surface-flat);
+  transform: translateY(-50%) rotate(45deg);
+  width: 8px;
+  height: 8px;
+  background: var(--s-color-surface-flat);
+  border-right: 1px solid var(--s-color-border-muted);
+  border-top: 1px solid var(--s-color-border-muted);
 }
 
 .showTooltip {
   opacity: 1;
-  visibility: visible;
   transform: translateY(-50%) translateX(0);
+  pointer-events: auto;
 }
 
 .tooltipIcon {
-  color: var(--s-color-text-disabled-solid);
+  color: var(--s-color-text-secondary);
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .tooltipDivider {
@@ -101,18 +121,21 @@
 }
 
 .tooltipLabel {
-  color: var(--s-color-text-secondary);
-  font-size: var(--s-font-size-drag);
-  font-weight: 400;
+  color: var(--s-color-text-primary);
+  font-size: var(--s-font-size-body-sm);
+  font-weight: 500;
+  letter-spacing: 0.3px;
 }
 
+/* Divider inside pill panel */
 .divider {
   width: 20px;
   height: 1px;
   background: var(--s-color-border-soft);
-  margin: var(--s-space-4) 0;
+  margin: 10px 0;
 }
 
+/* Social icons style (Weibo / WeChat) */
 .socialBtn {
   width: 32px;
   height: 32px;
@@ -120,42 +143,53 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: var(--s-space-2);
-  color: var(--s-color-text-tertiary);
-  transition:
-    color var(--s-transition-fast),
-    transform var(--s-transition-fast);
+  color: var(--s-color-icon-muted);
+  transition: all var(--s-duration-fast) var(--s-ease-standard);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  outline: none;
 }
 
-.socialBtn:last-child {
-  margin-bottom: 0;
-}
-
-.socialBtn:hover {
+.dotWrapper:hover .socialBtn {
   color: var(--s-color-text-primary);
   transform: scale(1.1);
+  background: var(--s-color-social-hover-bg);
 }
 
+/* Separate Floating Scroll-to-Top circular button */
 .backToTop {
   width: 44px;
   height: 44px;
-  background: var(--s-color-surface-flat);
-  color: var(--s-color-text-tertiary);
+  background: var(--s-color-surface-frosted);
+  color: var(--s-color-icon-muted);
+  border: 1px solid var(--s-color-border-muted);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: var(--s-shadow-floating-control);
-  transition:
-    color var(--s-transition-fast),
-    transform var(--s-transition-fast);
+  box-shadow: var(--s-shadow-panel);
+  cursor: pointer;
+  outline: none;
+  transition: all var(--s-duration-fast) var(--s-ease-standard);
 }
 
 .backToTop:hover {
   color: var(--s-color-text-primary);
-  transform: scale(1.05);
+  background: var(--s-color-surface-flat);
+  transform: translateY(-2px);
+  box-shadow: var(--s-shadow-dropdown);
 }
 
 .backToTop:active {
-  transform: scale(0.95);
+  transform: translateY(0);
+  box-shadow: var(--s-shadow-panel);
+}
+
+/* Mobile responsive */
+@media (max-width: 900px) {
+  .container {
+    display: none; /* Hide on mobile to prioritize main content area */
+  }
 }

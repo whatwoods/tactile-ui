@@ -37,14 +37,23 @@ export const SettingItem: React.FC<SettingItemProps> = ({
   const isSwitch = accessory === 'switch';
   const isControlled = checked !== undefined;
   const isChecked = isControlled ? checked : internalChecked;
-  const isClickable = Boolean(onClick) && !isSwitch;
+  const isClickable = Boolean(onClick) || isSwitch;
   const Component = isClickable ? 'button' : 'div';
 
   const handleSwitchChange = (nextChecked: boolean) => {
+    if (disabled) return;
     if (!isControlled) {
       setInternalChecked(nextChecked);
     }
     onCheckedChange?.(nextChecked);
+  };
+
+  const handleRowClick = () => {
+    if (disabled) return;
+    if (isSwitch) {
+      handleSwitchChange(!isChecked);
+    }
+    onClick?.();
   };
 
   const rootClass = [
@@ -58,7 +67,8 @@ export const SettingItem: React.FC<SettingItemProps> = ({
   return (
     <Component
       className={rootClass}
-      onClick={disabled || !isClickable ? undefined : onClick}
+      data-accessory={accessory}
+      onClick={disabled || !isClickable ? undefined : handleRowClick}
       type={isClickable ? 'button' : undefined}
       disabled={isClickable ? disabled : undefined}
       aria-disabled={disabled || undefined}
@@ -79,13 +89,13 @@ export const SettingItem: React.FC<SettingItemProps> = ({
       )}
       {accessory === 'switch' && (
         <span className={styles.switchSlot}>
-          <Switch checked={isChecked} disabled={disabled} onChange={handleSwitchChange} />
+          <Switch checked={isChecked} disabled={disabled} onChange={handleSwitchChange} readOnly />
         </span>
       )}
       {accessory === 'check' && (
         <span className={`${styles.checkMark} ${selected ? styles.checkMarkVisible : ''}`} aria-hidden={!selected}>
-          <svg width="18" height="14" viewBox="0 0 18 14" fill="none">
-            <path d="M2 7.2L6.5 11.5L16 2" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+          <svg className={styles.checkSvg} viewBox="0 0 15 11" fill="none">
+            <path d="M1 5.5L5.4 10L14 1" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </span>
       )}

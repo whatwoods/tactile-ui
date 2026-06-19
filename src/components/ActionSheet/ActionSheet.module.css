@@ -17,22 +17,21 @@
 }
 
 .header {
-  min-height: var(--s-size-sidebar-width);
+  min-height: var(--s-size-menu-dialog-titlebar-min-height);
   display: grid;
-  grid-template-columns: minmax(84px, auto) 1fr minmax(84px, auto);
+  grid-template-columns: var(--s-size-menu-dialog-cancel-width) minmax(0, 1fr) var(--s-size-menu-dialog-cancel-width);
+  column-gap: var(--s-size-menu-dialog-title-gap);
   align-items: center;
   background: var(--s-color-surface-panel-header);
   border-bottom: 1px solid var(--s-color-border-soft);
-  padding: 0 var(--s-space-2);
 }
 
 .cancelButton {
-  justify-self: start;
-  min-width: 84px;
-  min-height: 34px;
+  width: var(--s-size-menu-dialog-cancel-width);
+  min-height: var(--s-size-menu-dialog-cancel-min-height);
   border-radius: var(--s-radius-md);
   background: var(--s-gradient-button-gray);
-  color: var(--s-color-text-title);
+  color: var(--s-color-text-primary);
   border: 1px solid var(--s-color-border);
   box-shadow: var(--s-shadow-button-idle);
   font-size: var(--s-font-size-title-button);
@@ -53,16 +52,19 @@
   color: var(--s-color-text-primary);
   overflow: hidden;
   text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 .headerSpacer {
-  justify-self: end;
-  width: 84px;
+  width: var(--s-size-menu-dialog-cancel-width);
+  min-height: var(--s-size-menu-dialog-cancel-min-height);
 }
 
 .body {
   background: var(--s-color-surface-flat);
-  padding: 12px var(--s-space-4);
+  padding: var(--s-size-menu-dialog-body-padding-y) var(--s-space-4);
 }
 
 .content {
@@ -76,12 +78,11 @@
 .actions {
   display: flex;
   flex-direction: column;
-  gap: var(--s-space-3);
 }
 
 .action {
   width: 100%;
-  min-height: 48px;
+  min-height: var(--s-size-menu-dialog-action-min-height);
   border-radius: var(--s-radius-md);
   border: 1px solid var(--s-color-border);
   box-shadow: var(--s-shadow-button-idle);
@@ -96,27 +97,40 @@
 }
 
 .default {
-  background: var(--s-gradient-button-gray);
-  color: var(--s-color-text-primary);
+  background: var(--s-gradient-menu-dialog-gray);
+  color: var(--s-color-text-inverse);
+  text-shadow: var(--s-shadow-menu-dialog-list-text);
 }
 
 .primary {
-  background: var(--s-gradient-button-blue);
+  background: var(--s-gradient-menu-dialog-blue);
   color: var(--s-color-text-inverse);
   border-color: var(--s-color-primary-border);
-  text-shadow: var(--s-shadow-text-engraved);
+  text-shadow: var(--s-shadow-menu-dialog-text);
 }
 
 .danger {
-  background: var(--s-gradient-button-danger);
+  background: var(--s-gradient-menu-dialog-red);
   color: var(--s-color-text-inverse);
   border-color: var(--s-color-danger-active);
-  text-shadow: var(--s-shadow-text-engraved);
+  text-shadow: var(--s-shadow-menu-dialog-text);
 }
 
 .action:active {
   box-shadow: var(--s-shadow-button-pressed);
   transform: translateY(1px);
+}
+
+.default:active {
+  background: var(--s-gradient-menu-dialog-gray-pressed);
+}
+
+.primary:active {
+  background: var(--s-gradient-menu-dialog-blue-pressed);
+}
+
+.danger:active {
+  background: var(--s-gradient-menu-dialog-red-pressed);
 }
 
 .action:disabled {

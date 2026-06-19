@@ -15,6 +15,7 @@ interface ActionSheetProps {
   children?: React.ReactNode;
   actions?: ActionSheetAction[];
   cancelLabel?: React.ReactNode;
+  cancelPosition?: 'left' | 'right';
 }
 
 export const ActionSheet: React.FC<ActionSheetProps> = ({
@@ -24,6 +25,7 @@ export const ActionSheet: React.FC<ActionSheetProps> = ({
   children,
   actions = [],
   cancelLabel = '取消',
+  cancelPosition = 'right',
 }) => {
   useEffect(() => {
     if (!isOpen) return;
@@ -52,6 +54,12 @@ export const ActionSheet: React.FC<ActionSheetProps> = ({
     onClose();
   };
 
+  const cancelButton = (
+    <button type="button" className={styles.cancelButton} onClick={onClose}>
+      {cancelLabel}
+    </button>
+  );
+
   return (
     <div className={styles.overlay} onClick={onClose}>
       <section
@@ -62,11 +70,9 @@ export const ActionSheet: React.FC<ActionSheetProps> = ({
         onClick={(event) => event.stopPropagation()}
       >
         <header className={styles.header}>
-          <button type="button" className={styles.cancelButton} onClick={onClose}>
-            {cancelLabel}
-          </button>
+          {cancelPosition === 'left' ? cancelButton : <span className={styles.headerSpacer} aria-hidden="true" />}
           {title && <h2 className={styles.title}>{title}</h2>}
-          <span className={styles.headerSpacer} aria-hidden="true" />
+          {cancelPosition === 'right' ? cancelButton : <span className={styles.headerSpacer} aria-hidden="true" />}
         </header>
 
         <div className={styles.body}>

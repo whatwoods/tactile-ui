@@ -5,12 +5,14 @@ export interface ProgressDialogProps {
   isOpen: boolean;
   title?: React.ReactNode;
   message?: React.ReactNode;
+  tone?: 'light' | 'dark';
 }
 
 export const ProgressDialog: React.FC<ProgressDialogProps> = ({
   isOpen,
   title,
   message,
+  tone = 'light',
 }) => {
   useEffect(() => {
     if (isOpen) {
@@ -29,7 +31,7 @@ export const ProgressDialog: React.FC<ProgressDialogProps> = ({
   return (
     <div className={styles.overlay}>
       <div
-        className={styles.dialog}
+        className={`${styles.dialog} ${tone === 'dark' ? styles.dark : ''}`}
         role="dialog"
         aria-modal="true"
         aria-busy="true"

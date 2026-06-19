@@ -1,0 +1,574 @@
+/* Hero Component Stylesheet */
+
+.heroSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 120px 24px 80px 24px;
+  background: var(--s-color-surface-flat);
+  border-bottom: 1px solid var(--s-color-border-soft);
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.heroSection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: var(--s-texture-noise);
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+.heroContainer {
+  display: grid;
+  grid-template-columns: 0.45fr 0.55fr;
+  gap: 48px;
+  width: 100%;
+  max-width: 1100px;
+  align-items: center;
+  z-index: 1;
+}
+
+/* --- Skeuomorphic Instrument Console --- */
+.heroConsole {
+  position: relative;
+  background: var(--s-gradient-device-surface);
+  border: 1px solid var(--s-color-border-strong);
+  border-radius: var(--s-radius-xl);
+  box-shadow: var(--s-shadow-device);
+  padding: var(--s-space-5);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-space-5);
+  width: 100%;
+  max-width: 460px;
+  margin: 0 auto;
+}
+
+/* Highlights on top/bottom of panel */
+.heroConsole::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--s-color-hero-console-highlight);
+}
+
+.topPanel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--s-color-border-soft);
+  padding-bottom: var(--s-space-3);
+}
+
+.brandPlate {
+  display: flex;
+  flex-direction: column;
+}
+
+.brandTitle {
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--s-color-text-primary);
+  text-shadow: var(--s-shadow-text-highlight);
+}
+
+.brandModel {
+  font-size: 9px;
+  color: var(--s-color-text-tertiary);
+  font-weight: 600;
+}
+
+.ledGroup {
+  display: flex;
+  align-items: center;
+  gap: var(--s-space-2);
+}
+
+.ledLabel {
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--s-color-text-secondary);
+}
+
+.ledDot {
+  width: 12px;
+  height: 12px;
+  border-radius: var(--s-radius-pill);
+  transition: all var(--s-duration-slow) var(--s-ease-standard);
+  position: relative;
+  box-shadow: var(--s-shadow-led-inset);
+}
+
+/* Ambient glow overlay behind the LED */
+.ledDot::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: var(--s-radius-pill);
+  box-shadow: var(--s-shadow-led-inner-highlight);
+}
+
+.ledOff {
+  background: var(--s-gradient-dot-grey);
+}
+
+.ledGreen {
+  background: var(--s-gradient-led-success);
+  box-shadow: var(--s-shadow-device-led);
+}
+
+.ledBlue {
+  background: var(--s-gradient-dot-blue);
+  box-shadow: var(--s-shadow-led-glow-blue);
+}
+
+.ledOrange {
+  background: var(--s-gradient-dot-danger);
+  box-shadow: var(--s-shadow-led-glow-orange);
+}
+
+.ledDiag {
+  background: var(--s-gradient-progress-danger);
+  box-shadow: var(--s-shadow-led-glow-red);
+}
+
+/* --- LCD CRT Screen --- */
+.screenGroove {
+  background: var(--s-color-black);
+  border-radius: var(--s-radius-lg);
+  padding: 3px;
+  box-shadow: var(--s-shadow-device-screen);
+  border: 1px solid var(--s-color-border-strong);
+  transition: all var(--s-duration-normal) var(--s-ease-standard);
+}
+
+.screenInner {
+  background: var(--s-color-device-screen);
+  border-radius: var(--s-radius-md);
+  height: 160px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: var(--s-space-4);
+  box-sizing: border-box;
+}
+
+.screenScanlines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--s-gradient-device-screen-scanlines);
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.screenGlare {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: var(--s-gradient-device-screen-glare);
+  pointer-events: none;
+  z-index: 3;
+}
+
+.screenContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  font-family: 'SF Mono', SFMono-Regular, Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--s-color-device-text);
+  text-shadow: var(--s-shadow-device-text);
+  letter-spacing: 0.5px;
+  z-index: 1;
+}
+
+.screenHeader {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  opacity: 0.9;
+  border-bottom: 1px dashed var(--s-color-device-header-line);
+  padding-bottom: 4px;
+}
+
+.infoLines {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: var(--s-space-3) 0;
+}
+
+.diagLines {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: var(--s-space-3) 0;
+  color: var(--s-color-danger-hover);
+  text-shadow: var(--s-shadow-text-glow-red);
+  font-size: 11px;
+}
+
+.screenLine {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.screenFooter {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  opacity: 0.8;
+  border-top: 1px dashed var(--s-color-device-footer-line);
+  padding-top: 4px;
+}
+
+.screenPowerOffText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  color: var(--s-color-device-screen-off-text);
+  font-family: 'SF Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 2px;
+  user-select: none;
+}
+
+/* Animations for active screen */
+.flickerText {
+  animation: textFlicker 2.5s infinite;
+}
+
+.screenBoost {
+  animation: boostGlow 1.5s infinite alternate;
+}
+
+@keyframes textFlicker {
+  0%, 100% { opacity: 1; }
+  45% { opacity: 1; }
+  50% { opacity: 0.45; }
+  55% { opacity: 1; }
+}
+
+@keyframes boostGlow {
+  from { filter: brightness(1); }
+  to { filter: brightness(1.3); }
+}
+
+/* --- Control Knobs and Buttons Row --- */
+.controlsRow {
+  display: grid;
+  grid-template-columns: 0.236fr 0.236fr 0.528fr;
+  gap: var(--s-space-4);
+  align-items: flex-end;
+}
+
+.controlGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-space-2);
+}
+
+.controlTitle {
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--s-color-text-secondary);
+  text-align: center;
+  letter-spacing: 0.5px;
+  text-shadow: var(--s-shadow-text-highlight);
+}
+
+/* Power Toggle Switch */
+.switchWrapper {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+}
+
+.toggleSwitch {
+  width: 38px;
+  height: 20px;
+  border-radius: 10px;
+  background: var(--s-color-surface-pressed);
+  box-shadow: var(--s-shadow-device-mini-switch);
+  position: relative;
+  border: 1px solid var(--s-color-border-strong);
+  cursor: pointer;
+  padding: 0;
+}
+
+.switchHandle {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--s-gradient-mini-switch-thumb);
+  box-shadow: var(--s-shadow-device-mini-knob);
+  transition: transform var(--s-duration-normal) var(--s-ease-standard);
+}
+
+.toggleSwitchOn {
+  background: var(--s-color-primary-active);
+}
+
+.toggleSwitchOn .switchHandle {
+  transform: translateX(18px);
+}
+
+/* Dial Knob selector */
+.dialWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.dialKnob {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--s-gradient-device-dial);
+  box-shadow: var(--s-shadow-device-dial);
+  border: 1px solid var(--s-color-border-strong);
+  position: relative;
+  cursor: pointer;
+  padding: 0;
+  transition: transform var(--s-duration-slow) var(--s-ease-physics);
+}
+
+.dialKnob:active {
+  box-shadow: var(--s-shadow-pressed);
+}
+
+.dialKnob:disabled {
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+.dialNotch {
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 10px;
+  background: var(--s-color-icon-muted);
+  border-radius: 1.5px;
+}
+
+/* Mechanical Push Keys */
+.buttonsRow {
+  display: flex;
+  gap: var(--s-space-2);
+  justify-content: center;
+}
+
+.pushKey {
+  flex: 1;
+  height: 38px;
+  background: var(--s-gradient-button-gray);
+  border: 1px solid var(--s-color-border-strong);
+  border-radius: var(--s-radius-sm);
+  box-shadow: var(--s-shadow-button-idle);
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--s-duration-fast) var(--s-ease-standard);
+  padding: 0 var(--s-space-1);
+}
+
+.pushKey:hover:not(:disabled) {
+  background: var(--s-gradient-button-gray-hover);
+}
+
+.pushKey:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.keyLabel {
+  font-size: 8px;
+  font-weight: 700;
+  color: var(--s-color-text-primary);
+  letter-spacing: 0.3px;
+  text-align: center;
+}
+
+/* Skeuomorphic visual indent when button is active (pressed in) */
+.pushKeyActive {
+  background: var(--s-gradient-button-gray-active) !important;
+  box-shadow: var(--s-shadow-button-pressed) !important;
+  transform: translateY(2px);
+}
+
+.pushKeyActive::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: var(--s-radius-sm);
+  box-shadow: var(--s-shadow-led-inset);
+}
+
+/* --- Hero Text & Branding Column --- */
+.heroTextContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.heroTitle {
+  font-size: 40px;
+  font-weight: 300;
+  color: var(--s-color-text-primary);
+  margin-bottom: var(--s-space-4);
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+
+.heroSubtitle {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--s-color-text-secondary);
+  margin-bottom: var(--s-space-5);
+  max-width: 580px;
+}
+
+.ctaButtonGroup {
+  display: flex;
+  gap: var(--s-space-3);
+}
+
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  font-size: var(--s-font-size-body);
+  padding: var(--s-space-3) 24px;
+  border-radius: var(--s-radius-md);
+  cursor: pointer;
+  transition: all var(--s-duration-fast) var(--s-ease-standard);
+  text-decoration: none;
+}
+
+.ctaPrimary {
+  background: var(--s-gradient-button-blue);
+  color: var(--s-color-text-inverse);
+  border: 1px solid var(--s-color-primary-border);
+  box-shadow: var(--s-highlight-inner), var(--s-shadow-drop), var(--s-shadow-ambient);
+  text-shadow: var(--s-shadow-text-engraved);
+}
+
+.ctaPrimary:hover {
+  background: var(--s-gradient-button-blue-hover);
+}
+
+.ctaPrimary:active {
+  background: var(--s-gradient-button-blue-active);
+  box-shadow: var(--s-shadow-button-pressed);
+  transform: translateY(1px);
+}
+
+.ctaSecondary {
+  background: var(--s-gradient-button-gray);
+  color: var(--s-color-text-primary);
+  border: 1px solid var(--s-color-border-strong);
+  box-shadow: var(--s-shadow-button-idle);
+}
+
+.ctaSecondary:hover {
+  background: var(--s-gradient-button-gray-hover);
+}
+
+.ctaSecondary:active {
+  background: var(--s-gradient-button-gray-active);
+  box-shadow: var(--s-shadow-button-pressed);
+  transform: translateY(1px);
+}
+
+/* --- Responsive Adaptations --- */
+@media (max-width: 900px) {
+  .heroContainer {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .heroTextContent {
+    align-items: center;
+    text-align: center;
+  }
+
+  .heroSubtitle {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .ctaButtonGroup {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 500px) {
+  .heroSection {
+    padding: 90px 16px 60px 16px;
+  }
+
+  .heroConsole {
+    padding: var(--s-space-4);
+    gap: var(--s-space-4);
+  }
+
+  .heroTitle {
+    font-size: 32px;
+  }
+
+  .controlsRow {
+    grid-template-columns: 1fr;
+    gap: var(--s-space-4);
+    align-items: center;
+  }
+
+  .controlGroup {
+    align-items: center;
+  }
+
+  .switchWrapper, .dialWrapper {
+    padding: 4px 0;
+  }
+
+  .buttonsRow {
+    width: 100%;
+    max-width: 240px;
+  }
+}

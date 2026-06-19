@@ -16,6 +16,10 @@
     opacity var(--s-transition-fast);
 }
 
+.item[data-accessory='check'] {
+  padding-right: var(--s-size-setting-check-margin-right);
+}
+
 .item:last-child {
   border-bottom: none;
 }
@@ -24,10 +28,15 @@
   cursor: pointer;
 }
 
-.clickable:active,
-.selected {
+.clickable:active {
   background: var(--s-color-primary);
   color: var(--s-color-text-inverse);
+  transition: none;
+}
+
+.selected {
+  background: var(--s-color-surface-flat);
+  color: var(--s-color-text-primary);
 }
 
 .disabled {
@@ -43,11 +52,12 @@
   align-items: center;
   justify-content: center;
   color: var(--s-color-icon-muted);
+  transition: color var(--s-transition-fast);
 }
 
-.selected .icon,
 .clickable:active .icon {
   color: var(--s-color-text-inverse);
+  transition: none;
 }
 
 .copy {
@@ -84,6 +94,7 @@
   font-size: var(--s-font-size-title-button);
   line-height: 1.2;
   color: var(--s-color-text-secondary);
+  transition: color var(--s-transition-fast);
 }
 
 .value {
@@ -94,14 +105,14 @@
   color: var(--s-color-text-secondary);
   text-align: right;
   text-shadow: var(--s-shadow-text-highlight);
+  transition: color var(--s-transition-fast);
 }
 
-.selected .summary,
-.selected .value,
 .clickable:active .summary,
 .clickable:active .value {
   color: var(--s-color-text-inverse);
   text-shadow: none;
+  transition: none;
 }
 
 .chevron,
@@ -112,13 +123,27 @@
   align-items: center;
   justify-content: center;
   color: var(--s-color-text-disabled-solid);
+  transition: color var(--s-transition-fast);
 }
 
-.selected .chevron,
-.selected .checkMark,
+.checkMark {
+  flex-basis: var(--s-size-selected-icon-canvas);
+  width: var(--s-size-selected-icon-canvas);
+}
+
+.checkSvg {
+  width: var(--s-size-selected-mark-width);
+  height: var(--s-size-selected-mark-height);
+}
+
+.selected .checkMark {
+  color: var(--s-color-primary);
+}
+
 .clickable:active .chevron,
 .clickable:active .checkMark {
   color: var(--s-color-text-inverse);
+  transition: none;
 }
 
 .switchSlot {

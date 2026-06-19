@@ -15,17 +15,20 @@
 }
 
 .sm {
-  padding: var(--s-space-2) 12px;
+  min-height: var(--s-size-button-sm-min-height);
+  padding: 0 var(--s-size-button-padding-x-sm);
   font-size: var(--s-font-size-body-sm);
 }
 
 .md {
-  padding: var(--s-space-3) 20px;
+  min-height: var(--s-size-button-md-min-height);
+  padding: 0 var(--s-size-button-padding-x-md);
   font-size: var(--s-font-size-body);
 }
 
 .lg {
-  padding: 14px 28px;
+  min-height: var(--s-size-button-lg-min-height);
+  padding: 0 var(--s-size-button-padding-x-lg);
   font-size: var(--s-font-size-setting-title);
 }
 
@@ -43,7 +46,7 @@
 .secondary:active {
   background: var(--s-gradient-button-gray-active);
   box-shadow: var(--s-shadow-button-pressed);
-  transform: translateY(1px);
+  transform: translateY(1px) scale(0.985);
 }
 
 .primary {
@@ -61,7 +64,7 @@
 .primary:active {
   background: var(--s-gradient-button-blue-active);
   box-shadow: var(--s-shadow-button-pressed);
-  transform: translateY(1px);
+  transform: translateY(1px) scale(0.985);
 }
 
 .danger {
@@ -79,7 +82,7 @@
 .danger:active {
   background: var(--s-gradient-button-danger-active);
   box-shadow: var(--s-shadow-button-pressed);
-  transform: translateY(1px);
+  transform: translateY(1px) scale(0.985);
 }
 
 .button:focus-visible {

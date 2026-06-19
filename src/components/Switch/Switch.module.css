@@ -1,4 +1,7 @@
 .switch {
+  --switch-progress: 0;
+  --switch-thumb-size: var(--s-size-switch-thumb);
+
   position: relative;
   width: var(--s-size-switch-width);
   height: var(--s-size-switch-height);
@@ -8,6 +11,7 @@
   cursor: pointer;
   outline: none;
   border-radius: var(--s-radius-pill);
+  touch-action: pan-y;
 }
 
 .switch:focus-visible {
@@ -17,35 +21,47 @@
 
 .track {
   width: 100%;
-  height: 28px;
+  height: var(--s-size-switch-track-height);
   border-radius: var(--s-radius-pill);
   background: var(--s-color-surface-sunken);
   box-shadow: var(--s-shadow-switch-track);
-  transition: box-shadow var(--s-transition-physics), background var(--s-transition-physics);
+  transition: box-shadow var(--s-transition-physics);
   position: absolute;
-  top: 1px;
+  top: 2px;
   overflow: hidden;
+}
+
+.track::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  transition: opacity var(--s-transition-physics);
+  z-index: 0;
 }
 
 .hole {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 12px;
-  height: 12px;
+  width: var(--s-size-switch-dot);
+  height: var(--s-size-switch-dot);
   border-radius: 50%;
   transition: opacity var(--s-transition-physics), transform var(--s-transition-physics);
   z-index: 1;
 }
 
 .holeLeft {
-  left: 9px;
+  left: var(--s-size-switch-dot-inset);
   background: var(--s-indicator-dot-blue-bg);
   box-shadow: var(--s-indicator-dot-blue-shadow);
 }
 
 .holeRight {
-  left: 51px;
+  right: var(--s-size-switch-dot-inset);
   background: var(--s-gradient-dot-grey);
   box-shadow: var(--s-shadow-grey-dot);
 }
@@ -56,15 +72,16 @@
 
 .thumb {
   position: absolute;
-  top: 0;
+  top: 8px;
   left: 0;
-  width: var(--s-size-thumb);
-  height: var(--s-size-thumb);
+  width: var(--s-size-switch-thumb);
+  height: var(--s-size-switch-thumb);
   border-radius: 50%;
   background: var(--s-gradient-thumb);
   box-shadow: var(--s-shadow-control-thumb);
   border: 1px solid var(--s-color-border-hairline);
-  transition: transform var(--s-transition-physics);
+  transition: transform var(--s-transition-fast);
+  transform: translateX(calc(var(--switch-progress) * var(--s-size-switch-thumb-travel)));
   z-index: 2;
   display: flex;
   align-items: center;
@@ -72,18 +89,24 @@
 }
 
 .thumbDimple {
-  width: 12px;
-  height: 12px;
+  width: var(--s-size-switch-dot);
+  height: var(--s-size-switch-dot);
   border-radius: 50%;
   background: var(--s-gradient-thumb-dimple);
   box-shadow: var(--s-shadow-thumb-dimple);
 }
 
-.checked .thumb {
-  transform: translateX(42px);
-}
-
 .switch:disabled {
   opacity: var(--s-opacity-disabled-control);
   cursor: not-allowed;
+}
+
+.checked.positive .track::before {
+  background: linear-gradient(180deg, var(--s-color-primary-active) 0%, var(--s-color-primary) 100%);
+  opacity: 1;
+}
+
+.checked.negative .track::before {
+  background: linear-gradient(180deg, var(--s-color-danger-active) 0%, var(--s-color-danger) 100%);
+  opacity: 1;
 }
