@@ -21,77 +21,62 @@
   z-index: 2;
 }
 
-/* The physical groove for the radio */
 .circle {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #EAEAEA;
+  inset: 0;
+  background: var(--s-color-surface-track);
   border-radius: 50%;
   box-shadow: var(--s-shadow-inset-groove);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all var(--s-transition-physics);
+  transition:
+    background var(--s-transition-physics),
+    box-shadow var(--s-transition-physics);
   z-index: 1;
 }
 
-/* The metallic center dot */
 .dot {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: linear-gradient(180deg, #FFFFFF 0%, #DCDCDC 100%);
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.8);
+  background: var(--s-gradient-dot-danger);
+  box-shadow: var(--s-indicator-dot-blue-shadow);
   opacity: 0;
   transform: scale(0.5);
-  transition: all var(--s-transition-physics);
+  transition: opacity var(--s-transition-physics), transform var(--s-transition-physics);
 }
 
-/* Hover state */
 .container:hover .circle {
-  background: #F0F0F0;
+  background: var(--s-color-surface-sunken);
 }
 
-/* Active (pressing) state */
 .input:active + .circle {
-  box-shadow: inset 0 3px 6px rgba(0,0,0,0.15), inset 0 5px 10px rgba(0,0,0,0.05), 0 1px 0 rgba(255,255,255,0.8);
+  box-shadow: var(--s-shadow-pressed), var(--s-highlight-inner);
 }
 
-/* Checked state */
 .input:checked + .circle .dot {
   opacity: 1;
   transform: scale(1);
 }
 
-/* Checked Primary variant (could add red glow, but metallic is classic Smartisan) */
-.input:checked + .circle .dot {
-  /* To make it look like an LED or primary brand colored dot if desired.
-     We'll stick to a red LED/metallic look. */
-  background: linear-gradient(180deg, #E53935 0%, #B71C1C 100%);
-  box-shadow: 0 1px 3px rgba(211, 47, 47, 0.4), inset 0 1px 0 rgba(255,255,255,0.4);
-}
-
-/* Focus */
 .input:focus-visible + .circle {
   outline: 2px solid var(--s-color-primary);
   outline-offset: 2px;
 }
 
-/* Disabled */
 .input:disabled + .circle {
-  opacity: 0.5;
+  opacity: var(--s-opacity-disabled-control);
   cursor: not-allowed;
 }
+
 .input:disabled ~ .label {
-  opacity: 0.5;
+  opacity: var(--s-opacity-disabled-control);
   cursor: not-allowed;
 }
 
 .label {
-  font-size: 16px;
+  font-size: var(--s-font-size-body);
   color: var(--s-color-text-primary);
   user-select: none;
   cursor: pointer;

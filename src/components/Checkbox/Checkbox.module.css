@@ -1,7 +1,7 @@
 .container {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: var(--s-space-3);
   cursor: pointer;
   user-select: none;
 }
@@ -22,52 +22,46 @@
   z-index: 2;
 }
 
-/* The physical groove - unchecked circular ring */
 .box {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #FFFFFF;
+  inset: 0;
+  background: var(--s-color-surface-flat);
   border-radius: 50%;
-  border: 2px solid #E5E5E5;
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05), 
-              0 1px 0 rgba(255, 255, 255, 0.85);
+  border: 2px solid var(--s-color-border-muted);
+  box-shadow: var(--s-shadow-input);
   box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all var(--s-transition-physics);
+  transition:
+    transform var(--s-transition-physics),
+    background var(--s-transition-physics),
+    border-color var(--s-transition-physics),
+    box-shadow var(--s-transition-physics);
   z-index: 1;
 }
 
-/* The thick white checkmark */
 .check {
   width: 12px;
   height: 9px;
-  color: #FFFFFF;
+  color: var(--s-color-text-inverse);
   opacity: 0;
   transform: scale(0.5);
-  transition: all var(--s-transition-physics);
+  transition: opacity var(--s-transition-physics), transform var(--s-transition-physics);
 }
 
-/* Hover state (unchecked) */
 .container:hover .box {
-  border-color: #D0D0D0;
+  border-color: var(--s-color-border-strong);
 }
 
-/* Active (pressing) state */
 .input:active + .box {
-  box-shadow: inset 0 1.5px 3px rgba(0, 0, 0, 0.1), 
-              0 1px 0 rgba(255, 255, 255, 0.85);
-  background: #FAFAFA;
+  box-shadow: var(--s-shadow-pressed);
+  background: var(--s-color-surface-raised);
 }
 
-/* Checked state - convex blue sphere */
 .input:checked + .box {
   background: var(--s-indicator-dot-blue-bg);
-  border-color: transparent;
+  border-color: var(--s-color-transparent);
   box-shadow: var(--s-indicator-dot-blue-shadow);
 }
 
@@ -76,33 +70,30 @@
   transform: scale(1);
 }
 
-/* Hover state (checked) - keep blue sphere solid */
 .container:hover .input:checked + .box {
-  opacity: 0.95;
+  opacity: var(--s-opacity-primary);
 }
 
-/* Focus */
 .input:focus-visible + .box {
   outline: 2px solid var(--s-color-primary);
   outline-offset: 2px;
 }
 
-/* Disabled */
 .input:disabled + .box {
-  opacity: 0.5;
+  opacity: var(--s-opacity-disabled-control);
   cursor: not-allowed;
-  background: #F1F1F1;
-  border-color: #E0E0E0;
-  box-shadow: none;
+  background: var(--s-color-surface-sunken);
+  border-color: var(--s-color-border-muted);
+  box-shadow: var(--s-highlight-inner);
 }
 
 .input:disabled ~ .label {
-  opacity: 0.5;
+  opacity: var(--s-opacity-disabled-control);
   cursor: not-allowed;
 }
 
 .label {
-  font-size: 16px;
-  color: #777777; /* Premium grey label text matching screenshot */
+  font-size: var(--s-font-size-body);
+  color: var(--s-color-text-secondary);
   cursor: pointer;
 }

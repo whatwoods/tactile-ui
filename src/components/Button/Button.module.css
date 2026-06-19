@@ -5,73 +5,91 @@
   justify-content: center;
   font-weight: 500;
   border-radius: var(--s-radius-md);
-  transition: all var(--s-transition-fast);
+  transition:
+    transform var(--s-transition-fast),
+    box-shadow var(--s-transition-fast),
+    background var(--s-transition-fast),
+    opacity var(--s-transition-fast);
   user-select: none;
   overflow: hidden;
 }
 
-/* Sizes */
 .sm {
-  padding: 6px 12px;
-  font-size: 14px;
+  padding: var(--s-space-2) 12px;
+  font-size: var(--s-font-size-body-sm);
 }
 
 .md {
-  padding: 10px 20px;
-  font-size: 16px;
+  padding: var(--s-space-3) 20px;
+  font-size: var(--s-font-size-body);
 }
 
 .lg {
   padding: 14px 28px;
-  font-size: 18px;
+  font-size: var(--s-font-size-setting-title);
 }
 
-/* Secondary (Default) Variant - Physical gray button */
 .secondary {
-  background: linear-gradient(180deg, #FFFFFF 0%, #F0F0F0 100%);
+  background: var(--s-gradient-button-gray);
   color: var(--s-color-text-primary);
-  border: 1px solid #Dcdcdc;
+  border: 1px solid var(--s-color-border);
   box-shadow: var(--s-shadow-button-idle);
 }
 
 .secondary:hover {
-  background: linear-gradient(180deg, #FFFFFF 0%, #FAFAFA 100%);
+  background: var(--s-gradient-button-gray-hover);
 }
 
 .secondary:active {
-  background: linear-gradient(180deg, #E8E8E8 0%, #DFDFDF 100%);
+  background: var(--s-gradient-button-gray-active);
   box-shadow: var(--s-shadow-button-pressed);
   transform: translateY(1px);
 }
 
-/* Primary Variant - Brand Color (Smartisan Blue) */
 .primary {
-  background: linear-gradient(180deg, #8DA4EE 0%, #5E7CD6 100%);
-  color: #FFFFFF;
-  border: 1px solid #4D6BC2;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), var(--s-shadow-drop), var(--s-shadow-ambient);
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
+  background: var(--s-gradient-button-blue);
+  color: var(--s-color-text-inverse);
+  border: 1px solid var(--s-color-primary-border);
+  box-shadow: var(--s-highlight-inner), var(--s-shadow-drop), var(--s-shadow-ambient);
+  text-shadow: var(--s-shadow-text-engraved);
 }
 
 .primary:hover {
-  background: linear-gradient(180deg, #9CB2F9 0%, #6E88DD 100%);
+  background: var(--s-gradient-button-blue-hover);
 }
 
 .primary:active {
-  background: linear-gradient(180deg, #5E7CD6 0%, #4D6BC2 100%);
-  box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.25), inset 0 1px 2px rgba(0, 0, 0, 0.15);
+  background: var(--s-gradient-button-blue-active);
+  box-shadow: var(--s-shadow-button-pressed);
   transform: translateY(1px);
 }
 
-/* Focus states */
+.danger {
+  background: var(--s-gradient-button-danger);
+  color: var(--s-color-text-inverse);
+  border: 1px solid var(--s-color-danger-active);
+  box-shadow: var(--s-highlight-inner), var(--s-shadow-drop), var(--s-shadow-ambient);
+  text-shadow: var(--s-shadow-text-engraved);
+}
+
+.danger:hover {
+  background: var(--s-gradient-button-danger-hover);
+}
+
+.danger:active {
+  background: var(--s-gradient-button-danger-active);
+  box-shadow: var(--s-shadow-button-pressed);
+  transform: translateY(1px);
+}
+
 .button:focus-visible {
   outline: 2px solid var(--s-color-primary);
   outline-offset: 2px;
 }
 
 .button:disabled {
-  opacity: 0.6;
+  opacity: var(--s-opacity-disabled-control);
   cursor: not-allowed;
   transform: none;
-  box-shadow: none;
+  box-shadow: var(--s-highlight-inner);
 }

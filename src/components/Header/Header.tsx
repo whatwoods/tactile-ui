@@ -19,30 +19,22 @@ export const Header: React.FC = () => {
   }, []);
 
   const mainNavItems = [
-    { label: '在线商城', active: false },
-    { label: '坚果 R2', active: false },
-    { label: 'Smartisan TNT go', active: false },
-    { label: '坚果 TNT 工作站', active: false },
-    { label: 'Smartisan OS', active: true },
-    { label: '欢喜云', active: false },
+    { label: '设计原则', active: true },
+    { label: '组件预览', active: false },
+    { label: '设计令牌', active: false },
+    { label: '组件库规范', active: false },
     { label: '论坛', active: false },
-    { label: '开发者支持', active: false },
-    { label: '荣誉与奖项', active: false }
+    { label: '开发者支持', active: false }
   ];
 
   const subNavItems = [
-    { label: 'TNT', active: false },
-    { label: 'OS 6.6', active: false },
-    { label: 'Idea Pills', active: false },
-    { label: 'Big Bang', active: false },
-    { label: 'One Step', active: false },
-    { label: '好用', active: false },
-    { label: '好看', active: false },
-    { label: '强大', active: true },
-    { label: '人性化', active: false },
-    { label: '丰富', active: false },
-    { label: '云服务', active: false },
-    { label: '开发者', active: false }
+    { label: 'Skeuomorphism', active: true },
+    { label: 'Switch', active: false },
+    { label: 'Slider', active: false },
+    { label: 'Checkbox', active: false },
+    { label: 'Input', active: false },
+    { label: 'SegmentedControl', active: false },
+    { label: 'Dialog', active: false }
   ];
 
   return (
@@ -53,12 +45,12 @@ export const Header: React.FC = () => {
           {/* Logo on the left */}
           <div className={styles.logoWrapper}>
             <svg viewBox="0 0 38 38" width="38" height="38" className={styles.hammerLogo}>
-              <circle cx="19" cy="19" r="17.5" stroke="#333333" strokeWidth="1.2" fill="none" />
+              <circle cx="19" cy="19" r="17.5" stroke="currentColor" strokeWidth="1.2" fill="none" />
               {/* Specialized Hammer Vector */}
-              <rect x="18" y="15" width="2" height="14" rx="0.5" fill="#333333" />
-              <path d="M12 11.2c0.8-0.8 3.2-1.2 5-1.2v2.8c-1.5 0-3.8-0.4-5-1.6z" fill="#333333" />
-              <rect x="17" y="10" width="7" height="2.8" rx="0.4" fill="#333333" />
-              <rect x="17.5" y="11.5" width="3" height="4.5" fill="#333333" />
+              <rect x="18" y="15" width="2" height="14" rx="0.5" fill="currentColor" />
+              <path d="M12 11.2c0.8-0.8 3.2-1.2 5-1.2v2.8c-1.5 0-3.8-0.4-5-1.6z" fill="currentColor" />
+              <rect x="17" y="10" width="7" height="2.8" rx="0.4" fill="currentColor" />
+              <rect x="17.5" y="11.5" width="3" height="4.5" fill="currentColor" />
             </svg>
           </div>
 
@@ -99,9 +91,9 @@ export const Header: React.FC = () => {
       {/* 2. Sub Navigation Bar (Level 2 - sticky) */}
       <div className={`${styles.subHeader} ${isSticky ? styles.sticky : ''}`}>
         <div className={styles.subNavContent}>
-          {/* Logo container for the sticky state (smartisan os) */}
+          {/* Logo container for the sticky state (smartisan ui) */}
           <div className={`${styles.stickyLogo} ${isSticky ? styles.visible : ''}`}>
-            <span>smartisan os</span>
+            <span>smartisan ui</span>
           </div>
 
           {/* Sub Nav Links */}

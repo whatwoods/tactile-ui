@@ -8,30 +8,32 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 12px 16px;
+  padding: 12px var(--s-space-4);
   border-radius: var(--s-radius-md);
-  /* The physical groove of the input */
-  background: #FAFAFA;
-  box-shadow: inset 0 1px 2px rgba(0,0,0,0.06), 0 1px 0 rgba(255,255,255,1);
-  border: 1px solid #EAEAEA;
+  background: var(--s-color-surface-raised);
+  box-shadow: var(--s-shadow-input);
+  border: 1px solid var(--s-color-border-soft);
   cursor: pointer;
   user-select: none;
-  transition: all var(--s-transition-fast);
+  transition:
+    background var(--s-transition-fast),
+    box-shadow var(--s-transition-fast),
+    border-color var(--s-transition-fast);
   box-sizing: border-box;
 }
 
 .trigger:hover {
-  background: #FDFDFD;
+  background: var(--s-color-surface-hover);
 }
 
 .trigger.active {
-  background: #FFFFFF;
-  box-shadow: inset 0 2px 4px rgba(0,0,0,0.05), 0 0 0 2px rgba(90, 124, 235, 0.4);
+  background: var(--s-color-surface-flat);
+  box-shadow: var(--s-shadow-input-focus), var(--s-shadow-focus-ring);
 }
 
 .placeholder {
-  font-size: 16px;
-  color: #999999;
+  font-size: var(--s-font-size-body);
+  color: var(--s-color-text-tertiary);
 }
 
 .valueArea {
@@ -40,42 +42,41 @@
 }
 
 .value {
-  font-size: 16px;
-  color: #666666;
+  font-size: var(--s-font-size-body);
+  color: var(--s-color-text-secondary);
 }
 
 .icon {
-  color: #AAAAAA;
+  color: var(--s-color-text-disabled-solid);
   display: flex;
   align-items: center;
-  margin-left: 8px;
+  margin-left: var(--s-space-2);
 }
 
-/* The dropdown menu */
 .dropdown {
   position: absolute;
-  top: -4px; /* Slight overlap */
-  right: 0; /* Align to the right */
-  width: 60%; /* Narrower than the trigger */
+  top: -4px;
+  right: 0;
+  width: 60%;
   min-width: 160px;
-  background: #FFFFFF;
+  background: var(--s-color-surface-flat);
   border-radius: var(--s-radius-md);
   box-shadow: var(--s-shadow-dropdown);
   z-index: 100;
   animation: slideDown var(--s-transition-fast);
   overflow: hidden;
-  border: 1px solid #EAEAEA;
+  border: 1px solid var(--s-color-border-soft);
 }
 
 .menuHeader {
-  background: #FAFAFA;
-  padding: 10px 16px;
-  border-bottom: 1px solid #EAEAEA;
+  background: var(--s-color-surface-raised);
+  padding: var(--s-space-3) var(--s-space-4);
+  border-bottom: 1px solid var(--s-color-border-soft);
 }
 
 .menuTitle {
-  font-size: 14px;
-  color: #999999;
+  font-size: var(--s-font-size-body-sm);
+  color: var(--s-color-text-tertiary);
 }
 
 .list {
@@ -87,33 +88,38 @@
 }
 
 .item {
-  padding: 14px 16px;
-  font-size: 16px;
-  color: #666666;
+  padding: 14px var(--s-space-4);
+  font-size: var(--s-font-size-body);
+  color: var(--s-color-text-secondary);
   cursor: pointer;
-  transition: background-color var(--s-transition-fast);
-  border-bottom: 1px solid #F2F2F2;
+  transition:
+    background-color var(--s-transition-fast),
+    color var(--s-transition-fast);
+  border-bottom: 1px solid var(--s-color-separator);
 }
 
 .item:last-child {
   border-bottom: none;
 }
 
-.item:hover {
-  background: #F5F5F5;
-}
-
+.item:hover,
 .selected {
-  background: #F5F5F5;
-  color: #333333;
+  background: var(--s-color-surface);
+  color: var(--s-color-text-primary);
 }
 
 .disabled {
-  opacity: 0.5;
+  opacity: var(--s-opacity-disabled-control);
   pointer-events: none;
 }
 
 @keyframes slideDown {
-  from { opacity: 0; transform: translateY(-4px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

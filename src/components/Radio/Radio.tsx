@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useId } from 'react';
 import styles from './Radio.module.css';
 
 interface RadioProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -6,7 +6,8 @@ interface RadioProps extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 export const Radio: React.FC<RadioProps> = ({ label, className, id, ...props }) => {
-  const generatedId = id || Math.random().toString(36).substring(2, 9);
+  const reactId = useId();
+  const generatedId = id || reactId;
 
   return (
     <div className={`${styles.container} ${className || ''}`}>

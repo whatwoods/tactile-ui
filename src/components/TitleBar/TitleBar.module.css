@@ -1,0 +1,116 @@
+.titleBar {
+  position: relative;
+  min-height: var(--s-size-titlebar-height);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: var(--s-space-3);
+  padding: 0 var(--s-space-4);
+  background: var(--s-color-surface-panel-header);
+  border-bottom: 1px solid var(--s-color-border-soft);
+  color: var(--s-color-text-title);
+}
+
+.sideSlot {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+}
+
+.rightSlot {
+  justify-content: flex-end;
+}
+
+.title {
+  max-width: 100%;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--s-color-text-title);
+  font-size: var(--s-font-size-titlebar);
+  font-weight: 500;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.backButton,
+.confirmButton {
+  max-width: var(--s-size-title-action-max-width);
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-space-2);
+  padding: 0 var(--s-space-3);
+  border: 1px solid var(--s-color-border);
+  border-radius: var(--s-radius-sm);
+  background: var(--s-gradient-button-gray);
+  box-shadow: var(--s-shadow-button-idle);
+  color: var(--s-color-text-title);
+  font-size: var(--s-font-size-title-button);
+  line-height: 1;
+  transition:
+    transform var(--s-transition-fast),
+    box-shadow var(--s-transition-fast),
+    background var(--s-transition-fast),
+    opacity var(--s-transition-fast);
+}
+
+.confirmButton {
+  border-color: var(--s-color-primary-border);
+  background: var(--s-gradient-button-blue);
+  color: var(--s-color-text-inverse);
+  text-shadow: var(--s-shadow-text-engraved);
+}
+
+.backButton:hover {
+  background: var(--s-gradient-button-gray-hover);
+}
+
+.confirmButton:hover {
+  background: var(--s-gradient-button-blue-hover);
+}
+
+.backButton:active,
+.confirmButton:active {
+  transform: translateY(1px);
+  box-shadow: var(--s-shadow-button-pressed);
+}
+
+.confirmButton:active {
+  background: var(--s-gradient-button-blue-active);
+}
+
+.backButton:focus-visible,
+.confirmButton:focus-visible {
+  box-shadow: var(--s-shadow-focus-ring), var(--s-shadow-button-idle);
+}
+
+.confirmButton:disabled {
+  cursor: not-allowed;
+  opacity: var(--s-opacity-disabled-control);
+}
+
+.backIcon {
+  flex: 0 0 auto;
+}
+
+.buttonText {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (max-width: 520px) {
+  .titleBar {
+    padding: 0 var(--s-space-3);
+  }
+
+  .backButton,
+  .confirmButton {
+    max-width: 84px;
+    padding: 0 var(--s-space-2);
+  }
+}

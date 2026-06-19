@@ -7,15 +7,14 @@
 .marksContainer {
   position: relative;
   height: 24px;
-  margin: 0 16px; /* Match the track horizontal bounds to align labels perfectly */
-  margin-bottom: 8px;
+  margin: 0 var(--s-space-4) var(--s-space-2);
 }
 
 .markLabel {
   position: absolute;
   transform: translateX(-50%);
-  font-size: 15px;
-  color: #B0B0B0;
+  font-size: var(--s-font-size-chip);
+  color: var(--s-color-text-disabled-solid);
   transition: color var(--s-transition-fast);
   cursor: pointer;
   white-space: nowrap;
@@ -23,19 +22,19 @@
 }
 
 .markLabelActive {
-  color: #333333;
+  color: var(--s-color-text-primary);
   font-weight: 500;
 }
 
 .controlArea {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: var(--s-space-4);
   width: 100%;
 }
 
 .icon {
-  color: #8E8E93; /* Smooth grey for icons */
+  color: var(--s-color-icon-muted);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -50,35 +49,31 @@
   align-items: center;
   cursor: pointer;
   touch-action: none;
-  padding: 0 16px; /* Bleed space for thumb, track ends are inset by 16px */
+  padding: 0 var(--s-space-4);
 }
 
-/* The physical groove/track for continuous and stepped sliders */
 .track {
   width: 100%;
   height: 8px;
   border-radius: var(--s-radius-pill);
-  background: var(--s-color-track-bg);
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 
-              0 1px 0 rgba(255, 255, 255, 0.85);
+  background: var(--s-color-surface-track);
+  box-shadow: var(--s-shadow-inset-groove);
   position: relative;
 }
 
-/* Physical nodes on the track (stepped slider holes) - hollow ring style */
 .trackNode {
   position: absolute;
   top: 50%;
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: #FFFFFF; /* Pure white center, matches card background */
-  border: 4px solid var(--s-color-track-bg); /* Symmetrical border matching 8px track height */
+  background: var(--s-color-surface-flat);
+  border: 4px solid var(--s-color-surface-track);
   box-shadow: var(--s-slider-node-shadow);
   transform: translate(-50%, -50%);
   z-index: 1;
 }
 
-/* The fill */
 .fill {
   position: absolute;
   top: 0;
@@ -88,7 +83,6 @@
   z-index: 2;
 }
 
-/* Fill Colors */
 .fill-blue {
   background: var(--s-slider-fill-blue-bg);
   box-shadow: var(--s-slider-fill-shadow);
@@ -103,52 +97,40 @@
   background: transparent;
 }
 
-/* The sliding physical thumb */
 .thumb {
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 30px; /* Unified diameter */
-  height: 30px; /* Unified diameter */
+  width: var(--s-size-thumb);
+  height: var(--s-size-thumb);
   border-radius: 50%;
-  /* Convex surface (highlight at top-left) */
-  background: radial-gradient(circle at 30% 30%, #FFFFFF 0%, #F5F5F5 55%, #E6E6E6 100%);
-  /* Rich protruding 3D drop shadow + crisp edge light */
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 
-              0 1px 3px rgba(0, 0, 0, 0.1), 
-              inset 0 1px 1px rgba(255, 255, 255, 0.95);
-  border: 1px solid rgba(0, 0, 0, 0.04);
+  background: var(--s-gradient-thumb);
+  box-shadow: var(--s-shadow-control-thumb);
+  border: 1px solid var(--s-color-border-hairline);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 3;
-  transition: left 0.1s ease-out; /* Slight damping for movement */
+  transition: left var(--s-duration-fast) ease-out;
 }
 
-/* The central physical dimple for continuous sliders */
 .thumbDimple {
-  width: 12px; /* Unified area */
-  height: 12px; /* Unified area */
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
-  /* Concave surface (highlight at bottom-right) - flatter gradient */
-  background: radial-gradient(circle at 70% 70%, #FFFFFF 0%, #FAFAFA 55%, #F0F0F0 100%);
-  /* Shallower inner shadows for a flatter curve */
-  box-shadow: inset 1px 1.5px 3px rgba(0, 0, 0, 0.035), 
-              inset -1px -1.5px 3px rgba(255, 255, 255, 0.95), 
-              0 1px 0 rgba(255, 255, 255, 0.95);
+  background: var(--s-gradient-thumb-dimple);
+  box-shadow: var(--s-shadow-thumb-dimple);
 }
 
-/* The central blue dot for stepped sliders - convex blue protruding dot, matches Switch indicator dot */
 .thumbDot {
-  width: 12px; /* Unified 12px size */
-  height: 12px; /* Unified 12px size */
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   background: var(--s-indicator-dot-blue-bg);
   box-shadow: var(--s-indicator-dot-blue-shadow);
 }
 
 .disabled {
-  opacity: 0.5;
+  opacity: var(--s-opacity-disabled-control);
   pointer-events: none;
 }
-

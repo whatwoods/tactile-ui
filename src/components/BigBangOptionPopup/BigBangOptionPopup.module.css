@@ -1,0 +1,93 @@
+.popup {
+  position: relative;
+  width: var(--s-size-boom-option-popup-width);
+  padding-bottom: var(--s-size-boom-option-arrow-height);
+  filter: drop-shadow(var(--s-shadow-boom-option-popup-filter));
+}
+
+.list {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--s-color-border-hairline);
+  border-radius: var(--s-radius-md);
+  background: var(--s-color-surface-flat);
+  box-shadow: var(--s-shadow-boom-option-popup);
+  list-style: none;
+}
+
+.item + .item {
+  border-top: var(--s-size-boom-option-divider-height) solid var(--s-color-boom-popup-divider);
+}
+
+.option {
+  width: 100%;
+  min-height: var(--s-size-boom-option-row-height);
+  display: grid;
+  grid-template-columns: var(--s-size-boom-option-icon-width) 1fr var(--s-size-boom-option-check-width);
+  align-items: center;
+  padding: 0 var(--s-size-boom-option-check-margin) 0 0;
+  background: var(--s-color-surface-flat);
+  color: var(--s-color-text-title);
+  font-size: var(--s-font-size-chip);
+  line-height: 1.2;
+  text-align: left;
+  transition:
+    background-color var(--s-transition-fast),
+    color var(--s-transition-fast);
+}
+
+.option:active {
+  background: var(--s-color-surface-pressed);
+}
+
+.option:focus-visible {
+  outline: 2px solid var(--s-color-primary);
+  outline-offset: -2px;
+}
+
+.icon {
+  width: var(--s-size-boom-option-icon-width);
+  min-height: var(--s-size-boom-option-row-height);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--s-color-primary-active);
+  font-size: var(--s-font-size-title-button);
+  font-weight: 700;
+}
+
+.label {
+  max-width: var(--s-size-boom-option-text-max-width);
+  overflow: hidden;
+  color: inherit;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.check {
+  width: var(--s-size-boom-option-check-width);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--s-color-primary-active);
+  visibility: hidden;
+}
+
+.checkVisible {
+  visibility: visible;
+}
+
+.arrow {
+  position: absolute;
+  left: calc(50% + var(--bigbang-option-arrow-offset));
+  bottom: var(--s-size-boom-option-arrow-offset-y);
+  width: var(--s-size-boom-option-arrow);
+  height: var(--s-size-boom-option-arrow);
+  border-right: 1px solid var(--s-color-border-hairline);
+  border-bottom: 1px solid var(--s-color-border-hairline);
+  background: var(--s-color-surface-flat);
+  transform: translateX(-50%) rotate(45deg);
+}

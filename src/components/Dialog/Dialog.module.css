@@ -1,10 +1,7 @@
 .overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.4);
+  inset: 0;
+  background: var(--s-color-overlay-modal);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,8 +10,8 @@
 }
 
 .dialog {
-  background: #FFFFFF;
-  border-radius: 12px; /* Very rounded corners */
+  background: var(--s-color-surface-flat);
+  border-radius: var(--s-radius-lg);
   width: 90%;
   max-width: 400px;
   box-shadow: var(--s-shadow-panel);
@@ -23,25 +20,24 @@
 }
 
 .header {
-  padding: 32px 24px 16px;
+  padding: 32px var(--s-space-5) var(--s-space-4);
   text-align: center;
 }
 
 .title {
   margin: 0;
-  font-size: 20px;
+  font-size: var(--s-font-size-titlebar);
   font-weight: 500;
-  color: #333333;
+  color: var(--s-color-text-primary);
 }
 
 .content {
   padding: 0 32px 32px;
-  color: #666666;
-  font-size: 15px;
+  color: var(--s-color-text-secondary);
+  font-size: var(--s-font-size-chip);
   line-height: 1.6;
 }
 
-/* The iconic floating close button */
 .closeButton {
   position: absolute;
   top: -12px;
@@ -49,21 +45,23 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: #4A4A4A;
-  color: #FFFFFF;
-  border: 2px solid #FFFFFF;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  background: var(--s-color-text-title);
+  color: var(--s-color-text-inverse);
+  border: 2px solid var(--s-color-white);
+  box-shadow: var(--s-shadow-close-button);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   padding: 0;
-  transition: transform var(--s-transition-fast), background var(--s-transition-fast);
+  transition:
+    transform var(--s-transition-fast),
+    background var(--s-transition-fast);
   z-index: 10;
 }
 
 .closeButton:hover {
-  background: #333333;
+  background: var(--s-color-text-primary);
   transform: scale(1.05);
 }
 
@@ -72,11 +70,21 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes slideUp {
-  from { opacity: 0; transform: translateY(20px) scale(0.95); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }

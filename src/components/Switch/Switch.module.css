@@ -1,7 +1,7 @@
 .switch {
   position: relative;
-  width: 72px;
-  height: 30px; /* Reduced container height */
+  width: var(--s-size-switch-width);
+  height: var(--s-size-switch-height);
   border: none;
   background: transparent;
   padding: 0;
@@ -15,23 +15,18 @@
   outline-offset: 2px;
 }
 
-/* The physical groove/track */
 .track {
   width: 100%;
-  height: 28px; /* Thinner track groove */
+  height: 28px;
   border-radius: var(--s-radius-pill);
-  background: #F1F1F1; /* Lighter track groove */
-  /* Subtler inset shadow to look shallower */
-  box-shadow: inset 0 1.2px 3px rgba(0, 0, 0, 0.07), 
-              inset 0 0.5px 1.5px rgba(0, 0, 0, 0.03), 
-              0 1px 0 rgba(255, 255, 255, 0.9);
-  transition: all var(--s-transition-physics);
+  background: var(--s-color-surface-sunken);
+  box-shadow: var(--s-shadow-switch-track);
+  transition: box-shadow var(--s-transition-physics), background var(--s-transition-physics);
   position: absolute;
-  top: 1px; /* Centered inside the 30px container (1px overlap at top and bottom) */
+  top: 1px;
   overflow: hidden;
 }
 
-/* The physical indicator holes */
 .hole {
   position: absolute;
   top: 50%;
@@ -39,43 +34,36 @@
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  transition: all var(--s-transition-physics);
+  transition: opacity var(--s-transition-physics), transform var(--s-transition-physics);
   z-index: 1;
 }
 
-/* Left hole is blue (ON indicator), exposed when thumb is on the right - convex blue protruding dot */
 .holeLeft {
-  left: 9px; /* Centered exactly at x = 15px (switch left cap center) */
+  left: 9px;
   background: var(--s-indicator-dot-blue-bg);
   box-shadow: var(--s-indicator-dot-blue-shadow);
 }
 
-/* Right hole is grey (OFF indicator), exposed when thumb is on the left - dark grey recessed bowl */
 .holeRight {
-  left: 51px; /* Centered exactly at x = 57px (switch right cap center) */
-  /* Darker grey gradient (darker than #F1F1F1 track background) */
-  background: radial-gradient(circle at 70% 70%, #E5E5E5 0%, #D8D8D8 60%, #C4C4C4 100%);
-  /* Soft shadows, subtle light reflect */
-  box-shadow: inset 1px 1.5px 3px rgba(0, 0, 0, 0.08), 
-              inset -1px -1.5px 3px rgba(255, 255, 255, 0.4), 
-              0 1px 0 rgba(255, 255, 255, 0.6);
+  left: 51px;
+  background: var(--s-gradient-dot-grey);
+  box-shadow: var(--s-shadow-grey-dot);
 }
 
-/* The sliding physical thumb */
+.negative .holeLeft {
+  background: var(--s-gradient-dot-danger);
+}
+
 .thumb {
   position: absolute;
-  top: 0px; 
-  left: 0px;
-  width: 30px; /* Reduced diameter */
-  height: 30px; /* Reduced diameter */
+  top: 0;
+  left: 0;
+  width: var(--s-size-thumb);
+  height: var(--s-size-thumb);
   border-radius: 50%;
-  /* Convex surface (highlight at top-left) */
-  background: radial-gradient(circle at 30% 30%, #FFFFFF 0%, #F5F5F5 55%, #E6E6E6 100%);
-  /* Rich protruding 3D drop shadow + crisp edge light */
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 
-              0 1px 3px rgba(0, 0, 0, 0.1), 
-              inset 0 1px 1px rgba(255, 255, 255, 0.95);
-  border: 1px solid rgba(0, 0, 0, 0.04);
+  background: var(--s-gradient-thumb);
+  box-shadow: var(--s-shadow-control-thumb);
+  border: 1px solid var(--s-color-border-hairline);
   transition: transform var(--s-transition-physics);
   z-index: 2;
   display: flex;
@@ -83,27 +71,19 @@
   justify-content: center;
 }
 
-/* The central physical dimple on the thumb */
 .thumbDimple {
-  width: 12px; /* Smaller area */
-  height: 12px; /* Smaller area */
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
-  /* Concave surface (highlight at bottom-right) - flatter gradient */
-  background: radial-gradient(circle at 70% 70%, #FFFFFF 0%, #FAFAFA 55%, #F0F0F0 100%);
-  /* Shallower inner shadows for a flatter curve */
-  box-shadow: inset 1px 1.5px 3px rgba(0, 0, 0, 0.035), 
-              inset -1px -1.5px 3px rgba(255, 255, 255, 0.95), 
-              0 1px 0 rgba(255, 255, 255, 0.95);
+  background: var(--s-gradient-thumb-dimple);
+  box-shadow: var(--s-shadow-thumb-dimple);
 }
 
-/* Checked state */
 .checked .thumb {
-  transform: translateX(42px); /* 72px - 30px = 42px */
+  transform: translateX(42px);
 }
 
-/* Disabled state */
 .switch:disabled {
-  opacity: 0.5;
+  opacity: var(--s-opacity-disabled-control);
   cursor: not-allowed;
 }
-

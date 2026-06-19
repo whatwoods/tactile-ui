@@ -1,23 +1,23 @@
 .container {
   position: fixed;
-  right: 24px; /* Position it safely away from the scrollbar */
+  right: var(--s-space-5);
   top: 50%;
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: var(--s-space-4);
   z-index: 100;
 }
 
 .pill {
-  background: #FFFFFF;
-  border-radius: 999px;
-  padding: 24px 0;
+  background: var(--s-color-surface-flat);
+  border-radius: var(--s-radius-pill);
+  padding: var(--s-space-5) 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.04), inset 0 0 0 1px rgba(0,0,0,0.05);
+  box-shadow: var(--s-shadow-floating-control);
   width: 44px;
 }
 
@@ -31,70 +31,65 @@
   cursor: pointer;
 }
 
-/* The glossy bead */
 .dot {
-  width: 6px;
-  height: 6px;
+  width: var(--s-space-2);
+  height: var(--s-space-2);
   border-radius: 50%;
-  background: #E0E0E0;
-  /* Physical bead shading: inset dark at bottom, inset light at top, drop shadow */
-  box-shadow: 
-    inset 0 -1px 2px rgba(0,0,0,0.1),
-    inset 0 1px 2px rgba(255,255,255,0.8),
-    0 1px 2px rgba(0,0,0,0.2);
-  transition: all var(--s-transition-fast);
+  background: var(--s-color-border-muted);
+  box-shadow: var(--s-shadow-grey-dot);
+  transition:
+    background var(--s-transition-fast),
+    box-shadow var(--s-transition-fast),
+    transform var(--s-transition-fast);
 }
 
 .active {
-  background: var(--s-color-primary); /* The blue bead */
-  box-shadow: 
-    inset 0 -1px 2px rgba(0,0,0,0.2),
-    inset 0 1px 2px rgba(255,255,255,0.6),
-    0 1px 3px rgba(90,124,235,0.4);
-  transform: scale(1.1); /* slightly larger when active */
+  background: var(--s-color-primary);
+  box-shadow: var(--s-indicator-dot-blue-shadow);
+  transform: scale(1.1);
 }
 
-/* Tooltip container */
 .tooltip {
   position: absolute;
-  right: 48px; /* Push to the left of the pill */
+  right: 48px;
   top: 50%;
-  transform: translateY(-50%) translateX(10px); /* Start slightly to the right for animation */
-  background: #FFFFFF;
-  border-radius: 6px;
-  padding: 8px 16px;
+  transform: translateY(-50%) translateX(10px);
+  background: var(--s-color-surface-flat);
+  border-radius: var(--s-radius-sm);
+  padding: var(--s-space-2) var(--s-space-4);
   display: flex;
   align-items: center;
   gap: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.05), inset 0 0 0 1px rgba(0,0,0,0.05);
+  box-shadow: var(--s-shadow-dropdown);
   opacity: 0;
   visibility: hidden;
-  transition: all var(--s-transition-fast);
+  transition:
+    opacity var(--s-transition-fast),
+    visibility var(--s-transition-fast),
+    transform var(--s-transition-fast);
   white-space: nowrap;
-  pointer-events: none; /* Let mouse pass through to dot */
+  pointer-events: none;
 }
 
-/* The physical triangle pointer on the right side of the tooltip */
 .tooltip::after {
   content: '';
   position: absolute;
-  right: -5px; /* Pull out of the right side */
+  right: -5px;
   top: 50%;
   transform: translateY(-50%);
   border-width: 6px 0 6px 6px;
   border-style: solid;
-  border-color: transparent transparent transparent #FFFFFF;
-  /* Ideally we'd use a drop shadow on the arrow, but filter: drop-shadow works on the whole tooltip instead. We'll stick to a clean white arrow here. */
+  border-color: transparent transparent transparent var(--s-color-surface-flat);
 }
 
 .showTooltip {
   opacity: 1;
   visibility: visible;
-  transform: translateY(-50%) translateX(0); /* Slide in to place */
+  transform: translateY(-50%) translateX(0);
 }
 
 .tooltipIcon {
-  color: #AAAAAA;
+  color: var(--s-color-text-disabled-solid);
   display: flex;
   align-items: center;
 }
@@ -102,20 +97,20 @@
 .tooltipDivider {
   width: 1px;
   height: 14px;
-  background: #EEEEEE;
+  background: var(--s-color-border-soft);
 }
 
 .tooltipLabel {
-  color: #666666;
-  font-size: 13px;
+  color: var(--s-color-text-secondary);
+  font-size: var(--s-font-size-drag);
   font-weight: 400;
 }
 
 .divider {
   width: 20px;
   height: 1px;
-  background: #EEEEEE;
-  margin: 16px 0;
+  background: var(--s-color-border-soft);
+  margin: var(--s-space-4) 0;
 }
 
 .socialBtn {
@@ -125,8 +120,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 8px;
-  transition: transform var(--s-transition-fast);
+  margin-bottom: var(--s-space-2);
+  color: var(--s-color-text-tertiary);
+  transition:
+    color var(--s-transition-fast),
+    transform var(--s-transition-fast);
 }
 
 .socialBtn:last-child {
@@ -134,23 +132,27 @@
 }
 
 .socialBtn:hover {
+  color: var(--s-color-text-primary);
   transform: scale(1.1);
 }
 
-/* Independent Back to top button */
 .backToTop {
   width: 44px;
   height: 44px;
-  background: #FFFFFF;
+  background: var(--s-color-surface-flat);
+  color: var(--s-color-text-tertiary);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.04), inset 0 0 0 1px rgba(0,0,0,0.05);
-  transition: transform var(--s-transition-fast);
+  box-shadow: var(--s-shadow-floating-control);
+  transition:
+    color var(--s-transition-fast),
+    transform var(--s-transition-fast);
 }
 
 .backToTop:hover {
+  color: var(--s-color-text-primary);
   transform: scale(1.05);
 }
 
