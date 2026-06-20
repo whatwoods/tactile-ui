@@ -41,6 +41,19 @@
 
 .disabled {
   cursor: not-allowed;
+}
+
+.disabled .title,
+.disabled .summary,
+.disabled .value,
+.disabled .icon {
+  opacity: var(--s-opacity-disabled-setting-check);
+}
+
+.disabled[data-accessory='switch'] .title,
+.disabled[data-accessory='switch'] .summary,
+.disabled[data-accessory='switch'] .value,
+.disabled[data-accessory='switch'] .icon {
   opacity: var(--s-opacity-disabled-control);
 }
 
@@ -129,6 +142,11 @@
 .checkMark {
   flex-basis: var(--s-size-selected-icon-canvas);
   width: var(--s-size-selected-icon-canvas);
+}
+
+.chevronSvg {
+  width: var(--s-size-setting-chevron-width);
+  height: var(--s-size-setting-chevron-height);
 }
 
 .checkSvg {

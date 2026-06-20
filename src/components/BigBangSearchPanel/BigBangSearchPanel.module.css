@@ -163,6 +163,16 @@
   right: var(--s-space-2);
 }
 
+.browserIcon {
+  width: var(--s-size-boom-search-browser-icon);
+  height: var(--s-size-boom-search-browser-icon);
+}
+
+.actionIcon {
+  width: var(--s-size-boom-search-action-icon);
+  height: var(--s-size-boom-search-action-icon);
+}
+
 .backButton {
   margin-left: var(--s-space-2);
 }
@@ -228,7 +238,7 @@
   left: 50%;
   width: var(--s-size-boom-search-spinner);
   height: var(--s-size-boom-search-spinner);
-  border: 3px solid var(--s-color-border-soft);
+  border: var(--s-size-boom-search-spinner-border) solid var(--s-color-border-soft);
   border-top-color: var(--s-color-primary-active);
   border-radius: var(--s-radius-pill);
   background: var(--s-color-surface-flat);
@@ -241,8 +251,8 @@
 .backButton:focus-visible,
 .settingsButton:focus-visible,
 .modeButton:focus-visible {
-  outline: 2px solid var(--s-color-primary);
-  outline-offset: 2px;
+  outline: var(--s-size-control-focus-ring) solid var(--s-color-primary);
+  outline-offset: var(--s-size-control-focus-offset);
 }
 
 @keyframes spin {

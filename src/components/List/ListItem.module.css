@@ -130,6 +130,11 @@
   transition: color var(--s-transition-fast);
 }
 
+.chevronSvg {
+  width: var(--s-size-list-arrow-width);
+  height: var(--s-size-list-arrow-height);
+}
+
 .check {
   margin-left: auto;
   min-width: var(--s-size-list-check-width);

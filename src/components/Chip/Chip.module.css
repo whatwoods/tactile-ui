@@ -1,8 +1,8 @@
 .chip {
-  min-width: 33px;
-  max-width: 260px;
-  min-height: 34px;
-  padding: var(--s-space-2) 14px;
+  min-width: var(--s-size-chip-min-width);
+  max-width: var(--s-size-chip-max-width);
+  min-height: var(--s-size-chip-min-height);
+  padding: var(--s-space-2) var(--s-size-chip-padding-x);
   border-radius: var(--s-radius-md);
   border: 1px solid var(--s-color-border);
   background: var(--s-gradient-button-gray);
@@ -36,13 +36,13 @@
 }
 
 .compact {
-  min-width: 21px;
+  min-width: var(--s-size-chip-min-width-compact);
   padding-inline: var(--s-space-3);
 }
 
 .chip:focus-visible {
-  outline: 2px solid var(--s-color-primary);
-  outline-offset: 2px;
+  outline: var(--s-size-control-focus-ring) solid var(--s-color-primary);
+  outline-offset: var(--s-size-control-focus-offset);
 }
 
 .chip:disabled {

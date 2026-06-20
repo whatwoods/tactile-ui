@@ -32,7 +32,7 @@ export const OneStepPanel: React.FC<OneStepPanelProps> = ({
         <h3 className={styles.panelTitle}>{title}</h3>
         {onClear && (
           <button type="button" className={styles.clearButton} onClick={onClear} aria-label="清除内容">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <svg className={styles.clearIcon} viewBox="0 0 14 14" fill="none" aria-hidden="true">
               <path d="M3 3l8 8M11 3l-8 8" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
             </svg>
           </button>
@@ -75,7 +75,7 @@ export const OneStepItem: React.FC<OneStepItemProps> = ({
             </span>
             {variant === 'text' && (
               <span className={styles.copyIcon} aria-hidden="true">
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <svg viewBox="0 0 12 12" fill="none">
                   <rect x="3.2" y="1.2" width="6.6" height="7.6" rx="1.2" stroke="currentColor" strokeWidth="1.2" />
                   <path d="M2.2 3.4H2a1 1 0 0 0-1 1V10a1 1 0 0 0 1 1h5.6a1 1 0 0 0 1-1v-.2" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
                 </svg>

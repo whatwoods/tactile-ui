@@ -10,14 +10,16 @@ export const Progress: React.FC<ProgressProps> = ({ value = 0 }) => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.track}>
+      <div
+        className={styles.track}
+        role="progressbar"
+        aria-valuenow={percentage}
+        aria-valuemin={0}
+        aria-valuemax={100}
+      >
         <div 
           className={styles.fill} 
           style={{ width: `${percentage}%` }}
-          role="progressbar"
-          aria-valuenow={percentage}
-          aria-valuemin={0}
-          aria-valuemax={100}
         >
           {/* Subtle glossy overlay */}
           <div className={styles.gloss}></div>

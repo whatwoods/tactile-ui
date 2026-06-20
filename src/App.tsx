@@ -15,6 +15,8 @@ import { List } from './components/List/List';
 import { ListItem } from './components/List/ListItem';
 import { TitleBar } from './components/TitleBar/TitleBar';
 import { ProgressDialog } from './components/ProgressDialog/ProgressDialog';
+import { Progress } from './components/Progress/Progress';
+import { Icon } from './components/Icon/Icon';
 import { DragBubble } from './components/DragBubble/DragBubble';
 import { BigBangOptionPopup } from './components/BigBangOptionPopup/BigBangOptionPopup';
 import { BigBangSearchPanel } from './components/BigBangSearchPanel/BigBangSearchPanel';
@@ -354,6 +356,28 @@ function App() {
                     <Chip>BigBang</Chip>
                     <Chip compact>，</Chip>
                     <Chip compact>。</Chip>
+                  </div>
+                </div>
+
+                <div>
+                  <span style={{ display: 'block', fontSize: '14px', color: 'var(--s-color-text-secondary)', marginBottom: '8px' }}>图标容器与条形进度</span>
+                  <div style={{ display: 'grid', gap: '14px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                      <Icon size="sm" tone="muted" surface label="系统设置">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                          <circle cx="12" cy="12" r="3" />
+                          <path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06A1.7 1.7 0 0 0 15 19.4a1.7 1.7 0 0 0-1 1.56V21a2 2 0 1 1-4 0v-.08A1.7 1.7 0 0 0 9 19.4a1.7 1.7 0 0 0-1.88.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.56-1H3a2 2 0 1 1 0-4h.08A1.7 1.7 0 0 0 4.6 9a1.7 1.7 0 0 0-.34-1.88l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1-1.56V3a2 2 0 1 1 4 0v.08A1.7 1.7 0 0 0 15 4.6a1.7 1.7 0 0 0 1.88-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.7 1.7 0 0 0 19.4 9a1.7 1.7 0 0 0 1.56 1H21a2 2 0 1 1 0 4h-.08A1.7 1.7 0 0 0 19.4 15Z" />
+                        </svg>
+                      </Icon>
+                      <Icon size="md" tone="primary" label="完成">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M20 6 9 17l-5-5" />
+                        </svg>
+                      </Icon>
+                      <div style={{ flex: 1 }}>
+                        <Progress value={68} />
+                      </div>
+                    </div>
                   </div>
                 </div>
 

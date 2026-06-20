@@ -43,6 +43,11 @@
   color: var(--s-color-text-inverse);
 }
 
+.clearIcon {
+  width: var(--s-size-onestep-clear-icon);
+  height: var(--s-size-onestep-clear-icon);
+}
+
 .panelBody {
   display: flex;
   flex-direction: column;
@@ -163,9 +168,14 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-left: 13px;
-  margin-right: 13px;
+  margin-left: var(--s-size-onestep-copy-icon-margin-x);
+  margin-right: var(--s-size-onestep-copy-icon-margin-x);
   color: var(--s-color-onestep-item-text);
+}
+
+.copyIcon svg {
+  width: 100%;
+  height: 100%;
 }
 
 .moreLabel {

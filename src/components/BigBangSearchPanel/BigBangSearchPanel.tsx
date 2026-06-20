@@ -87,7 +87,7 @@ export const BigBangSearchPanel: React.FC<BigBangSearchPanelProps> = ({
         <header className={styles.topPanel}>
           <h3 className={styles.title}>{title}</h3>
           <button type="button" className={styles.browserButton} onClick={onOpenBrowser} aria-label="在浏览器中打开">
-            <svg width="17" height="17" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <svg className={styles.browserIcon} viewBox="0 0 18 18" fill="none" aria-hidden="true">
               <path d="M7 3H3.8A1.8 1.8 0 0 0 2 4.8v9.4A1.8 1.8 0 0 0 3.8 16h9.4a1.8 1.8 0 0 0 1.8-1.8V11" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
               <path d="M10 2h6v6M8.5 9.5 15.5 2.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
@@ -102,7 +102,7 @@ export const BigBangSearchPanel: React.FC<BigBangSearchPanelProps> = ({
             onClick={onBack}
             aria-label="返回上一页"
           >
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <svg className={styles.actionIcon} viewBox="0 0 18 18" fill="none" aria-hidden="true">
               <path d="M11 4 6 9l5 5" stroke="currentColor" strokeWidth="2.1" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </button>
@@ -131,7 +131,7 @@ export const BigBangSearchPanel: React.FC<BigBangSearchPanelProps> = ({
           </div>
 
           <button type="button" className={styles.settingsButton} onClick={onSettings} aria-label="BigBang 设置">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <svg className={styles.actionIcon} viewBox="0 0 18 18" fill="none" aria-hidden="true">
               <path d="M9 6.2A2.8 2.8 0 1 1 9 11.8 2.8 2.8 0 0 1 9 6.2Z" stroke="currentColor" strokeWidth="1.7" />
               <path d="M14.8 9c0-.4-.04-.78-.12-1.15l1.36-1.05-1.36-2.35-1.6.66a6.2 6.2 0 0 0-1.98-1.14L10.86 2H8.14L7.9 3.97a6.2 6.2 0 0 0-1.98 1.14l-1.6-.66L2.96 6.8l1.36 1.05A5.7 5.7 0 0 0 4.2 9c0 .4.04.78.12 1.15L2.96 11.2l1.36 2.35 1.6-.66A6.2 6.2 0 0 0 7.9 14.03L8.14 16h2.72l.24-1.97a6.2 6.2 0 0 0 1.98-1.14l1.6.66 1.36-2.35-1.36-1.05c.08-.37.12-.75.12-1.15Z" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round" />
             </svg>

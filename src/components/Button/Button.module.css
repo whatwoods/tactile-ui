@@ -86,8 +86,8 @@
 }
 
 .button:focus-visible {
-  outline: 2px solid var(--s-color-primary);
-  outline-offset: 2px;
+  outline: var(--s-size-control-focus-ring) solid var(--s-color-primary);
+  outline-offset: var(--s-size-control-focus-offset);
 }
 
 .button:disabled {

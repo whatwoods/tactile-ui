@@ -102,11 +102,11 @@
 }
 
 .checked.positive .track::before {
-  background: linear-gradient(180deg, var(--s-color-primary-active) 0%, var(--s-color-primary) 100%);
+  background: var(--s-gradient-switch-track-on);
   opacity: 1;
 }
 
 .checked.negative .track::before {
-  background: linear-gradient(180deg, var(--s-color-danger-active) 0%, var(--s-color-danger) 100%);
+  background: var(--s-gradient-switch-track-danger);
   opacity: 1;
 }

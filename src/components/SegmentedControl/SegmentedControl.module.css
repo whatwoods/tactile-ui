@@ -1,6 +1,6 @@
 .container {
   display: inline-flex;
-  min-width: 280px;
+  min-width: var(--s-size-segmented-min-width);
   position: relative;
   background: transparent;
   border-radius: var(--s-radius-md);
@@ -16,7 +16,8 @@
   color: var(--s-color-text-tertiary);
   font-size: var(--s-font-size-title-button);
   font-weight: 400;
-  padding: 8px 16px;
+  min-height: var(--s-size-segmented-item-min-height);
+  padding: 0 var(--s-size-segmented-item-padding-x);
   cursor: pointer;
   transition:
     background var(--s-transition-fast),

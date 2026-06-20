@@ -25,7 +25,7 @@ export const TitleBar: React.FC<TitleBarProps> = ({
       <div className={styles.sideSlot}>
         {onBack && (
           <button className={styles.backButton} type="button" onClick={onBack}>
-            <svg className={styles.backIcon} width="8" height="14" viewBox="0 0 8 14" fill="none" aria-hidden="true">
+            <svg className={styles.backIcon} viewBox="0 0 8 14" fill="none" aria-hidden="true">
               <path d="M7 1L1 7L7 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
             <span className={styles.buttonText}>{backLabel}</span>

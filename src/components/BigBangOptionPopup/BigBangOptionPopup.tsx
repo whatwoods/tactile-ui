@@ -66,7 +66,7 @@ export const BigBangOptionPopup: React.FC<BigBangOptionPopupProps> = ({
                 </span>
                 <span className={styles.label}>{option.label}</span>
                 <span className={`${styles.check} ${selected ? styles.checkVisible : ''}`} aria-hidden={!selected}>
-                  <svg width="18" height="14" viewBox="0 0 18 14" fill="none">
+                  <svg className={styles.checkSvg} viewBox="0 0 18 14" fill="none">
                     <path d="M2 7.2L6.5 11.5L16 2" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </span>

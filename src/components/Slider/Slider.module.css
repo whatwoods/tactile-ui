@@ -6,7 +6,7 @@
 
 .marksContainer {
   position: relative;
-  height: 24px;
+  height: var(--s-size-slider-label-height);
   margin: 0 var(--s-space-4) var(--s-space-2);
 }
 
@@ -44,17 +44,17 @@
 .slider {
   position: relative;
   flex: 1;
-  height: 34px;
+  height: var(--s-size-slider-control-height);
   display: flex;
   align-items: center;
   cursor: pointer;
   touch-action: none;
-  padding: 0 var(--s-space-4);
+  padding: 0 var(--s-size-slider-track-padding-x);
 }
 
 .track {
   width: 100%;
-  height: 8px;
+  height: var(--s-size-slider-track-height);
   border-radius: var(--s-radius-pill);
   background: var(--s-color-surface-track);
   box-shadow: var(--s-shadow-inset-groove);
@@ -64,11 +64,11 @@
 .trackNode {
   position: absolute;
   top: 50%;
-  width: 16px;
-  height: 16px;
+  width: var(--s-size-slider-node-size);
+  height: var(--s-size-slider-node-size);
   border-radius: 50%;
   background: var(--s-color-surface-flat);
-  border: 4px solid var(--s-color-surface-track);
+  border: var(--s-size-slider-node-border-width) solid var(--s-color-surface-track);
   box-shadow: var(--s-slider-node-shadow);
   transform: translate(-50%, -50%);
   z-index: 1;
@@ -101,8 +101,8 @@
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: var(--s-size-thumb);
-  height: var(--s-size-thumb);
+  width: var(--s-size-slider-thumb);
+  height: var(--s-size-slider-thumb);
   border-radius: 50%;
   background: var(--s-gradient-thumb);
   box-shadow: var(--s-shadow-control-thumb);
@@ -115,16 +115,16 @@
 }
 
 .thumbDimple {
-  width: 12px;
-  height: 12px;
+  width: var(--s-size-slider-thumb-dimple);
+  height: var(--s-size-slider-thumb-dimple);
   border-radius: 50%;
   background: var(--s-gradient-thumb-dimple);
   box-shadow: var(--s-shadow-thumb-dimple);
 }
 
 .thumbDot {
-  width: 12px;
-  height: 12px;
+  width: var(--s-size-slider-thumb-dimple);
+  height: var(--s-size-slider-thumb-dimple);
   border-radius: 50%;
   background: var(--s-indicator-dot-blue-bg);
   box-shadow: var(--s-indicator-dot-blue-shadow);

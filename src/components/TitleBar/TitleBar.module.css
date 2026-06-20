@@ -37,7 +37,7 @@
 .backButton,
 .confirmButton {
   max-width: var(--s-size-title-action-max-width);
-  min-height: 32px;
+  min-height: var(--s-size-titlebar-action-min-height);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -94,6 +94,8 @@
 
 .backIcon {
   flex: 0 0 auto;
+  width: var(--s-size-titlebar-back-icon-width);
+  height: var(--s-size-titlebar-back-icon-height);
 }
 
 .buttonText {
@@ -110,7 +112,7 @@
 
   .backButton,
   .confirmButton {
-    max-width: 84px;
+    max-width: var(--s-size-titlebar-action-max-width-mobile);
     padding: 0 var(--s-space-2);
   }
 }

@@ -47,5 +47,5 @@
 }
 
 .padding-lg {
-  padding: 32px;
+  padding: var(--s-size-card-padding-lg);
 }

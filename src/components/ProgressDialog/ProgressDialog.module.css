@@ -11,7 +11,7 @@
 
 .dialog {
   width: min(var(--s-size-progress-dialog-width), calc(100vw - var(--s-space-7)));
-  min-height: 112px;
+  min-height: var(--s-size-progress-dialog-min-height);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -67,8 +67,8 @@
 
 .spinnerCore {
   position: relative;
-  width: 62%;
-  height: 62%;
+  width: var(--s-size-progress-spinner-core);
+  height: var(--s-size-progress-spinner-core);
   border-radius: 50%;
   background: var(--s-color-progress-dialog-bg);
   box-shadow: var(--s-shadow-thumb-dimple);
@@ -114,7 +114,7 @@
 @keyframes riseIn {
   from {
     opacity: 0;
-    transform: translateY(8px) scale(0.985);
+    transform: translateY(var(--s-size-progress-dialog-enter-y)) scale(0.985);
   }
   to {
     opacity: 1;

@@ -12,15 +12,15 @@
 .dialog {
   background: var(--s-color-surface-flat);
   border-radius: var(--s-radius-lg);
-  width: 90%;
-  max-width: 400px;
+  width: var(--s-size-dialog-width);
+  max-width: var(--s-size-dialog-max-width);
   box-shadow: var(--s-shadow-panel);
   position: relative;
   animation: slideUp var(--s-transition-physics);
 }
 
 .header {
-  padding: 32px var(--s-space-5) var(--s-space-4);
+  padding: var(--s-size-dialog-header-padding-top) var(--s-space-5) var(--s-space-4);
   text-align: center;
 }
 
@@ -32,7 +32,7 @@
 }
 
 .content {
-  padding: 0 32px 32px;
+  padding: 0 var(--s-size-dialog-content-padding-x) var(--s-size-dialog-content-padding-bottom);
   color: var(--s-color-text-secondary);
   font-size: var(--s-font-size-chip);
   line-height: 1.6;
@@ -40,14 +40,14 @@
 
 .closeButton {
   position: absolute;
-  top: -12px;
-  right: -12px;
-  width: 32px;
-  height: 32px;
+  top: var(--s-size-dialog-close-offset);
+  right: var(--s-size-dialog-close-offset);
+  width: var(--s-size-dialog-close);
+  height: var(--s-size-dialog-close);
   border-radius: 50%;
   background: var(--s-color-text-title);
   color: var(--s-color-text-inverse);
-  border: 2px solid var(--s-color-white);
+  border: var(--s-size-dialog-close-border) solid var(--s-color-white);
   box-shadow: var(--s-shadow-close-button);
   display: flex;
   align-items: center;
@@ -58,6 +58,11 @@
     transform var(--s-transition-fast),
     background var(--s-transition-fast);
   z-index: 10;
+}
+
+.closeIcon {
+  width: var(--s-size-dialog-close-icon);
+  height: var(--s-size-dialog-close-icon);
 }
 
 .closeButton:hover {
@@ -81,7 +86,7 @@
 @keyframes slideUp {
   from {
     opacity: 0;
-    transform: translateY(20px) scale(0.95);
+    transform: translateY(var(--s-size-dialog-enter-y)) scale(0.95);
   }
   to {
     opacity: 1;

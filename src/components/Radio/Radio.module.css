@@ -1,14 +1,14 @@
 .container {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: var(--s-space-3);
   cursor: pointer;
 }
 
 .radioWrapper {
   position: relative;
-  width: 24px;
-  height: 24px;
+  width: var(--s-size-radio);
+  height: var(--s-size-radio);
 }
 
 .input {
@@ -37,8 +37,8 @@
 }
 
 .dot {
-  width: 12px;
-  height: 12px;
+  width: var(--s-size-radio-dot);
+  height: var(--s-size-radio-dot);
   border-radius: 50%;
   background: var(--s-gradient-dot-blue);
   box-shadow: var(--s-indicator-dot-blue-shadow);
@@ -61,8 +61,8 @@
 }
 
 .input:focus-visible + .circle {
-  outline: 2px solid var(--s-color-primary);
-  outline-offset: 2px;
+  outline: var(--s-size-control-focus-ring) solid var(--s-color-primary);
+  outline-offset: var(--s-size-control-focus-offset);
 }
 
 .input:disabled + .circle {

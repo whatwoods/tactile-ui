@@ -8,8 +8,8 @@
 
 .checkboxWrapper {
   position: relative;
-  width: 22px;
-  height: 22px;
+  width: var(--s-size-checkbox);
+  height: var(--s-size-checkbox);
 }
 
 .input {
@@ -27,7 +27,7 @@
   inset: 0;
   background: var(--s-color-surface-flat);
   border-radius: 50%;
-  border: 2px solid var(--s-color-border-muted);
+  border: var(--s-size-checkbox-border) solid var(--s-color-border-muted);
   box-shadow: var(--s-shadow-input);
   box-sizing: border-box;
   display: flex;
@@ -42,8 +42,8 @@
 }
 
 .check {
-  width: 12px;
-  height: 9px;
+  width: var(--s-size-checkbox-mark-width);
+  height: var(--s-size-checkbox-mark-height);
   color: var(--s-color-text-inverse);
   opacity: 0;
   transform: scale(0.5);
@@ -75,8 +75,8 @@
 }
 
 .input:focus-visible + .box {
-  outline: 2px solid var(--s-color-primary);
-  outline-offset: 2px;
+  outline: var(--s-size-control-focus-ring) solid var(--s-color-primary);
+  outline-offset: var(--s-size-control-focus-offset);
 }
 
 .input:disabled + .box {

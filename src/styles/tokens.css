@@ -108,6 +108,7 @@
   --s-opacity-hairline: 0.09;
   --s-opacity-disabled-control: 0.75; /* SwitchEx uses MAX_ALPHA * 3 / 4 */
   --s-opacity-disabled-text: 0.382;
+  --s-opacity-disabled-setting-check: 0.3; /* SettingItemCheck.setEnabled(false) title/icon alpha */
   --s-opacity-overlay-modal: 0.4;
   --s-opacity-overlay-menu: 0.6; /* MenuDialog backgroundDimAmount */
 
@@ -151,6 +152,8 @@
   --s-gradient-device-screen-scanlines: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
   --s-gradient-device-screen-glare: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0) 100%);
   --s-gradient-mini-switch-thumb: radial-gradient(circle at 35% 35%, #ffffff 0%, #ececec 100%);
+  --s-gradient-switch-track-on: linear-gradient(180deg, var(--s-color-primary-active) 0%, var(--s-color-primary) 100%);
+  --s-gradient-switch-track-danger: linear-gradient(180deg, var(--s-color-danger-active) 0%, var(--s-color-danger) 100%);
   --s-gradient-boom-search-bar: linear-gradient(180deg, #ffffff 0%, #f1f1f1 100%);
   --s-gradient-boom-search-webview: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(247, 247, 247, 0.78) 100%);
   --s-gradient-onestep-topbar-sheen: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 42%, rgba(0, 0, 0, 0.18) 100%);
@@ -265,7 +268,9 @@
   --s-size-onestep-item-padding-left: 15px;
   --s-size-onestep-bookmark-padding-x: 12px;
   --s-size-onestep-clear-width: 36px;
+  --s-size-onestep-clear-icon: 14px;
   --s-size-onestep-copy-icon: 12px;
+  --s-size-onestep-copy-icon-margin-x: 13px;
   --s-size-onestep-file-icon: 26px;
   --s-size-onestep-file-icon-gap: 9px;
   --s-size-onestep-shortcut-icon: 32px;
@@ -285,6 +290,7 @@
   --s-size-onestep-topbar-text-spacer: 8px;
   --s-size-onestep-topbar-arrow-width: 9px;
   --s-size-onestep-topbar-arrow-height: 15px;
+  --s-size-onestep-topbar-arrow-margin-top: 1px;
   --s-size-onestep-shadow-edge: 4px;
   --s-size-onestep-photo: 80px;
   --s-size-onestep-photo-gap: 5px;
@@ -297,7 +303,44 @@
   --s-size-button-padding-x-sm: 12px;
   --s-size-button-padding-x-md: 20px;
   --s-size-button-padding-x-lg: 28px;
+  --s-size-card-padding-lg: 32px;
+  --s-size-chip-min-width: 33px;
+  --s-size-chip-min-width-compact: 21px;
+  --s-size-chip-max-width: 260px;
+  --s-size-chip-min-height: 34px;
+  --s-size-chip-padding-x: 14px;
+  --s-size-input-height: 44px;
+  --s-size-input-padding-x: 16px;
+  --s-size-input-password-action: 40px;
+  --s-size-input-eye-icon: 18px;
+  --s-size-checkbox: 22px;
+  --s-size-checkbox-border: 2px;
+  --s-size-checkbox-mark-width: 12px;
+  --s-size-checkbox-mark-height: 9px;
+  --s-size-radio: 24px;
+  --s-size-radio-dot: 12px;
+  --s-size-icon-xs: 12px;
+  --s-size-icon-sm: 16px;
+  --s-size-icon-md: 24px;
+  --s-size-icon-lg: 32px;
+  --s-size-icon-surface: 40px;
+  --s-size-control-focus-ring: 2px;
+  --s-size-control-focus-offset: 2px;
+  --s-size-segmented-min-width: 280px;
+  --s-size-segmented-item-min-height: 36px;
+  --s-size-segmented-item-padding-x: 16px;
+  --s-size-select-trigger-padding-y: 12px;
+  --s-size-select-dropdown-offset-y: -4px;
+  --s-size-select-dropdown-min-width: 160px;
+  --s-size-select-dropdown-width: 60%;
+  --s-size-select-dropdown-max-height: 240px;
+  --s-size-select-item-padding-y: 14px;
+  --s-size-select-icon: 12px;
   --s-size-titlebar-height: 48px;
+  --s-size-titlebar-action-min-height: 32px;
+  --s-size-titlebar-action-max-width-mobile: 84px;
+  --s-size-titlebar-back-icon-width: 8px;
+  --s-size-titlebar-back-icon-height: 14px;
   --s-size-menu-dialog-titlebar-min-height: 51px;
   --s-size-menu-dialog-cancel-width: 67px;
   --s-size-menu-dialog-cancel-min-height: 49px;
@@ -313,11 +356,21 @@
   --s-size-switch-dot: 12px;
   --s-size-switch-dot-inset: 11px;
   --s-size-thumb: var(--s-size-switch-thumb);
+  --s-size-slider-control-height: 34px;
+  --s-size-slider-track-height: 8px;
+  --s-size-slider-track-padding-x: 16px;
+  --s-size-slider-node-size: 16px;
+  --s-size-slider-node-border-width: 4px;
+  --s-size-slider-thumb: 30px;
+  --s-size-slider-thumb-dimple: 12px;
+  --s-size-slider-label-height: 24px;
   --s-size-list-row-min-height: 60px;
   --s-size-list-text-margin-x: 30px;
   --s-size-list-title-max-width: 220px;
   --s-size-list-value-gap: 3px;
   --s-size-list-arrow-margin-right: 12px;
+  --s-size-list-arrow-width: 8px;
+  --s-size-list-arrow-height: 14px;
   --s-size-list-check-margin-right: 18px;
   --s-size-list-check-width: 27px;
   --s-size-list-icon-width: 60px;
@@ -327,17 +380,34 @@
   --s-size-setting-title-max-width: 220px;
   --s-size-setting-title-max-width-with-value: 175px;
   --s-size-setting-arrow-width: 29px;
+  --s-size-setting-chevron-width: 8px;
+  --s-size-setting-chevron-height: 14px;
   --s-size-setting-check-margin-right: 18px;
   --s-size-selected-icon-canvas: 27px;
   --s-size-selected-mark-width: 15px;
   --s-size-selected-mark-height: 11px;
   --s-size-title-action-max-width: 102px;
+  --s-size-dialog-width: 90%;
+  --s-size-dialog-max-width: 400px;
+  --s-size-dialog-header-padding-top: 32px;
+  --s-size-dialog-content-padding-x: 32px;
+  --s-size-dialog-content-padding-bottom: 32px;
+  --s-size-dialog-close: 32px;
+  --s-size-dialog-close-offset: -12px;
+  --s-size-dialog-close-icon: 14px;
+  --s-size-dialog-close-border: 2px;
+  --s-size-dialog-enter-y: 20px;
   --s-size-dialog-list-height: 237px;
+  --s-size-progress-track-height: 12px;
+  --s-size-progress-gloss-height: 50%;
   --s-size-progress-dialog-width: 246px;
+  --s-size-progress-dialog-min-height: 112px;
   --s-size-progress-spinner: 48px;
+  --s-size-progress-spinner-core: 62%;
   --s-size-progress-dialog-title-margin-y: 8px;
   --s-size-progress-dialog-spinner-margin-top: 2px;
   --s-size-progress-dialog-message-padding-x: 30px;
+  --s-size-progress-dialog-enter-y: 8px;
   --s-size-drag-icon: 48px;
   --s-size-float-text-max-width: 180px;
   --s-size-drag-bubble-max-width: 159px;
@@ -347,6 +417,8 @@
   --s-size-boom-option-check-margin: 7px;
   --s-size-boom-option-icon-width: 56px;
   --s-size-boom-option-check-width: 30px;
+  --s-size-boom-option-check-icon-width: 18px;
+  --s-size-boom-option-check-icon-height: 14px;
   --s-size-boom-option-divider-height: 2px;
   --s-size-boom-option-arrow: 14px;
   --s-size-boom-option-arrow-height: 8px;
@@ -359,8 +431,11 @@
   --s-size-boom-search-title-max-width: 178px;
   --s-size-boom-search-bar-height: 45px;
   --s-size-boom-search-icon-button: 40px;
+  --s-size-boom-search-browser-icon: 17px;
+  --s-size-boom-search-action-icon: 18px;
   --s-size-boom-search-mode-button: 38px;
   --s-size-boom-search-spinner: 22px;
+  --s-size-boom-search-spinner-border: 3px;
 
   /* --- Border radii --- */
   --s-radius-xs: 4px;

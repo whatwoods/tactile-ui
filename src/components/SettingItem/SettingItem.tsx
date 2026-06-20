@@ -82,7 +82,7 @@ export const SettingItem: React.FC<SettingItemProps> = ({
       {value && <span className={styles.value}>{value}</span>}
       {accessory === 'chevron' && (
         <span className={styles.chevron} aria-hidden="true">
-          <svg width="8" height="14" viewBox="0 0 8 14" fill="none">
+          <svg className={styles.chevronSvg} viewBox="0 0 8 14" fill="none">
             <path d="M1 1L7 7L1 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </span>

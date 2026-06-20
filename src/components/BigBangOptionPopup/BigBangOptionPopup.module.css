@@ -44,8 +44,8 @@
 }
 
 .option:focus-visible {
-  outline: 2px solid var(--s-color-primary);
-  outline-offset: -2px;
+  outline: var(--s-size-control-focus-ring) solid var(--s-color-primary);
+  outline-offset: calc(var(--s-size-control-focus-offset) * -1);
 }
 
 .icon {
@@ -78,6 +78,11 @@
 
 .checkVisible {
   visibility: visible;
+}
+
+.checkSvg {
+  width: var(--s-size-boom-option-check-icon-width);
+  height: var(--s-size-boom-option-check-icon-height);
 }
 
 .arrow {

@@ -117,7 +117,7 @@ button.item:active {
 .arrow {
   width: var(--s-size-onestep-topbar-arrow-width);
   height: var(--s-size-onestep-topbar-arrow-height);
-  margin-top: 1px;
+  margin-top: var(--s-size-onestep-topbar-arrow-margin-top);
   clip-path: polygon(50% 100%, 0 0, 100% 0);
   background: currentColor;
   opacity: var(--s-opacity-secondary);
