@@ -61,6 +61,7 @@ export const SettingItem: React.FC<SettingItemProps> = ({
     isClickable ? styles.clickable : '',
     selected ? styles.selected : '',
     disabled ? styles.disabled : '',
+    icon ? styles.hasIcon : '',
     className,
   ].filter(Boolean).join(' ');
 

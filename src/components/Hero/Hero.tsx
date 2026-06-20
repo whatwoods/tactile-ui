@@ -24,7 +24,11 @@ const MODES = [
   }
 ];
 
-export const Hero: React.FC = () => {
+interface HeroProps {
+  onEnterWorkbench?: () => void;
+}
+
+export const Hero: React.FC<HeroProps> = ({ onEnterWorkbench }) => {
   const [power, setPower] = useState(true);
   const [modeIdx, setModeIdx] = useState(0);
   const [audioEnabled, setAudioEnabled] = useState(true);
@@ -294,6 +298,11 @@ export const Hero: React.FC = () => {
             <button className={`${styles.ctaButton} ${styles.ctaPrimary}`} onClick={scrollToPlayground}>
               开始体验
             </button>
+            {onEnterWorkbench && (
+              <button className={`${styles.ctaButton} ${styles.ctaCreative}`} onClick={onEnterWorkbench}>
+                物理交互实验室 🔬
+              </button>
+            )}
             <a 
               href="#tokens-section" 
               className={`${styles.ctaButton} ${styles.ctaSecondary}`}

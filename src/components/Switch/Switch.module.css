@@ -1,10 +1,10 @@
 .switch {
   --switch-progress: 0;
-  --switch-thumb-size: var(--s-size-switch-thumb);
+  --switch-motion-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 
   position: relative;
   width: var(--s-size-switch-width);
-  height: var(--s-size-switch-height);
+  height: var(--s-size-switch-height); /* 48px */
   border: none;
   background: transparent;
   padding: 0;
@@ -12,88 +12,12 @@
   outline: none;
   border-radius: var(--s-radius-pill);
   touch-action: pan-y;
+  transition: transform var(--s-transition-fast);
 }
 
 .switch:focus-visible {
-  outline: 2px solid var(--s-color-primary);
-  outline-offset: 2px;
-}
-
-.track {
-  width: 100%;
-  height: var(--s-size-switch-track-height);
-  border-radius: var(--s-radius-pill);
-  background: var(--s-color-surface-sunken);
-  box-shadow: var(--s-shadow-switch-track);
-  transition: box-shadow var(--s-transition-physics);
-  position: absolute;
-  top: 2px;
-  overflow: hidden;
-}
-
-.track::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  opacity: 0;
-  transition: opacity var(--s-transition-physics);
-  z-index: 0;
-}
-
-.hole {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: var(--s-size-switch-dot);
-  height: var(--s-size-switch-dot);
-  border-radius: 50%;
-  transition: opacity var(--s-transition-physics), transform var(--s-transition-physics);
-  z-index: 1;
-}
-
-.holeLeft {
-  left: var(--s-size-switch-dot-inset);
-  background: var(--s-indicator-dot-blue-bg);
-  box-shadow: var(--s-indicator-dot-blue-shadow);
-}
-
-.holeRight {
-  right: var(--s-size-switch-dot-inset);
-  background: var(--s-gradient-dot-grey);
-  box-shadow: var(--s-shadow-grey-dot);
-}
-
-.negative .holeLeft {
-  background: var(--s-gradient-dot-danger);
-}
-
-.thumb {
-  position: absolute;
-  top: 8px;
-  left: 0;
-  width: var(--s-size-switch-thumb);
-  height: var(--s-size-switch-thumb);
-  border-radius: 50%;
-  background: var(--s-gradient-thumb);
-  box-shadow: var(--s-shadow-control-thumb);
-  border: 1px solid var(--s-color-border-hairline);
-  transition: transform var(--s-transition-fast);
-  transform: translateX(calc(var(--switch-progress) * var(--s-size-switch-thumb-travel)));
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.thumbDimple {
-  width: var(--s-size-switch-dot);
-  height: var(--s-size-switch-dot);
-  border-radius: 50%;
-  background: var(--s-gradient-thumb-dimple);
-  box-shadow: var(--s-shadow-thumb-dimple);
+  outline: var(--s-size-control-focus-ring) solid var(--s-color-primary);
+  outline-offset: var(--s-size-control-focus-offset);
 }
 
 .switch:disabled {
@@ -101,12 +25,122 @@
   cursor: not-allowed;
 }
 
-.checked.positive .track::before {
-  background: var(--s-gradient-switch-track-on);
-  opacity: 1;
+.switch:disabled:active {
+  transform: none;
 }
 
-.checked.negative .track::before {
-  background: var(--s-gradient-switch-track-danger);
-  opacity: 1;
+/* Track - the background groove window */
+.track {
+  width: var(--s-size-switch-track-width);
+  height: var(--s-size-switch-track-height);
+  position: absolute;
+  top: var(--s-size-switch-extend-offset-y);
+  left: var(--s-size-switch-extend-offset-x);
+  overflow: hidden;
+  border-radius: var(--s-radius-switch-thumb);
+  box-shadow: var(--s-shadow-switch-ex-mask);
+  z-index: 0;
+}
+
+/* Sliding background container inside the track */
+.trackSlider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(var(--s-size-switch-track-width) + var(--s-size-switch-thumb-travel));
+  height: 100%;
+  background: var(--s-gradient-switch-mask-off);
+  transform: translateX(calc((var(--switch-progress) - 1) * var(--s-size-switch-thumb-travel)));
+  transition: transform var(--s-duration-slower) var(--switch-motion-ease);
+  will-change: transform;
+}
+
+/* Indicator dot on the sliding track background */
+.trackDot {
+  position: absolute;
+  width: var(--s-size-switch-dot);
+  height: var(--s-size-switch-dot);
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.dotOn {
+  left: var(--s-size-switch-dot-on-x);
+  background: var(--s-gradient-dot-blue);
+  box-shadow: var(--s-indicator-dot-blue-shadow);
+}
+
+.negative .dotOn {
+  background: var(--s-gradient-dot-danger);
+  box-shadow: var(--s-indicator-dot-blue-shadow);
+}
+
+.dotOff {
+  left: var(--s-size-switch-dot-off-x);
+  background: var(--s-gradient-switch-ex-dimple);
+  box-shadow: var(--s-shadow-switch-ex-dimple);
+}
+
+/* Frame overlay - outlines the slot bezel underneath the knob */
+.frame {
+  position: absolute;
+  top: var(--s-size-switch-extend-offset-y);
+  left: var(--s-size-switch-extend-offset-x);
+  width: var(--s-size-switch-track-width);
+  height: var(--s-size-switch-track-height);
+  border-radius: var(--s-radius-switch-thumb);
+  background: transparent;
+  box-shadow: var(--s-shadow-switch-ex-frame);
+  z-index: 1; /* under thumb (z-index 2) */
+  pointer-events: none;
+}
+
+/* Thumb - the movable knob sitting ON TOP of the track slot */
+.thumb {
+  position: absolute;
+  top: var(--s-size-switch-extend-offset-y);
+  left: var(--s-size-switch-extend-offset-x);
+  width: var(--s-size-switch-thumb-width);
+  height: var(--s-size-switch-thumb-width);
+  transform: translateX(calc(var(--switch-progress) * var(--s-size-switch-thumb-travel)));
+  transition: transform var(--s-duration-slower) var(--switch-motion-ease);
+  will-change: transform;
+  z-index: 2; /* raised above track and frame bezel */
+  pointer-events: none;
+}
+
+.thumbFace {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%; /* perfect circular knob shape */
+  border: 1px solid var(--s-color-border-strong);
+  background: var(--s-gradient-switch-thumb-face);
+  box-shadow: var(--s-shadow-switch-ex-thumb);
+  box-sizing: border-box;
+}
+
+/* Metallic finger groove / recess on knob */
+.dimple {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: var(--s-size-switch-thumb-dimple);
+  height: var(--s-size-switch-thumb-dimple);
+  border-radius: 50%;
+  background: var(--s-gradient-switch-ex-dimple);
+  box-shadow: var(--s-shadow-switch-ex-dimple);
+}
+
+/* ON state - sets base progress to 1 */
+.on {
+  --switch-progress: 1;
+}
+
+/* Dragging overrides - disable transitions for real-time tracking */
+.dragging .trackSlider,
+.dragging .thumb {
+  transition: none;
 }

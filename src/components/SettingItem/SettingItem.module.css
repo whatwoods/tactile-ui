@@ -1,4 +1,5 @@
 .item {
+  position: relative;
   width: 100%;
   min-height: var(--s-size-setting-row-min-height);
   display: flex;
@@ -66,6 +67,17 @@
   justify-content: center;
   color: var(--s-color-icon-muted);
   transition: color var(--s-transition-fast);
+}
+
+.item.hasIcon {
+  padding-left: 84px;
+}
+
+.item.hasIcon .icon {
+  position: absolute;
+  left: var(--s-space-6); /* 30px */
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .clickable:active .icon {

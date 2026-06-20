@@ -12,11 +12,28 @@ dist
 dist-ssr
 *.local
 
+# Local analysis / generated scratch files
+scratch/
+analyze_size.cjs
+
+# Reference source snapshots are kept locally, but should not be committed.
+# Keep the README files so the local reference layout remains documented.
+references/official-source/*
+!references/official-source/README.md
+references/community-source/*
+!references/community-source/README.md
+
+# Extracted preview copies of official assets; canonical reference copies live
+# under references/official-assets/.
+public/assets/buttons/
+public/assets/switch/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
 .idea
 .DS_Store
+**/.DS_Store
 *.suo
 *.ntvs*
 *.njsproj

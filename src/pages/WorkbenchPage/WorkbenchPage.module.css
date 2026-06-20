@@ -1,0 +1,529 @@
+/* Workbench Page Style Module */
+
+.workbenchWrapper {
+  min-height: 100vh;
+  background-color: var(--s-color-device-screen);
+  background-image:
+    linear-gradient(var(--s-color-separator-inverse) 1px, var(--s-color-transparent) 1px),
+    linear-gradient(90deg, var(--s-color-separator-inverse) 1px, var(--s-color-transparent) 1px),
+    var(--s-texture-noise);
+  background-size: 30px 30px, 30px 30px, auto;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-bottom: 60px;
+  overflow-x: hidden;
+}
+
+/* 1. Header controls */
+.workbenchHeader {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: var(--s-space-4) var(--s-space-5);
+  background: var(--s-gradient-button-gray-hover);
+  border-bottom: 2px solid var(--s-color-border-strong);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), var(--s-highlight-inner);
+  z-index: 10;
+}
+
+.headerLeft {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.classicKey {
+  background: var(--s-gradient-button-gray);
+  border: 1px solid var(--s-color-button-gray-border);
+  border-radius: var(--s-radius-sm);
+  padding: 8px 16px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--s-color-text-primary);
+  box-shadow: var(--s-shadow-button-idle);
+  display: flex;
+  align-items: center;
+  transition: transform var(--s-duration-instant) ease;
+}
+
+.classicKey:active {
+  background: var(--s-gradient-button-gray-active);
+  box-shadow: var(--s-shadow-pressed);
+  transform: translateY(1px);
+}
+
+.classicKeyIcon {
+  margin-right: 6px;
+  font-size: 10px;
+}
+
+.headerCenter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.workbenchTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--s-color-text-primary);
+  letter-spacing: 1.5px;
+  text-shadow: var(--s-shadow-text-highlight);
+  margin: 0;
+}
+
+.headerSubtitle {
+  font-family: 'SF Mono', Consolas, monospace;
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--s-color-text-secondary);
+  letter-spacing: 1.2px;
+  margin-top: 2px;
+}
+
+.headerRight {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.audioControl {
+  display: flex;
+  align-items: center;
+  gap: var(--s-space-3);
+  background: var(--s-color-surface-sunken);
+  padding: 6px 12px;
+  border-radius: var(--s-radius-pill);
+  border: 1px solid var(--s-color-border-strong);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.audioLabel {
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--s-color-text-secondary);
+  letter-spacing: 0.5px;
+}
+
+.audioToggle {
+  width: 32px;
+  height: 18px;
+  border-radius: 9px;
+  background: var(--s-color-surface-pressed);
+  box-shadow: var(--s-shadow-device-mini-switch);
+  position: relative;
+  border: 1px solid var(--s-color-border-strong);
+  cursor: pointer;
+  padding: 0;
+  outline: none;
+}
+
+.audioToggleHandle {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--s-gradient-mini-switch-thumb);
+  box-shadow: var(--s-shadow-device-mini-knob);
+  transition: transform var(--s-duration-normal) var(--s-ease-standard);
+}
+
+.audioToggleOn {
+  background: var(--s-color-primary-active);
+}
+
+.audioToggleOn .audioToggleHandle {
+  transform: translateX(14px);
+}
+
+/* 2. Main Desk layout */
+.workbenchDeck {
+  padding: var(--s-space-6) var(--s-space-4);
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.workbenchGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: var(--s-space-5);
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .workbenchGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .workbenchGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* 3. Panel Common Subtitles */
+.panelSubtitle {
+  font-family: 'SF Mono', Consolas, monospace;
+  font-size: 8px;
+  font-weight: 700;
+  color: var(--s-color-text-secondary);
+  letter-spacing: 1px;
+  border-bottom: 1px dashed var(--s-color-border-strong);
+  padding-bottom: 4px;
+  margin-bottom: 12px;
+  display: block;
+}
+
+/* --- TACTILE MIXER T-80 Panel --- */
+.mixerContent {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.mixerTopRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.textLabel {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--s-color-text-secondary);
+}
+
+.mixerBody {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: var(--s-space-4);
+  align-items: center;
+  flex: 1;
+}
+
+.dialKnobSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.knobTitle {
+  font-size: 8px;
+  font-weight: 700;
+  color: var(--s-color-text-secondary);
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+.dialPlate {
+  position: relative;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background: var(--s-color-surface-sunken);
+  box-shadow: var(--s-shadow-inset-groove);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--s-color-border);
+}
+
+.rotaryKnob {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: var(--s-gradient-device-dial);
+  box-shadow: var(--s-shadow-device-dial);
+  border: 1px solid var(--s-color-border-strong);
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  transition: transform var(--s-duration-slow) var(--s-ease-physics);
+  padding: 0;
+}
+
+.rotaryKnob:active {
+  box-shadow: var(--s-shadow-pressed);
+}
+
+.knobNotch {
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 12px;
+  background: var(--s-color-icon-muted);
+  border-radius: 1.5px;
+}
+
+/* Tick Marks on dial plate */
+.tickMark {
+  position: absolute;
+  width: 2px;
+  height: 5px;
+  background: var(--s-color-border-strong);
+  border-radius: 1px;
+  transition: background var(--s-duration-normal) ease;
+}
+
+.tick0 { transform: rotate(0deg) translateY(-32px); }
+.tick1 { transform: rotate(72deg) translateY(-32px); }
+.tick2 { transform: rotate(144deg) translateY(-32px); }
+.tick3 { transform: rotate(216deg) translateY(-32px); }
+.tick4 { transform: rotate(288deg) translateY(-32px); }
+
+.tickMark[data-active="true"] {
+  background: var(--s-color-primary);
+  box-shadow: 0 0 4px var(--s-color-primary);
+}
+
+.knobValue {
+  font-family: 'SF Mono', Consolas, monospace;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--s-color-text-primary);
+  margin-top: 6px;
+}
+
+.mixerSliders {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: center;
+}
+
+.sliderRow {
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- LOGIC TERMINAL S-12 --- */
+.terminalContent {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.embeddedList {
+  border: 1px solid var(--s-color-border-strong);
+  border-radius: var(--s-radius-lg);
+  overflow: hidden;
+  background: var(--s-color-surface-flat);
+  box-shadow: var(--s-shadow-panel);
+}
+
+/* --- GATEWAY ACCESS PANEL G-20 --- */
+.gatewayContent {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.sunkenForm {
+  background: var(--s-color-surface-sunken);
+  border-radius: var(--s-radius-lg);
+  border: 1px solid var(--s-color-border-strong);
+  box-shadow: var(--s-shadow-pressed);
+  padding: var(--s-space-4);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 1;
+  justify-content: center;
+}
+
+.formOptions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2px 0;
+}
+
+.linkGroup {
+  display: flex;
+  gap: 6px;
+  font-size: 11px;
+}
+
+.formLink {
+  color: var(--s-color-primary-active);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.formLink:hover {
+  text-decoration: underline;
+}
+
+.divider {
+  color: var(--s-color-border-strong);
+}
+
+/* --- PULSE DISPATCHER D-4 --- */
+.dispatcherContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  gap: var(--s-space-4);
+}
+
+.keypadGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  flex: 1;
+}
+
+.keypadBtn {
+  background: var(--s-gradient-button-gray);
+  border: 1px solid var(--s-color-button-gray-border);
+  border-radius: var(--s-radius-md);
+  box-shadow: var(--s-shadow-button-idle);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 4px;
+  cursor: pointer;
+  outline: none;
+  transition: transform var(--s-duration-instant) ease;
+}
+
+.keypadBtn:active {
+  background: var(--s-gradient-button-gray-active);
+  box-shadow: var(--s-shadow-pressed);
+  transform: translateY(1.5px);
+}
+
+.btnCap {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--s-color-text-primary);
+  text-align: center;
+}
+
+.btnLabel {
+  font-family: 'SF Mono', Consolas, monospace;
+  font-size: 8px;
+  font-weight: 700;
+  color: var(--s-color-text-tertiary);
+  margin-top: 4px;
+  letter-spacing: 0.5px;
+}
+
+.btnDanger {
+  border-color: var(--s-color-button-danger-border);
+}
+
+.btnDanger .btnCap {
+  color: var(--s-color-danger);
+}
+
+.btnDanger:active {
+  background: var(--s-gradient-button-danger-active);
+}
+
+.statusBar {
+  display: flex;
+  align-items: center;
+  background: var(--s-color-surface-sunken);
+  border-radius: var(--s-radius-sm);
+  border: 1px solid var(--s-color-border-soft);
+  padding: 8px var(--s-space-3);
+}
+
+/* --- BIGBANG SCANNER B-9 --- */
+.scannerContent {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.tapeWell {
+  background: var(--s-color-surface-sunken);
+  border-radius: var(--s-radius-md);
+  border: 1px solid var(--s-color-border-strong);
+  box-shadow: var(--s-shadow-inset-groove);
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.tapeSlit {
+  height: 3.5px;
+  background: var(--s-color-black);
+  border-radius: 1px;
+  margin: 5px auto 0 auto;
+  width: 94%;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.tapeContent {
+  padding: 12px 14px 16px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.searchMonitor {
+  border: 1px solid var(--s-color-border-strong);
+  border-radius: var(--s-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--s-shadow-panel);
+  display: flex;
+  justify-content: center;
+  background: var(--s-color-surface-flat);
+  margin-top: 4px;
+  flex: 1;
+}
+
+.popupContainer {
+  position: absolute;
+  z-index: 50;
+  transform: translateY(-105%);
+}
+
+/* --- ONE-STEP TRANSPORT PORT O-1 --- */
+.onestepContent {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: var(--s-space-3);
+}
+
+.onestepWorkspace {
+  padding: var(--s-space-2);
+  border-radius: var(--s-radius-lg);
+  background: var(--s-color-onestep-dim);
+  border: 1px solid var(--s-color-border-strong);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.onestepContainerBody {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: var(--s-space-2) var(--s-space-1);
+  flex: 1;
+}
+
+.shortcutsStrip {
+  width: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-space-3);
+}
+
+.dragDock {
+  margin-top: auto;
+  display: flex;
+  justify-content: flex-end;
+}

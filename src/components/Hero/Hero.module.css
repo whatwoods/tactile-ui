@@ -517,6 +517,24 @@
   transform: translateY(1px);
 }
 
+.ctaCreative {
+  background: var(--s-gradient-button-danger);
+  color: var(--s-color-text-inverse);
+  border: 1px solid var(--s-color-button-danger-border);
+  box-shadow: var(--s-highlight-inner), var(--s-shadow-drop), var(--s-shadow-ambient);
+  text-shadow: var(--s-shadow-text-engraved);
+}
+
+.ctaCreative:hover {
+  background: var(--s-gradient-button-danger-hover);
+}
+
+.ctaCreative:active {
+  background: var(--s-gradient-button-danger-active);
+  box-shadow: var(--s-shadow-button-pressed);
+  transform: translateY(1px);
+}
+
 /* --- Responsive Adaptations --- */
 @media (max-width: 900px) {
   .heroContainer {

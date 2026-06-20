@@ -97,6 +97,15 @@
   --s-color-success: #43a047;
   --s-color-success-hover: #4caf50;
   --s-color-success-active: #388e3c;
+  --s-color-button-gray-border: #a3a3a4;
+  --s-color-button-gray-border-hover: #b9b9b9;
+  --s-color-button-gray-border-active: #838383;
+  --s-color-button-blue-border: #5e7fc6;
+  --s-color-button-blue-border-hover: #6a90e8;
+  --s-color-button-blue-border-active: #4665b2;
+  --s-color-button-danger-border: #c55a53;
+  --s-color-button-danger-border-hover: #e86960;
+  --s-color-button-danger-border-active: #b2423c;
 
   /* --- Official opacity behavior --- */
   --s-opacity-solid: 1;
@@ -123,25 +132,28 @@
   );
 
   /* --- Gradients calibrated from 9-patch assets --- */
-  --s-gradient-button-gray: linear-gradient(180deg, #ffffff 0%, #f0f0f0 100%);
-  --s-gradient-button-gray-hover: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
-  --s-gradient-button-gray-active: linear-gradient(180deg, #e8e8e8 0%, #dfdfdf 100%);
-  --s-gradient-button-blue: linear-gradient(180deg, #6990e8 0%, #5f87e6 52%, #567de2 100%);
-  --s-gradient-button-blue-hover: linear-gradient(180deg, #769bf0 0%, #6890ec 52%, #5f86e7 100%);
-  --s-gradient-button-blue-active: linear-gradient(180deg, #557ad3 0%, #587dd4 52%, #5c80d5 100%);
-  --s-gradient-button-danger: linear-gradient(180deg, #e8655c 0%, #e65b52 52%, #e25249 100%);
-  --s-gradient-button-danger-hover: linear-gradient(180deg, #ef7068 0%, #ec665e 52%, #e85c54 100%);
-  --s-gradient-button-danger-active: linear-gradient(180deg, #d3524a 0%, #d4554c 52%, #d55850 100%);
-  --s-gradient-menu-dialog-gray: linear-gradient(180deg, #bdbdbd 0%, #b7b7b7 52%, #afafaf 100%);
-  --s-gradient-menu-dialog-gray-pressed: linear-gradient(180deg, #9d9d9d 0%, #9f9f9f 52%, #a1a1a1 100%);
-  --s-gradient-menu-dialog-blue: linear-gradient(180deg, #6990e8 0%, #5f87e6 52%, #567de2 100%);
-  --s-gradient-menu-dialog-blue-pressed: linear-gradient(180deg, #567de2 0%, #4d72d0 100%);
-  --s-gradient-menu-dialog-red: linear-gradient(180deg, #e8655c 0%, #e65b52 52%, #e25249 100%);
-  --s-gradient-menu-dialog-red-pressed: linear-gradient(180deg, #d9534a 0%, #c94b43 100%);
-  --s-gradient-thumb: radial-gradient(circle at 30% 30%, #ffffff 0%, #f5f5f5 55%, #e6e6e6 100%);
-  --s-gradient-thumb-dimple: radial-gradient(circle at 70% 70%, #ffffff 0%, #fafafa 55%, #f0f0f0 100%);
-  --s-gradient-dot-blue: linear-gradient(180deg, #6085f7 0%, #4668e3 100%);
-  --s-gradient-dot-grey: radial-gradient(circle at 35% 35%, #e5e5e5 0%, #d8d8d8 60%, #c4c4c4 100%);
+  --s-gradient-button-gray: linear-gradient(180deg, #fefefe 0%, #f7f7f7 42%, #e5e5e5 100%);
+  --s-gradient-button-gray-hover: linear-gradient(180deg, #ffffff 0%, #fbfbfb 42%, #ededed 100%);
+  --s-gradient-button-gray-active: linear-gradient(180deg, #d7d7d7 0%, #e3e3e3 58%, #eeeeee 100%);
+  --s-gradient-button-blue: linear-gradient(180deg, #6f94e9 0%, #6a90e8 25%, #6088e6 50%, #5981e3 75%, #5279e0 100%);
+  --s-gradient-button-blue-hover: linear-gradient(180deg, #7d9eed 0%, #7293eb 25%, #6890ea 50%, #5f88e6 75%, #5880e3 100%);
+  --s-gradient-button-blue-active: linear-gradient(180deg, #5378d2 0%, #567bd3 25%, #587dd4 50%, #5b7fd5 75%, #5e82d5 100%);
+  --s-gradient-button-danger: linear-gradient(180deg, #e8655c 0%, #e65c53 48%, #e2534b 100%);
+  --s-gradient-button-danger-hover: linear-gradient(180deg, #ed7068 0%, #e6635a 48%, #d9554e 100%);
+  --s-gradient-button-danger-active: linear-gradient(180deg, #d3514a 0%, #d4554c 48%, #d55850 100%);
+  --s-gradient-button-top-highlight: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.24) 100%);
+  --s-gradient-button-bottom-lip: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.12) 100%);
+  --s-gradient-menu-dialog-gray: linear-gradient(180deg, #bfbfbf 0%, #b8b8b8 52%, #aaaaaa 100%);
+  --s-gradient-menu-dialog-gray-pressed: linear-gradient(180deg, #9e9e9e 0%, #9c9c9c 52%, #a1a1a1 100%);
+  --s-gradient-menu-dialog-blue: linear-gradient(180deg, #6f94e9 0%, #6889e6 52%, #5279e0 100%);
+  --s-gradient-menu-dialog-blue-pressed: linear-gradient(180deg, #5378d2 0%, #587dd4 52%, #5e82d5 100%);
+  --s-gradient-menu-dialog-red: linear-gradient(180deg, #e96960 0%, #e65b52 52%, #dd4c44 100%);
+  --s-gradient-menu-dialog-red-pressed: linear-gradient(180deg, #cd504a 0%, #d4554c 52%, #d55850 100%);
+  --s-gradient-thumb: radial-gradient(circle at 50% 25%, #ffffff 0%, #f7f7f7 35%, #ececec 70%, #dcdcdc 100%);
+  --s-gradient-thumb-dimple: linear-gradient(180deg, #f0f0f0 0%, #f7f7f7 100%);
+  /* dot-blue calibrated from switch_ex_bottom: center #7ea3f3, highlight #84a8f3 */
+  --s-gradient-dot-blue: linear-gradient(180deg, #7da0f2 0%, #527be6 100%);
+  --s-gradient-dot-grey: radial-gradient(circle at 50% 25%, #ffffff 0%, #f4f4f4 45%, #e0e0e0 100%);
   --s-gradient-dot-danger: linear-gradient(180deg, #e53935 0%, #b71c1c 100%);
   --s-gradient-progress-danger: linear-gradient(180deg, #e53935 0%, #c62828 100%);
   --s-gradient-spinner: conic-gradient(from 0deg, transparent 0deg, rgba(0, 0, 0, 0.12) 110deg, rgba(0, 0, 0, 0.58) 360deg);
@@ -154,6 +166,14 @@
   --s-gradient-mini-switch-thumb: radial-gradient(circle at 35% 35%, #ffffff 0%, #ececec 100%);
   --s-gradient-switch-track-on: linear-gradient(180deg, var(--s-color-primary-active) 0%, var(--s-color-primary) 100%);
   --s-gradient-switch-track-danger: linear-gradient(180deg, var(--s-color-danger-active) 0%, var(--s-color-danger) 100%);
+  --s-gradient-switch-mask-off: linear-gradient(180deg, #eaeaea 0%, #f5f5f5 15%, #f6f6f6 100%);
+  --s-gradient-switch-frame: linear-gradient(180deg, rgba(0, 0, 0, 0.22) 0%, rgba(255, 255, 255, 0.3) 16%, rgba(255, 255, 255, 0) 55%, rgba(0, 0, 0, 0.14) 100%);
+  --s-gradient-switch-thumb-rail: linear-gradient(180deg, #fdfdfd 0%, #f4f4f4 42%, #dedede 100%);
+  /* thumb-face calibrated from switch_ex_unpressed vertical profile:
+     0%:253, 15%:242, 30%:244, 50%:245, 65%:249, 80%:242, 100%:240 */
+  --s-gradient-switch-thumb-face: radial-gradient(circle at 50% 25%, #ffffff 0%, #f7f7f7 35%, #ececec 70%, #dcdcdc 100%);
+  /* central recess band overlaid on the thumb face (shadow line + bottom sheen) */
+  --s-gradient-switch-thumb-recess: linear-gradient(180deg, rgba(0, 0, 0, 0.06) 0%, rgba(0, 0, 0, 0.02) 50%, rgba(255, 255, 255, 0.25) 100%);
   --s-gradient-boom-search-bar: linear-gradient(180deg, #ffffff 0%, #f1f1f1 100%);
   --s-gradient-boom-search-webview: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(247, 247, 247, 0.78) 100%);
   --s-gradient-onestep-topbar-sheen: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 42%, rgba(0, 0, 0, 0.18) 100%);
@@ -185,6 +205,11 @@
   --s-shadow-list-icon-border-inverse: inset -1px 0 0 var(--s-color-separator-inverse);
   --s-shadow-floating-control: 0 4px 12px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04), inset 0 0 0 1px rgba(0, 0, 0, 0.05);
   --s-shadow-button-idle: var(--s-highlight-inner), var(--s-shadow-drop), var(--s-shadow-ambient);
+  --s-shadow-button-9patch: inset 0 1px 0 rgba(255, 255, 255, 0.95), inset 0 -1px 0 rgba(0, 0, 0, 0.16), 0 1px 0 rgba(255, 255, 255, 0.9), 0 2px 3px rgba(0, 0, 0, 0.16);
+  --s-shadow-button-9patch-blue: inset 0 1px 0 rgba(255, 255, 255, 0.35), inset 0 -1px 0 rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.45), 0 2px 3px rgba(0, 0, 0, 0.18);
+  --s-shadow-button-9patch-danger: inset 0 1px 0 rgba(255, 255, 255, 0.34), inset 0 -1px 0 rgba(0, 0, 0, 0.22), 0 1px 0 rgba(255, 255, 255, 0.45), 0 2px 3px rgba(0, 0, 0, 0.18);
+  --s-shadow-button-9patch-pressed: inset 0 3px 6px rgba(0, 0, 0, 0.4), inset 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.55);
+  --s-shadow-button-9patch-disabled: inset 0 1px 0 rgba(255, 255, 255, 0.55), inset 0 -1px 0 rgba(0, 0, 0, 0.08);
   --s-shadow-pressed: inset 0 3px 6px rgba(0, 0, 0, 0.2), inset 0 1px 2px rgba(0, 0, 0, 0.1);
   --s-shadow-button-pressed: var(--s-shadow-pressed);
   --s-shadow-inset-groove: inset 0 2px 4px rgba(0, 0, 0, 0.1), inset 0 4px 8px rgba(0, 0, 0, 0.05), 0 1px 0 rgba(255, 255, 255, 0.8);
@@ -194,8 +219,14 @@
   --s-shadow-focus-ring: 0 0 0 2px rgba(90, 124, 235, 0.4);
   --s-shadow-flash-glow: 0 0 0 4px rgba(96, 133, 247, 0.45), var(--s-shadow-panel);
   --s-shadow-control-thumb: 0 3px 6px rgba(0, 0, 0, 0.16), 0 1px 3px rgba(0, 0, 0, 0.1), var(--s-highlight-inner-strong);
-  --s-shadow-thumb-dimple: inset 1px 1.5px 3px rgba(0, 0, 0, 0.035), inset -1px -1.5px 3px rgba(255, 255, 255, 0.95), 0 1px 0 rgba(255, 255, 255, 0.95);
-  --s-shadow-switch-track: inset 0 1.2px 3px rgba(0, 0, 0, 0.07), inset 0 0.5px 1.5px rgba(0, 0, 0, 0.03), 0 1px 0 rgba(255, 255, 255, 0.9);
+  --s-shadow-thumb-dimple: inset 0 1px 3.5px rgba(0, 0, 0, 0.025), 0 0.8px 0.8px rgba(255, 255, 255, 0.8);
+  --s-shadow-switch-track: inset 0 3px 5px rgba(0, 0, 0, 0.16), inset 0 -1px 1.5px rgba(255, 255, 255, 0.78), 0 1px 0.5px rgba(255, 255, 255, 0.95);
+  --s-shadow-switch-ex-mask: inset 0 3px 5px rgba(0, 0, 0, 0.15), inset 0 -1px 1.5px rgba(255, 255, 255, 0.76), 0 1px 0.5px rgba(255, 255, 255, 0.85);
+  --s-shadow-switch-ex-frame: inset 0 1px 2px rgba(0, 0, 0, 0.16), inset 0 -1.5px 2px rgba(255, 255, 255, 0.82), inset 0 0 0 1px rgba(0, 0, 0, 0.1), 0 1px 1px rgba(255, 255, 255, 0.9);
+  --s-shadow-switch-ex-thumb: inset 0 1px 0 rgba(255, 255, 255, 0.98), inset 0 -1px 0 rgba(0, 0, 0, 0.16), 0 8px 12px rgba(0, 0, 0, 0.18), 0 3px 4px rgba(0, 0, 0, 0.16);
+  --s-shadow-switch-ex-thumb-face: inset 0 1px 0 rgba(255, 255, 255, 0.9), inset 0 -1px 1px rgba(0, 0, 0, 0.1);
+  --s-shadow-switch-ex-dimple: inset 0 1px 3.5px rgba(0, 0, 0, 0.025), 0 0.8px 0.8px rgba(255, 255, 255, 0.8);
+  --s-gradient-switch-ex-dimple: linear-gradient(180deg, #f0f0f0 0%, #f7f7f7 100%);
   --s-shadow-grey-dot: inset 1px 1.5px 3px rgba(0, 0, 0, 0.08), inset -1px -1.5px 3px rgba(255, 255, 255, 0.4), 0 1px 0 rgba(255, 255, 255, 0.6);
   --s-indicator-dot-blue-bg: var(--s-gradient-dot-blue);
   --s-indicator-dot-blue-shadow: 0 1.2px 2px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.25);
@@ -309,6 +340,10 @@
   --s-size-chip-max-width: 260px;
   --s-size-chip-min-height: 34px;
   --s-size-chip-padding-x: 14px;
+  --s-size-button-border: 1px;
+  --s-size-button-top-highlight: 45%;
+  --s-size-button-bottom-lip: 38%;
+  --s-size-button-press-y: 1px;
   --s-size-input-height: 44px;
   --s-size-input-padding-x: 16px;
   --s-size-input-password-action: 40px;
@@ -348,21 +383,34 @@
   --s-size-menu-dialog-body-padding-y: 12px;
   --s-size-menu-dialog-action-min-height: 59px;
   --s-size-menu-dialog-multi-list-height: 237px;
-  --s-size-switch-width: 75px;
-  --s-size-switch-height: 52px;
+  --s-size-switch-width: 120px;
+  --s-size-switch-height: 48px;
+  --s-size-switch-track-width: 120px;
   --s-size-switch-track-height: 48px;
-  --s-size-switch-thumb: 36px;
-  --s-size-switch-thumb-travel: 39px;
-  --s-size-switch-dot: 12px;
-  --s-size-switch-dot-inset: 11px;
+  --s-size-switch-extend-offset-x: 0px;
+  --s-size-switch-extend-offset-y: 0px;
+  --s-size-switch-thumb-width: 48px;
+  --s-size-switch-thumb-travel: 72px;
+  --s-size-switch-face-width: 46px;
+  --s-size-switch-face-height: 44px;
+  --s-size-switch-face-inset-x: 1px;
+  --s-size-switch-face-inset-y: 2px;
+  --s-radius-switch-thumb: 24px;
+  --s-size-switch-thumb: var(--s-size-switch-thumb-width);
+  --s-size-switch-dot: 18px;
+  --s-size-switch-dot-y: 15px;
+  --s-size-switch-dot-on-x: 15px;
+  --s-size-switch-dot-off-x: 159px;
+  --s-size-switch-dot-inset: 22px;
+  --s-size-switch-thumb-dimple: 20px;
   --s-size-thumb: var(--s-size-switch-thumb);
-  --s-size-slider-control-height: 34px;
-  --s-size-slider-track-height: 8px;
+  --s-size-slider-control-height: 38px;
+  --s-size-slider-track-height: 10px;
   --s-size-slider-track-padding-x: 16px;
   --s-size-slider-node-size: 16px;
   --s-size-slider-node-border-width: 4px;
-  --s-size-slider-thumb: 30px;
-  --s-size-slider-thumb-dimple: 12px;
+  --s-size-slider-thumb: 35px;
+  --s-size-slider-thumb-dimple: 15px;
   --s-size-slider-label-height: 24px;
   --s-size-list-row-min-height: 60px;
   --s-size-list-text-margin-x: 30px;
@@ -444,6 +492,10 @@
   --s-radius-lg: 12px;
   --s-radius-xl: 16px;
   --s-radius-pill: 9999px;
+  --s-radius-button: 5px; /* calibrated from title_btn/blue_long_button: 15px @xxhdpi */
+
+  /* --- Typography fine tuning --- */
+  --s-letter-spacing-button: 0;
 
   /* --- Transitions --- */
   --s-duration-instant: 60ms;

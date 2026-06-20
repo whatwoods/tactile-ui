@@ -56,7 +56,9 @@ export const Switch: React.FC<SwitchProps> = ({
 
   const handlePointerMove = (event: React.PointerEvent<HTMLButtonElement>) => {
     if (disabled || dragRef.current.pointerId !== event.pointerId) return;
-    const travel = event.currentTarget.offsetWidth - parseFloat(getComputedStyle(event.currentTarget).getPropertyValue('--switch-thumb-size'));
+    const travel = parseFloat(
+      getComputedStyle(event.currentTarget).getPropertyValue('--s-size-switch-thumb-travel')
+    );
     const delta = event.clientX - dragRef.current.startX;
     if (Math.abs(delta) > 3) {
       dragRef.current.dragging = true;
@@ -108,15 +110,20 @@ export const Switch: React.FC<SwitchProps> = ({
   if (readOnly) {
     return (
       <div
-        className={`${styles.switch} ${isChecked ? styles.checked : ''} ${styles[variant]}`}
+        className={`${styles.switch} ${isChecked ? styles.on : ''} ${styles[variant]} ${dragProgress !== null ? styles.dragging : ''}`}
         style={{ '--switch-progress': progress } as React.CSSProperties}
       >
         <div className={styles.track}>
-          <div className={`${styles.hole} ${styles.holeLeft}`}></div>
-          <div className={`${styles.hole} ${styles.holeRight}`}></div>
+          <div className={styles.trackSlider}>
+            <span className={`${styles.trackDot} ${styles.dotOn}`} />
+            <span className={`${styles.trackDot} ${styles.dotOff}`} />
+          </div>
         </div>
+        <div className={styles.frame}></div>
         <div className={styles.thumb}>
-          <div className={styles.thumbDimple}></div>
+          <div className={styles.thumbFace}>
+            <div className={styles.dimple} />
+          </div>
         </div>
       </div>
     );
@@ -127,7 +134,7 @@ export const Switch: React.FC<SwitchProps> = ({
       role="switch"
       aria-checked={isChecked}
       disabled={disabled}
-      className={`${styles.switch} ${isChecked ? styles.checked : ''} ${styles[variant]}`}
+      className={`${styles.switch} ${isChecked ? styles.on : ''} ${styles[variant]} ${dragProgress !== null ? styles.dragging : ''}`}
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
       onPointerUp={handlePointerUp}
@@ -138,11 +145,16 @@ export const Switch: React.FC<SwitchProps> = ({
       type="button"
     >
       <div className={styles.track}>
-        <div className={`${styles.hole} ${styles.holeLeft}`}></div>
-        <div className={`${styles.hole} ${styles.holeRight}`}></div>
+        <div className={styles.trackSlider}>
+          <span className={`${styles.trackDot} ${styles.dotOn}`} />
+          <span className={`${styles.trackDot} ${styles.dotOff}`} />
+        </div>
       </div>
+      <div className={styles.frame}></div>
       <div className={styles.thumb}>
-        <div className={styles.thumbDimple}></div>
+        <div className={styles.thumbFace}>
+          <div className={styles.dimple} />
+        </div>
       </div>
     </button>
   );

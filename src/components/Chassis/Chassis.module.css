@@ -1,0 +1,328 @@
+/* Chassis Component Style Module */
+
+.chassis {
+  position: relative;
+  background: var(--s-gradient-device-surface);
+  border: 1px solid var(--s-color-border-strong);
+  border-radius: var(--s-radius-xl);
+  box-shadow: var(--s-shadow-device);
+  padding: var(--s-space-5);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-space-4);
+  width: 100%;
+  transition: box-shadow var(--s-duration-normal) var(--s-ease-standard);
+  user-select: none;
+}
+
+/* Chrome screws at corners */
+.screw {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--s-radius-pill);
+  position: absolute;
+  background: radial-gradient(circle, var(--s-color-white) 0%, var(--s-color-button-gray-border) 60%, var(--s-color-text-secondary) 100%);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.4), 0 1px 0 var(--s-color-white);
+  opacity: 0.85;
+}
+
+.screwTopLeft {
+  top: 10px;
+  left: 10px;
+}
+
+.screwTopRight {
+  top: 10px;
+  right: 10px;
+}
+
+.screwBottomLeft {
+  bottom: 10px;
+  left: 10px;
+}
+
+.screwBottomRight {
+  bottom: 10px;
+  right: 10px;
+}
+
+/* Header Plate */
+.headerPlate {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--s-color-border-soft);
+  padding-bottom: var(--s-space-2);
+  margin-top: 4px;
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+}
+
+.brandTitle {
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: var(--s-color-text-primary);
+  text-shadow: var(--s-shadow-text-highlight);
+}
+
+.brandModel {
+  font-size: 8px;
+  color: var(--s-color-text-tertiary);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-top: 1px;
+}
+
+.statusGroup {
+  display: flex;
+  align-items: center;
+  gap: var(--s-space-2);
+}
+
+.statusLabel {
+  font-size: 8px;
+  font-weight: 700;
+  color: var(--s-color-text-secondary);
+}
+
+.ledDot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--s-radius-pill);
+  transition: all var(--s-duration-slow) var(--s-ease-standard);
+  position: relative;
+  box-shadow: var(--s-shadow-led-inset);
+}
+
+.ledDot::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: var(--s-radius-pill);
+  box-shadow: var(--s-shadow-led-inner-highlight);
+}
+
+/* LED color states */
+.ledOff {
+  background: var(--s-gradient-dot-grey);
+}
+
+.ledGreen {
+  background: var(--s-gradient-led-success);
+  box-shadow: var(--s-shadow-device-led);
+}
+
+.ledBlue {
+  background: var(--s-gradient-dot-blue);
+  box-shadow: var(--s-shadow-led-glow-blue);
+}
+
+.ledRed {
+  background: var(--s-gradient-dot-danger);
+  box-shadow: var(--s-shadow-led-glow-red);
+}
+
+.ledOrange {
+  background: var(--s-gradient-dot-danger);
+  box-shadow: var(--s-shadow-led-glow-orange);
+}
+
+.ledCyan {
+  background: radial-gradient(circle at 35% 35%, #9becf7 0%, #3ca7b8 60%, #1a7482 100%);
+  box-shadow: 0 0 8px rgba(60, 167, 184, 0.7);
+}
+
+.ledViolet {
+  background: radial-gradient(circle at 35% 35%, #eb9bf7 0%, #b83cb4 60%, #821a7d 100%);
+  box-shadow: 0 0 8px rgba(184, 60, 180, 0.7);
+}
+
+/* Inner groove holding content */
+.screenGroove {
+  background: var(--s-color-black);
+  border-radius: var(--s-radius-lg);
+  padding: 3px;
+  box-shadow: var(--s-shadow-device-screen);
+  border: 1px solid var(--s-color-border-strong);
+  position: relative;
+  overflow: hidden;
+}
+
+.screenInner {
+  background: var(--s-color-surface);
+  border-radius: var(--s-radius-md);
+  position: relative;
+  overflow: hidden;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  padding: var(--s-space-4);
+  box-sizing: border-box;
+}
+
+/* CRT scanlines and glare glaze */
+.scanlines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--s-gradient-device-screen-scanlines);
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 4;
+  opacity: 0.05;
+}
+
+.glare {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: var(--s-gradient-device-screen-glare);
+  pointer-events: none;
+  z-index: 5;
+  opacity: 0.35;
+}
+
+.contentContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  transition: opacity var(--s-duration-normal) var(--s-ease-standard), filter var(--s-duration-normal) var(--s-ease-standard);
+}
+
+.powerOff {
+  pointer-events: none;
+  opacity: 0.35;
+  filter: grayscale(0.85);
+}
+
+/* Offline overlay */
+.offlineShield {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(18, 18, 20, 0.94);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.offlineText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'SF Mono', SFMono-Regular, Consolas, monospace;
+  color: var(--s-color-device-screen-off-text);
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+  text-align: center;
+}
+
+.flicker {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  animation: textFlicker 3s infinite;
+}
+
+.subText {
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.3);
+  letter-spacing: 0.5px;
+  margin-top: 8px;
+}
+
+@keyframes textFlicker {
+  0%, 100% { opacity: 0.8; }
+  45% { opacity: 0.8; }
+  50% { opacity: 0.35; }
+  55% { opacity: 0.8; }
+}
+
+/* Bottom Control Bar */
+.controlBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--s-color-border-soft);
+  padding-top: var(--s-space-3);
+  padding-bottom: 2px;
+}
+
+.powerSwitchSection {
+  display: flex;
+  align-items: center;
+  gap: var(--s-space-2);
+}
+
+.controlLabel {
+  font-size: 8px;
+  font-weight: 700;
+  color: var(--s-color-text-secondary);
+  letter-spacing: 0.5px;
+}
+
+/* Mini Toggle Switch */
+.toggleSwitch {
+  width: 32px;
+  height: 18px;
+  border-radius: 9px;
+  background: var(--s-color-surface-pressed);
+  box-shadow: var(--s-shadow-device-mini-switch);
+  position: relative;
+  border: 1px solid var(--s-color-border-strong);
+  cursor: pointer;
+  padding: 0;
+  outline: none;
+}
+
+.switchHandle {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--s-gradient-mini-switch-thumb);
+  box-shadow: var(--s-shadow-device-mini-knob);
+  transition: transform var(--s-duration-normal) var(--s-ease-standard);
+}
+
+.toggleSwitchOn {
+  background: var(--s-color-primary-active);
+}
+
+.toggleSwitchOn .switchHandle {
+  transform: translateX(14px);
+}
+
+/* Ventilation Grill Details */
+.ventilationGrill {
+  display: flex;
+  gap: 3px;
+}
+
+.ventSlot {
+  width: 3px;
+  height: 14px;
+  background: var(--s-color-border-strong);
+  border-radius: 1px;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.15);
+  opacity: 0.7;
+}

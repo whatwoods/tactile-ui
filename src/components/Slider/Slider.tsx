@@ -32,6 +32,7 @@ export const Slider: React.FC<SliderProps> = ({
   marks
 }) => {
   const [internalValue, setInternalValue] = useState(defaultValue);
+  const [isDragging, setIsDragging] = useState(false);
   const trackRef = useRef<HTMLDivElement>(null);
   const isControlled = value !== undefined;
   const currentValue = isControlled ? value : internalValue;
@@ -66,6 +67,7 @@ export const Slider: React.FC<SliderProps> = ({
   const handlePointerDown = (e: React.PointerEvent) => {
     if (disabled) return;
     (e.target as HTMLElement).setPointerCapture(e.pointerId);
+    setIsDragging(true);
     updateValueFromEvent(e.clientX);
   };
 
@@ -74,8 +76,19 @@ export const Slider: React.FC<SliderProps> = ({
     updateValueFromEvent(e.clientX);
   };
 
+  const handlePointerUp = (e: React.PointerEvent) => {
+    setIsDragging(false);
+    if (!disabled && e.target) {
+      try {
+        (e.target as HTMLElement).releasePointerCapture(e.pointerId);
+      } catch (err) {
+        // Safe check
+      }
+    }
+  };
+
   return (
-    <div className={`${styles.container} ${disabled ? styles.disabled : ''}`}>
+    <div className={`${styles.container} ${disabled ? styles.disabled : ''} ${isDragging ? styles.dragging : ''}`}>
       {/* Stepped labels (above the track) */}
       {isStepped && (
         <div className={styles.marksContainer}>
@@ -108,6 +121,8 @@ export const Slider: React.FC<SliderProps> = ({
           className={styles.slider}
           onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
+          onPointerUp={handlePointerUp}
+          onPointerCancel={handlePointerUp}
           ref={trackRef}
         >
           <div className={styles.track}>

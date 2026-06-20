@@ -27,6 +27,8 @@ import { OneStepShortcut } from './components/OneStepShortcut/OneStepShortcut';
 import { OneStepTopBar } from './components/OneStepTopBar/OneStepTopBar';
 import { Hero } from './components/Hero/Hero';
 import { SideNav } from './components/SideNav/SideNav';
+import { WorkbenchPage } from './pages/WorkbenchPage/WorkbenchPage';
+import { playClickSound } from './utils/sound';
 
 
 const BIGBANG_SEARCH_OPTIONS = [
@@ -77,6 +79,7 @@ const SIDE_NAV_ITEMS = [
 
 
 function App() {
+  const [view, setView] = useState<'classic' | 'workbench'>('classic');
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isActionSheetOpen, setIsActionSheetOpen] = useState(false);
   const [isProgressDialogOpen, setIsProgressDialogOpen] = useState(false);
@@ -112,6 +115,16 @@ function App() {
     window.setTimeout(() => setBigBangSearchLoading(false), 1200);
   };
 
+  if (view === 'workbench') {
+    return (
+      <WorkbenchPage
+        onBackToClassic={() => setView('classic')}
+        audioEnabled={!isMute}
+        onToggleAudio={() => setIsMute(!isMute)}
+      />
+    );
+  }
+
   return (
     <div style={{ minHeight: '150vh', background: 'var(--s-color-surface-flat)', position: 'relative' }}>
       
@@ -119,7 +132,10 @@ function App() {
       <Header />
 
       {/* 2. Section 1: Hero Section - Smartisan UI Introduction */}
-      <Hero />
+      <Hero onEnterWorkbench={() => {
+        playClickSound(!isMute, 750);
+        setView('workbench');
+      }} />
 
 
       {/* 3. Section 2: Skeuomorphic Settings Playground */}
@@ -143,83 +159,172 @@ function App() {
             gap: '32px' 
           }}>
             
+            {/* 截图校准对照组 (Screenshot Alignment) */}
+            <div style={{ gridColumn: '1 / -1', maxWidth: '600px', margin: '0 auto', width: '100%' }}>
+              <Card title="官方组件截图校准对齐 (Screenshot Alignment)" padding="lg">
+                <div style={{ background: '#ffffff', borderRadius: '8px', padding: '0 30px', border: '1px solid var(--s-color-border-soft)', boxShadow: 'var(--s-shadow-panel)', display: 'flex', flexDirection: 'column', gap: '0px' }}>
+                  {/* 行 1：静音开关 (主控行 110px) */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '110px', borderBottom: '1px solid var(--s-color-border-soft)', width: '100%' }}>
+                    <span style={{ fontSize: '20px', fontWeight: 500, color: 'var(--s-color-text-primary)' }}>静音</span>
+                    <Switch checked={isMute} onChange={(checked) => setIsMute(checked)} />
+                  </div>
+                  
+                  {/* 行 2：震动滑块 (普通控制行 104px) */}
+                  <div style={{ height: '104px', display: 'flex', alignItems: 'center', borderBottom: '1px solid var(--s-color-border-soft)', width: '100%' }}>
+                    <div style={{ width: '100%' }}>
+                      <Slider 
+                        value={volume}
+                        onChange={(val) => setVolume(val)}
+                        fillColor={isMute ? 'grey' : 'blue'}
+                        iconLeft={
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--s-color-icon-muted)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '8px' }}>
+                            <rect x="7" y="3" width="10" height="18" rx="2" ry="2" />
+                            <line x1="11" y1="18" x2="13" y2="18" />
+                            <path d="M3 8a8.5 8.5 0 0 0 0 8M1 10a11.5 11.5 0 0 0 0 4M21 8a8.5 8.5 0 0 1 0 8M23 10a11.5 11.5 0 0 1 0 4" />
+                          </svg>
+                        }
+                        iconRight={
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="var(--s-color-icon-muted)" style={{ marginLeft: '8px' }}>
+                            <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                          </svg>
+                        }
+                      />
+                    </div>
+                  </div>
+                  
+                  {/* 行 3：亮度滑块 (普通控制行 104px) */}
+                  <div style={{ height: '104px', display: 'flex', alignItems: 'center', width: '100%' }}>
+                    <div style={{ width: '100%' }}>
+                      <Slider 
+                        value={brightness}
+                        onChange={(val) => setBrightness(val)}
+                        fillColor="blue"
+                        iconLeft={
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--s-color-icon-muted)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '8px' }}>
+                            <circle cx="12" cy="12" r="3.5"/>
+                            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+                          </svg>
+                        }
+                        iconRight={
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--s-color-icon-muted)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ marginLeft: '8px' }}>
+                            <circle cx="12" cy="12" r="5.5"/>
+                            <path d="M12 1v2M12 21v2M3.22 3.22l1.42 1.42M19.36 19.36l1.42 1.42M1 12h2M21 12h2M4.64 19.36l-1.42 1.42M20.78 3.22l-1.42 1.42"/>
+                          </svg>
+                        }
+                      />
+                    </div>
+                  </div>
+                </div>
+              </Card>
+            </div>
+            
             {/* Control Panel 1: Sound Control (Switch & Sliders) */}
-            <Card id="switch-card" title="静音与阻尼滑块" padding="lg">
+            <Card id="switch-card" title="静音与阻尼滑块" padding="none">
               <div style={{ display: 'flex', flexDirection: 'column' }}>
+                {/* 行 1：静音开关 (主控行 110px) */}
                 <div style={{ 
                   display: 'flex', 
                   justifyContent: 'space-between', 
                   alignItems: 'center', 
-                  marginBottom: isMute ? '24px' : '0px',
-                  padding: '0 4px'
+                  height: '110px',
+                  borderBottom: '1px solid var(--s-color-border-soft)',
+                  padding: '0 30px',
+                  width: '100%',
+                  boxSizing: 'border-box'
                 }}>
-                  <span style={{ fontSize: '16px', fontWeight: 500, color: 'var(--s-color-text-secondary)' }}>系统静音 (物理开关)</span>
+                  <span style={{ fontSize: '16px', fontWeight: 500, color: 'var(--s-color-text-primary)' }}>系统静音 (物理开关)</span>
                   <Switch checked={isMute} onChange={(checked) => setIsMute(checked)} />
                 </div>
 
-                {isMute ? (
+                {/* 行 2：静音延时 (条件渲染，普通控制行 104px) */}
+                {isMute && (
                   <div style={{ 
-                    paddingBottom: '24px', 
-                    borderBottom: '1px solid var(--s-color-border-soft)', 
-                    marginBottom: '24px' 
+                    height: '104px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    borderBottom: '1px solid var(--s-color-border-soft)',
+                    padding: '0 30px',
+                    width: '100%',
+                    boxSizing: 'border-box'
                   }}>
-                    <Slider 
-                      min={0}
-                      max={4}
-                      value={stepValue}
-                      onChange={(val) => setStepValue(val)}
-                      marks={[
-                        { value: 0, label: '一直' },
-                        { value: 1, label: '1小时' },
-                        { value: 2, label: '2小时' },
-                        { value: 3, label: '4小时' },
-                        { value: 4, label: '8小时' }
-                      ]}
-                      fillColor="none"
-                    />
+                    <div style={{ width: '100%' }}>
+                      <Slider 
+                        min={0}
+                        max={4}
+                        value={stepValue}
+                        onChange={(val) => setStepValue(val)}
+                        marks={[
+                          { value: 0, label: '一直' },
+                          { value: 1, label: '1小时' },
+                          { value: 2, label: '2小时' },
+                          { value: 3, label: '4小时' },
+                          { value: 4, label: '8小时' }
+                        ]}
+                        fillColor="none"
+                      />
+                    </div>
                   </div>
-                ) : (
-                  <div style={{ borderBottom: '1px solid var(--s-color-border-soft)', margin: '24px 0' }}></div>
                 )}
 
-                <div style={{ paddingBottom: '24px', borderBottom: '1px solid var(--s-color-border-soft)', marginBottom: '24px' }}>
-                  <Slider 
-                    value={volume}
-                    onChange={(val) => setVolume(val)}
-                    fillColor={isMute ? 'grey' : 'blue'}
-                    iconLeft={
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ transform: 'scale(0.95)' }}>
-                        <rect x="7" y="3" width="10" height="18" rx="2" ry="2" />
-                        <line x1="11" y1="18" x2="13" y2="18" />
-                        <path d="M3 8a8.5 8.5 0 0 0 0 8M1 10a11.5 11.5 0 0 0 0 4M21 8a8.5 8.5 0 0 1 0 8M23 10a11.5 11.5 0 0 1 0 4" />
-                      </svg>
-                    }
-                    iconRight={
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
-                      </svg>
-                    }
-                  />
+                {/* 行 3：震动滑块 (普通控制行 104px) */}
+                <div style={{ 
+                  height: '104px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  borderBottom: '1px solid var(--s-color-border-soft)',
+                  padding: '0 30px',
+                  width: '100%',
+                  boxSizing: 'border-box'
+                }}>
+                  <div style={{ width: '100%' }}>
+                    <Slider 
+                      value={volume}
+                      onChange={(val) => setVolume(val)}
+                      fillColor={isMute ? 'grey' : 'blue'}
+                      iconLeft={
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ transform: 'scale(0.95)' }}>
+                          <rect x="7" y="3" width="10" height="18" rx="2" ry="2" />
+                          <line x1="11" y1="18" x2="13" y2="18" />
+                          <path d="M3 8a8.5 8.5 0 0 0 0 8M1 10a11.5 11.5 0 0 0 0 4M21 8a8.5 8.5 0 0 1 0 8M23 10a11.5 11.5 0 0 1 0 4" />
+                        </svg>
+                      }
+                      iconRight={
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                        </svg>
+                      }
+                    />
+                  </div>
                 </div>
 
-                <div>
-                  <Slider 
-                    value={brightness}
-                    onChange={(val) => setBrightness(val)}
-                    fillColor="blue"
-                    iconLeft={
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                        <circle cx="12" cy="12" r="3.5"/>
-                        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
-                      </svg>
-                    }
-                    iconRight={
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                        <circle cx="12" cy="12" r="5.5"/>
-                        <path d="M12 1v2M12 21v2M3.22 3.22l1.42 1.42M19.36 19.36l1.42 1.42M1 12h2M21 12h2M4.64 19.36l-1.42 1.42M20.78 3.22l-1.42 1.42"/>
-                      </svg>
-                    }
-                  />
+                {/* 行 4：亮度滑块 (普通控制行 104px) */}
+                <div style={{ 
+                  height: '104px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  padding: '0 30px',
+                  width: '100%',
+                  boxSizing: 'border-box'
+                }}>
+                  <div style={{ width: '100%' }}>
+                    <Slider 
+                      value={brightness}
+                      onChange={(val) => setBrightness(val)}
+                      fillColor="blue"
+                      iconLeft={
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                          <circle cx="12" cy="12" r="3.5"/>
+                          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+                        </svg>
+                      }
+                      iconRight={
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                          <circle cx="12" cy="12" r="5.5"/>
+                          <path d="M12 1v2M12 21v2M3.22 3.22l1.42 1.42M19.36 19.36l1.42 1.42M1 12h2M21 12h2M4.64 19.36l-1.42 1.42M20.78 3.22l-1.42 1.42"/>
+                        </svg>
+                      }
+                    />
+                  </div>
                 </div>
               </div>
             </Card>
@@ -487,7 +592,6 @@ function App() {
                 </div>
               </div>
             </Card>
-
           </div>
         </div>
       </section>
