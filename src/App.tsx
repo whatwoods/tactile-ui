@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { Header } from './components/Header/Header';
-import { Hero } from './components/Hero/Hero';
-import { ShowcaseSection } from './components/ShowcaseSection/ShowcaseSection';
-import { ComponentGallery } from './components/ComponentGallery/ComponentGallery';
-import { TokensSection } from './components/TokensSection/TokensSection';
-import { SideNav } from './components/SideNav/SideNav';
-import { Footer } from './components/Footer/Footer';
+import { Header } from './demo/components/Header/Header';
+import { Hero } from './demo/components/Hero/Hero';
+import { ShowcaseSection } from './demo/components/ShowcaseSection/ShowcaseSection';
+import { ComponentGallery } from './demo/components/ComponentGallery/ComponentGallery';
+import { TokensSection } from './demo/components/TokensSection/TokensSection';
+import { SideNav } from './demo/components/SideNav/SideNav';
+import { Footer } from './demo/components/Footer/Footer';
 import { ToastProvider } from './components/Toast/Toast';
 
 const SIDE_NAV_ITEMS = [

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './SideNav.module.css';
-import { useScrollSpy } from '../../hooks/useScrollSpy';
+import { useScrollSpy } from '../../../hooks/useScrollSpy';
 
 export interface SideNavItem {
   id: string;

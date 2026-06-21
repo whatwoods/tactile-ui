@@ -224,9 +224,7 @@
   }
 
   .mainNavLinks {
-    justify-content: flex-start;
-    gap: var(--s-space-5);
-    padding: 0 var(--s-space-2);
+    display: none;
   }
 
   .subNavLinks {
@@ -248,10 +246,6 @@
 @media (max-width: 480px) {
   .mainNavContent {
     gap: var(--s-space-3);
-  }
-
-  .mainNavLinks {
-    gap: var(--s-space-4);
   }
 
   .subNavContent {

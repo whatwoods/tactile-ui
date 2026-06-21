@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './TokensSection.module.css';
-import { Switch } from '../Switch/Switch';
+import { Switch } from '../../../components/Switch/Switch';
 
 export const TokensSection: React.FC = () => {
   const [isDemoBoxActive, setIsDemoBoxActive] = useState(false);

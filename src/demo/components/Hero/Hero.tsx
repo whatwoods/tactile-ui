@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './Hero.module.css';
-import { Button } from '../Button/Button';
-import { Switch } from '../Switch/Switch';
-import { Slider } from '../Slider/Slider';
+import { Button } from '../../../components/Button/Button';
+import { Switch } from '../../../components/Switch/Switch';
+import { Slider } from '../../../components/Slider/Slider';
 
 
 const MODES = [
