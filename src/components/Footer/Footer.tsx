@@ -28,7 +28,7 @@ export const Footer: React.FC = () => {
           {/* Links columns */}
           <div className={styles.linksGrid}>
             <div className={styles.linksColumn}>
-              <h5 className={styles.columnHeader}>官方资源</h5>
+              <h5 className={styles.columnHeader}>项目源码</h5>
               <a 
                 href="https://github.com/whatwoods/tactile-ui" 
                 target="_blank" 
