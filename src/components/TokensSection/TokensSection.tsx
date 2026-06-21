@@ -44,9 +44,9 @@ export const TokensSection: React.FC = () => {
       <div className={styles.container}>
         {/* Title */}
         <div className={styles.sectionHeader}>
-          <h3 className={styles.sectionTitle}>秩序之下的语言</h3>
+          <h3 className={styles.sectionTitle}>设计令牌 — 秩序的代价与回报</h3>
           <p className={styles.sectionSubtitle}>
-            颜色、阴影、间距、圆角——全部收敛为一份严密的设计令牌。不允许硬编码，不允许例外。当每一个参数都有名字，混乱便再无容身之处。
+            颜色、阴影、间距、圆角、时长、缓动曲线——全部收敛在一份 tokens.css 中，不允许硬编码，不允许例外。这不是洁癖，这是让 AI Coding Agent 也能精准生成属于这个系统的界面的唯一方法。
           </p>
         </div>
 
@@ -98,7 +98,7 @@ export const TokensSection: React.FC = () => {
               {typography.map((font) => (
                 <div key={font.token} className={styles.listItem}>
                   <div className={styles.typographyPreview}>
-                    <span className={font.className}>让屏幕重新拥有手感</span>
+                    <span className={font.className}>用秩序建立系统，用触感表达交互</span>
                   </div>
                   <div className={styles.tokenInfoRight}>
                     <span className={styles.tokenLabel}>{font.label}</span>

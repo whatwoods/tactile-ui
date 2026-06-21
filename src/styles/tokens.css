@@ -1,4 +1,4 @@
-/* Smartisan UI Design Tokens
+/* Tactile UI Design Tokens
    Calibrated from SmartisanTech Android resources:
    android_frameworks_smartisanos-base.
 */
@@ -315,14 +315,14 @@
   --s-size-switch-dot-inset: 22px;
   --s-size-switch-thumb-dimple: 20px;
   --s-size-thumb: var(--s-size-switch-thumb);
-  --s-size-slider-control-height: 38px;
-  --s-size-slider-track-height: 10px;
-  --s-size-slider-track-padding-x: 16px;
-  --s-size-slider-node-size: 16px;
-  --s-size-slider-node-border-width: 4px;
-  --s-size-slider-thumb: 35px;
-  --s-size-slider-thumb-dimple: 15px;
-  --s-size-slider-label-height: 24px;
+  --s-size-slider-control-height: 32px;
+  --s-size-slider-track-height: 8px;
+  --s-size-slider-track-padding-x: 13px;
+  --s-size-slider-node-size: 14px;
+  --s-size-slider-node-border-width: 3px;
+  --s-size-slider-thumb: 26px;
+  --s-size-slider-thumb-dimple: 9px;
+  --s-size-slider-label-height: 20px;
   --s-size-list-row-min-height: 60px;
   --s-size-list-text-margin-x: 30px;
   --s-size-list-title-max-width: 220px;

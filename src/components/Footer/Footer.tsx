@@ -18,10 +18,10 @@ export const Footer: React.FC = () => {
                 <rect x="17" y="10" width="7" height="2.8" rx="0.4" fill="currentColor" />
                 <rect x="17.5" y="11.5" width="3" height="4.5" fill="currentColor" />
               </svg>
-              <span className={styles.logoText}>smartisan ui</span>
+              <span className={styles.logoText}>Tactile UI</span>
             </div>
             <p className={styles.tagline}>
-              扁平的信息结构 + 拟物的交互暗示 + 克制的材质表现
+              秩序 · 触感 · 比例 · 细节
             </p>
           </div>
 

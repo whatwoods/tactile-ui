@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { Header } from './components/Header/Header';
 import { Hero } from './components/Hero/Hero';
-import { PlaygroundSection } from './components/PlaygroundSection/PlaygroundSection';
+import { ShowcaseSection } from './components/ShowcaseSection/ShowcaseSection';
+import { ComponentGallery } from './components/ComponentGallery/ComponentGallery';
 import { TokensSection } from './components/TokensSection/TokensSection';
 import { SideNav } from './components/SideNav/SideNav';
 import { Footer } from './components/Footer/Footer';
@@ -20,8 +21,18 @@ const SIDE_NAV_ITEMS = [
     )
   },
   {
-    id: 'playground-section',
-    label: '组件演练',
+    id: 'showcase-section',
+    label: '场景演示',
+    icon: (
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="3" width="18" height="18" rx="2" />
+        <path d="M21 12H3M12 3v18" />
+      </svg>
+    )
+  },
+  {
+    id: 'gallery-section',
+    label: '组件详览',
     icon: (
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
         <line x1="4" y1="21" x2="4" y2="14" />
@@ -59,19 +70,22 @@ function App() {
         {/* 2. Hero Section (device + intro) */}
         <Hero />
 
-        {/* 3. Playground Section (grouped component interactive demos) */}
-        <PlaygroundSection 
-          isMute={isMute} 
-          setIsMute={setIsMute} 
+        {/* 3. Showcase Section (immersive scenarios) */}
+        <ShowcaseSection 
+          isMute={isMute}
+          setIsMute={setIsMute}
         />
 
-        {/* 4. Tokens Showcase Section */}
+        {/* 4. Component Gallery (accordion view) */}
+        <ComponentGallery />
+
+        {/* 5. Tokens Showcase Section */}
         <TokensSection />
 
-        {/* 5. Footer */}
+        {/* 6. Footer */}
         <Footer />
 
-        {/* 6. Side Floating Dot Navigation */}
+        {/* 7. Side Floating Dot Navigation */}
         <SideNav
           items={SIDE_NAV_ITEMS}
           onGithubClick={() => {

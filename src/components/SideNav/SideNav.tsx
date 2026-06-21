@@ -101,7 +101,7 @@ export const SideNav: React.FC<SideNavProps> = ({ items, activeId: propActiveId,
           onMouseLeave={() => setHoveredId(null)}
           onClick={onGithubClick}
         >
-          <button className={styles.socialBtn} aria-label="Smartisan UI GitHub Repository">
+          <button className={styles.socialBtn} aria-label="Tactile UI GitHub Repository">
             <GithubIcon size={16} />
           </button>
           

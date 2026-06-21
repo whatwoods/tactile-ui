@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import styles from './Hero.module.css';
 import { Button } from '../Button/Button';
 import { Switch } from '../Switch/Switch';
+import { Slider } from '../Slider/Slider';
 
 
 const MODES = [
@@ -29,6 +30,7 @@ export const Hero: React.FC = () => {
   const [power, setPower] = useState(true);
   const [modeIdx, setModeIdx] = useState(0);
   const [audioEnabled, setAudioEnabled] = useState(true);
+  const [volume, setVolume] = useState(50);
   const [boost, setBoost] = useState(false);
   const [diag, setDiag] = useState(false);
   const [knobRotation, setKnobRotation] = useState(0);
@@ -39,7 +41,7 @@ export const Hero: React.FC = () => {
 
   // Play click sound using Web Audio API
   const playClickSound = (pitch = 800, duration = 0.05, type: OscillatorType = 'sine') => {
-    if (!audioEnabled || !power) return;
+    if (!audioEnabled || !power || volume === 0) return;
     try {
       const AudioContextClass = window.AudioContext || (window as Window & typeof globalThis & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
       if (!AudioContextClass) return;
@@ -50,7 +52,10 @@ export const Hero: React.FC = () => {
       osc.type = type;
       osc.frequency.setValueAtTime(pitch, ctx.currentTime);
       
-      gain.gain.setValueAtTime(0.08, ctx.currentTime);
+      const baseGain = type === 'triangle' ? 0.12 : 0.08;
+      const calculatedGain = baseGain * (volume / 100);
+      
+      gain.gain.setValueAtTime(calculatedGain, ctx.currentTime);
       gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
       
       osc.connect(gain);
@@ -79,7 +84,7 @@ export const Hero: React.FC = () => {
   }, [power]);
 
   const handlePowerToggle = (nextPower: boolean) => {
-    if (audioEnabled) {
+    if (audioEnabled && volume > 0) {
       try {
         const AudioContextClass = window.AudioContext || (window as Window & typeof globalThis & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
         if (AudioContextClass) {
@@ -88,7 +93,8 @@ export const Hero: React.FC = () => {
           const gain = ctx.createGain();
           osc.type = 'triangle';
           osc.frequency.setValueAtTime(nextPower ? 400 : 250, ctx.currentTime);
-          gain.gain.setValueAtTime(0.12, ctx.currentTime);
+          const calculatedGain = 0.12 * (volume / 100);
+          gain.gain.setValueAtTime(calculatedGain, ctx.currentTime);
           gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.1);
           osc.connect(gain);
           gain.connect(ctx.destination);
@@ -116,20 +122,23 @@ export const Hero: React.FC = () => {
       playClickSound(600, 0.04);
     } else {
       try {
-        const AudioContextClass = window.AudioContext || (window as Window & typeof globalThis & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
-        if (AudioContextClass) {
-          const ctx = new AudioContextClass();
-          const osc = ctx.createOscillator();
-          const gain = ctx.createGain();
-          osc.type = 'sine';
-          osc.frequency.setValueAtTime(800, ctx.currentTime);
-          osc.frequency.setValueAtTime(1000, ctx.currentTime + 0.05);
-          gain.gain.setValueAtTime(0.08, ctx.currentTime);
-          gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.1);
-          osc.connect(gain);
-          gain.connect(ctx.destination);
-          osc.start();
-          osc.stop(ctx.currentTime + 0.1);
+        if (volume > 0) {
+          const AudioContextClass = window.AudioContext || (window as Window & typeof globalThis & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
+          if (AudioContextClass) {
+            const ctx = new AudioContextClass();
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(800, ctx.currentTime);
+            osc.frequency.setValueAtTime(1000, ctx.currentTime + 0.05);
+            const calculatedGain = 0.08 * (volume / 100);
+            gain.gain.setValueAtTime(calculatedGain, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.1);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start();
+            osc.stop(ctx.currentTime + 0.1);
+          }
         }
       } catch {
         console.warn('Sound switch click failed');
@@ -174,7 +183,7 @@ export const Hero: React.FC = () => {
           {/* Top Panel: Branding plate & LED */}
           <div className={styles.topPanel}>
             <div className={styles.brandPlate}>
-              <span className={styles.brandTitle}>SMARTISAN UI</span>
+              <span className={styles.brandTitle}>TACTILE UI</span>
               <span className={styles.brandModel}>MODEL T-400</span>
             </div>
             
@@ -213,7 +222,7 @@ export const Hero: React.FC = () => {
 
                   <div className={styles.screenFooter}>
                     <span>SYS_CLK: {ticks.toString().padStart(4, '0')}</span>
-                    <span>AUDIO: {audioEnabled ? 'ON' : 'OFF'}</span>
+                    <span>VOL: {audioEnabled ? `${volume}%` : 'MUTE'}</span>
                   </div>
                 </div>
               ) : (
@@ -286,15 +295,31 @@ export const Hero: React.FC = () => {
               </div>
             </div>
           </div>
+
+          {/* Volume Slider Section */}
+          <div className={styles.volumeRow}>
+            <span className={styles.volumeLabel}>VOLUME</span>
+            <div className={styles.sliderWrapper}>
+              <Slider
+                min={0}
+                max={100}
+                value={volume}
+                onChange={setVolume}
+                disabled={!power}
+                fillColor={!audioEnabled ? 'grey' : 'blue'}
+              />
+            </div>
+          </div>
         </div>
 
         {/* Text descriptions next to/below the console */}
         <div className={styles.heroTextContent}>
-          <h2 className={styles.heroTitle}>让屏幕重新拥有手感</h2>
+          <h2 className={styles.heroTitle}>秩序 · 触感 · 比例 · 细节</h2>
           <p className={styles.heroSubtitle}>
-            有些东西正在从屏幕上消失——不是功能，而是触碰一个按钮时，指尖下方微微凹陷的确信感。
-            Tactile UI 用光影的厚度、阴影的呼吸和黄金比例的韵脚，重新翻译那些物理世界里真正有价值的交互暗示。
-            试着拨动左侧控制台上的开关。那个「咔」的瞬间，就是我们在意的全部。
+            一套具有物理触感的 AI-Native React 设计系统。
+            <br/><br/>
+            在这个一切都被极度拍平的时代，我们试图找回指尖触碰时的那份确信感。
+            用严密的黄金比例建立秩序，用多重光影雕刻出可信的物理边界。所有的工艺准则已被完全抽象为精准的 Tokens，确保 AI 也能深刻体会这份克制，丝毫不差地还原出真实而有温度的交互细节。
           </p>
           
           <div className={styles.ctaButtonGroup}>

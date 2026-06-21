@@ -1,0 +1,683 @@
+.showcaseSection {
+  padding: 0;
+  position: relative;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 var(--s-space-6);
+  box-sizing: border-box;
+}
+
+/* Intro Header */
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.badgeLabel {
+  display: inline-block;
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--s-color-primary);
+  background: color-mix(in srgb, var(--s-color-primary) 10%, transparent);
+  padding: 4px 10px;
+  border-radius: var(--s-radius-pill);
+  margin-bottom: var(--s-space-4);
+  text-transform: uppercase;
+}
+
+.sectionTitle {
+  font-size: var(--s-font-size-titlebar);
+  font-size: 28px;
+  font-weight: 300;
+  color: var(--s-color-text-primary);
+  margin: 0 0 12px 0;
+  letter-spacing: -0.5px;
+}
+
+.sectionSubtitle {
+  font-size: var(--s-font-size-body-sm);
+  color: var(--s-color-text-secondary);
+  max-width: 540px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+/* Scene Blocks styling */
+.sceneBlock {
+  padding: 96px 0;
+  border-bottom: 1px solid var(--s-color-border-soft);
+  position: relative;
+}
+
+.sceneBlock:last-of-type {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+/* Alternating Backgrounds */
+.sceneSettings {
+  background: var(--s-color-surface-sunken);
+  background-image: var(--s-texture-noise), var(--s-texture-bg);
+  box-shadow: inset 0 20px 40px rgba(0, 0, 0, 0.02), inset 0 -20px 40px rgba(0, 0, 0, 0.02);
+}
+
+.sceneForm {
+  background: var(--s-texture-bg);
+  box-shadow: inset 0 20px 40px rgba(0, 0, 0, 0.01), inset 0 -20px 40px rgba(0, 0, 0, 0.01);
+}
+
+.sceneFeedback {
+  background: var(--s-color-surface-flat);
+}
+
+.sceneContainer {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 var(--s-space-6);
+  box-sizing: border-box;
+}
+
+/* 2-Column Grid for Scene 1 */
+.sceneGrid {
+  display: grid;
+  grid-template-columns: 0.58fr 0.42fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.mockupCol {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* 3D Elevated Panels Container */
+.floatingCardsContainer {
+  perspective: 1200px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+.elevatedPanelCard {
+  width: 100%;
+  transition: transform 0.5s var(--s-ease-out), box-shadow 0.5s var(--s-ease-out);
+  box-shadow: 
+    0 18px 36px rgba(0, 0, 0, 0.08),
+    0 8px 16px rgba(0, 0, 0, 0.06),
+    0 1px 3px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  border-radius: var(--s-radius-xl); /* Rounded corners for the container to round the shadow */
+}
+
+.elevatedPanelCard :global(div[class*="card-"]) {
+  border-radius: var(--s-radius-xl);
+  border: 1px solid var(--s-color-border-strong);
+  overflow: hidden;
+  box-shadow: none !important; /* Disable double square/mismatched shadows */
+}
+
+/* Staggered 3D rotations for the independent cards */
+.volumeCard {
+  transform: rotateX(6deg) rotateY(-8deg) translateY(-2px) translateZ(10px);
+}
+.volumeCard:hover {
+  transform: rotateX(3deg) rotateY(-4deg) translateY(-8px) translateZ(20px);
+  box-shadow: 
+    0 28px 56px rgba(0, 0, 0, 0.12),
+    0 12px 24px rgba(0, 0, 0, 0.08),
+    0 2px 4px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+.settingsListCard {
+  transform: rotateX(6deg) rotateY(-8deg) translateY(4px);
+}
+.settingsListCard:hover {
+  transform: rotateX(3deg) rotateY(-4deg) translateY(-2px) translateZ(10px);
+  box-shadow: 
+    0 28px 56px rgba(0, 0, 0, 0.12),
+    0 12px 24px rgba(0, 0, 0, 0.08),
+    0 2px 4px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+.sceneGridMirror {
+  display: grid;
+  grid-template-columns: 0.42fr 0.58fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.elevatedPanelCard :global(div[class*="header-"]) {
+  border-top-left-radius: var(--s-radius-xl);
+  border-top-right-radius: var(--s-radius-xl);
+}
+
+.cardContentLayout {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Clamp bottom child to card's border radius */
+.cardContentLayout > :last-child {
+  border-bottom-left-radius: var(--s-radius-xl);
+  border-bottom-right-radius: var(--s-radius-xl);
+}
+
+.minimalSettingsLayout {
+  display: flex;
+  flex-direction: column;
+  padding: 32px 0;
+}
+
+/* Clamping top and bottom children inside minimalSettingsLayout for the headerless card */
+.minimalSettingsLayout > :first-child {
+  border-top-left-radius: var(--s-radius-xl);
+  border-top-right-radius: var(--s-radius-xl);
+}
+
+.minimalSettingsLayout > :last-child {
+  border-bottom-left-radius: var(--s-radius-xl);
+  border-bottom-right-radius: var(--s-radius-xl);
+}
+
+.minimalRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 32px;
+}
+
+.minimalLabel {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--s-color-text-primary);
+  letter-spacing: -0.2px;
+  user-select: none;
+}
+
+.minimalDivider {
+  height: 1px;
+  background-color: var(--s-color-border-soft);
+  margin: 16px 32px;
+}
+
+.minimalSliderRow {
+  padding: 8px 32px;
+}
+
+/* Reset any extra margins for Slider component inside minimal block */
+.minimalSliderRow :global(div[class*="container-"]) {
+  margin: 0;
+  padding: 0;
+}
+
+/* Form block layout inside Scene 2 */
+.formRowGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+  width: 100%;
+  max-width: 520px;
+}
+
+.showcaseFormCard {
+  width: 100%;
+}
+
+/* Narrative Info Columns */
+.infoCol {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.sceneIndex {
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--s-color-primary);
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+.sceneTitleText {
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--s-color-text-primary);
+  margin: 0 0 16px 0;
+  letter-spacing: -0.2px;
+}
+
+.sceneDesc {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--s-color-text-secondary);
+  margin-bottom: 24px;
+}
+
+.featurePoints {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.featurePoints li {
+  position: relative;
+  padding-left: 20px;
+}
+
+.featurePoints li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  top: -2px;
+  color: var(--s-color-primary);
+  font-size: 18px;
+}
+
+.featurePoints li strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--s-color-text-primary);
+  margin-bottom: 4px;
+}
+
+.featurePoints li span {
+  font-size: 13px;
+  color: var(--s-color-text-secondary);
+  line-height: 1.6;
+  display: block;
+}
+
+/* --- Row adjustments inside mockups --- */
+.switchRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 58px;
+  border-bottom: 1px solid var(--s-color-border-soft);
+  padding: 0 var(--s-space-5);
+  box-sizing: border-box;
+}
+
+.sliderRow {
+  height: 58px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--s-color-border-soft);
+  padding: 0 var(--s-space-5);
+  box-sizing: border-box;
+}
+
+.controlLabel {
+  font-size: var(--s-font-size-body-sm);
+  font-weight: 500;
+  color: var(--s-color-text-primary);
+}
+
+.settingsGroupContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px 10px;
+}
+
+.settingsGroupContainer :global(div[class*="list-"]) {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.settingsGroupContainer :global(div[class*="settingItem-"]) {
+  min-height: 46px;
+}
+
+.groupTitle {
+  font-size: 12px;
+  color: var(--s-color-text-secondary);
+  font-weight: 400;
+  padding-left: var(--s-space-4);
+  margin-top: 14px;
+  margin-bottom: 6px;
+  user-select: none;
+}
+
+/* Remove top margin from the very first group title in the card */
+.settingsGroupContainer h5:first-of-type {
+  margin-top: 0;
+}
+
+.groupDescription {
+  font-size: var(--s-font-size-caption);
+  color: var(--s-color-text-secondary);
+  padding-left: var(--s-space-4);
+  margin-top: 6px;
+  margin-bottom: 2px;
+  line-height: 1.4;
+  user-select: none;
+}
+
+/* --- Form styles inside Scene 2 --- */
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.phoneInputContainer {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: var(--s-size-input-height);
+  padding: 0 var(--s-size-input-padding-x);
+  border-radius: var(--s-radius-md);
+  background: var(--s-color-surface-sunken);
+  box-shadow: var(--s-shadow-input);
+  border: 1px solid var(--s-color-border-soft);
+  box-sizing: border-box;
+}
+
+.countryCode {
+  font-size: var(--s-font-size-body-sm);
+  color: var(--s-color-text-secondary);
+  margin-right: var(--s-space-3);
+  font-weight: 500;
+  user-select: none;
+}
+
+.phoneInput {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: var(--s-font-size-body-sm);
+  color: var(--s-color-text-primary);
+  outline: none;
+  padding: 0;
+  width: 100%;
+}
+
+.phoneInput::placeholder {
+  color: var(--s-color-text-tertiary);
+}
+
+.formHelperRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--s-font-size-body-sm);
+}
+
+.formLink {
+  color: var(--s-color-primary-active);
+  text-decoration: none;
+}
+
+.formLink:hover {
+  text-decoration: underline;
+}
+
+.smsSubmitButton {
+  width: 100%;
+}
+
+.smsSubmitButtonDisabled {
+  width: 100%;
+  background: color-mix(in srgb, var(--s-color-primary) 18%, var(--s-color-surface-flat)) !important;
+  border-color: color-mix(in srgb, var(--s-color-primary) 24%, var(--s-color-surface-flat)) !important;
+  color: var(--s-color-white) !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  cursor: not-allowed;
+}
+
+.socialDivider {
+  height: 1px;
+  background: var(--s-color-border-soft);
+  width: 100%;
+}
+
+.termsAgreement {
+  text-align: center;
+  font-size: var(--s-font-size-caption);
+  color: var(--s-color-text-secondary);
+  line-height: 1.4;
+}
+
+.termsLink {
+  color: var(--s-color-primary-active);
+  text-decoration: none;
+}
+
+.termsLink:hover {
+  text-decoration: underline;
+}
+
+.optionsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.fieldLabel {
+  display: block;
+  font-size: var(--s-font-size-body-sm);
+  color: var(--s-color-text-secondary);
+  margin-bottom: 6px;
+}
+
+.progressRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* --- Scene 3 Layout --- */
+.sceneFeedbackLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.sceneCenterHeader {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.sceneCenterHeader .sceneTitleText {
+  font-size: 26px;
+}
+
+.feedbackShowcaseGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr));
+  gap: 32px;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.feedbackCardWrapper {
+  width: 100%;
+  display: flex;
+}
+
+.feedbackCardWrapper > :global(div[class*="card-"]) {
+  width: 100%;
+}
+
+.fullHeightCard.fullHeightCard {
+  height: 100%;
+}
+
+.feedbackContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.buttonsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 12px;
+}
+
+.popoversRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.popoverInner {
+  display: grid;
+  gap: 8px;
+  min-width: 180px;
+}
+
+.popoverTitle {
+  color: var(--s-color-text-primary);
+  font-size: var(--s-font-size-body-sm);
+}
+
+.popoverDesc {
+  color: var(--s-color-text-secondary);
+  font-size: var(--s-font-size-caption);
+  line-height: 1.6;
+}
+
+.syncStatus {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--s-color-text-secondary);
+  font-size: var(--s-font-size-body-sm);
+}
+
+.badges {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.modalTriggersContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  height: 100%;
+  justify-content: center;
+}
+
+.modalIntroText {
+  font-size: var(--s-font-size-body-sm);
+  color: var(--s-color-text-secondary);
+  line-height: 1.7;
+}
+
+.modalButtonsGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.triggerButton.triggerButton {
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 900px) {
+  .elevatedPanelCard {
+    transform: none !important;
+  }
+
+  .sceneGrid, .sceneGridMirror {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .infoCol {
+    align-items: center;
+    text-align: center;
+  }
+  
+  .featurePoints {
+    align-items: center;
+  }
+  
+  .featurePoints li {
+    padding-left: 0;
+  }
+  
+  .featurePoints li::before {
+    display: none;
+  }
+  
+  .sceneGridMirror .infoCol {
+    order: -1;
+  }
+  
+  .formRowGrid {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 500px) {
+  .sceneBlock {
+    padding: 64px 0;
+  }
+  
+  .sectionTitle {
+    font-size: 24px;
+  }
+  
+  .buttonsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- Scroll-Driven Reveal Animations --- */
+@keyframes revealUp {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  .elevatedPanelCard, 
+  .infoCol, 
+  .formRowGrid, 
+  .feedbackShowcaseGrid {
+    animation: revealUp linear both;
+    animation-timeline: view();
+    animation-range: entry 15% cover 35%;
+  }
+}
+
+@supports not (animation-timeline: view()) {
+  .elevatedPanelCard, 
+  .infoCol, 
+  .formRowGrid, 
+  .feedbackShowcaseGrid {
+    animation: revealUp var(--s-duration-slower) var(--s-ease-standard) both;
+  }
+}

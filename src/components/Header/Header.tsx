@@ -6,18 +6,19 @@ export const Header: React.FC = () => {
   const [isSticky, setIsSticky] = useState(false);
 
   // Unified scroll spy hook calls
-  const mainActiveId = useScrollSpy(['hero-section', 'playground-section', 'tokens-section'], 150);
-  const subActiveId = useScrollSpy(['hero-section', 'controls-group', 'forms-group', 'feedback-group'], 150);
+  const mainActiveId = useScrollSpy(['hero-section', 'showcase-section', 'gallery-section', 'tokens-section'], 150);
+  const subActiveId = useScrollSpy(['hero-section', 'settings-scene', 'form-scene', 'feedback-scene'], 150);
 
   // Map spied active IDs to UI states
   const activeSection = 
     mainActiveId === 'tokens-section' ? 'tokens' : 
-    mainActiveId === 'playground-section' ? 'playground' : 'hero';
+    mainActiveId === 'gallery-section' ? 'gallery' :
+    mainActiveId === 'showcase-section' ? 'showcase' : 'hero';
 
   const activeSubItem = 
-    subActiveId === 'controls-group' ? '物理控制' :
-    subActiveId === 'forms-group' ? '拟物表单' :
-    subActiveId === 'feedback-group' ? '反馈浮层' : '拟物原则';
+    subActiveId === 'settings-scene' ? '系统控制' :
+    subActiveId === 'form-scene' ? '拟物表单' :
+    subActiveId === 'feedback-scene' ? '反馈对话' : '拟物原则';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,15 +40,16 @@ export const Header: React.FC = () => {
 
   const mainNavItems = [
     { label: '设计原则', id: 'hero-section', section: 'hero' },
-    { label: '组件预览', id: 'playground-section', section: 'playground' },
+    { label: '场景演示', id: 'showcase-section', section: 'showcase' },
+    { label: '组件详览', id: 'gallery-section', section: 'gallery' },
     { label: '设计令牌', id: 'tokens-section', section: 'tokens' }
   ];
 
   const subNavItems = [
     { label: '拟物原则', targetId: 'hero-section' },
-    { label: '物理控制', targetId: 'controls-group' },
-    { label: '拟物表单', targetId: 'forms-group' },
-    { label: '反馈浮层', targetId: 'feedback-group' }
+    { label: '系统控制', targetId: 'settings-scene' },
+    { label: '拟物表单', targetId: 'form-scene' },
+    { label: '反馈对话', targetId: 'feedback-scene' }
   ];
 
   const handleNavClick = (e: React.MouseEvent, targetId: string) => {
@@ -144,9 +146,9 @@ export const Header: React.FC = () => {
       {/* 2. Sub Navigation Bar (Level 2 - sticky) */}
       <div className={`${styles.subHeader} ${isSticky ? styles.sticky : ''}`}>
         <div className={styles.subNavContent}>
-          {/* Logo container for the sticky state (smartisan ui) */}
+          {/* Logo container for the sticky state (Tactile UI) */}
           <div className={`${styles.stickyLogo} ${isSticky ? styles.visible : ''}`} onClick={(e) => handleNavClick(e, 'hero-section')}>
-            <span>smartisan ui</span>
+            <span>Tactile UI</span>
           </div>
 
           {/* Sub Nav Links */}
