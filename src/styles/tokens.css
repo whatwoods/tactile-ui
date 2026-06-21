@@ -1,6 +1,6 @@
 /* Smartisan UI Design Tokens
    Calibrated from SmartisanTech Android resources:
-   android_frameworks_smartisanos-base, packages_apps_OneStep, packages_apps_BigBang.
+   android_frameworks_smartisanos-base.
 */
 
 :root {
@@ -32,6 +32,7 @@
   --s-color-surface-sunken: #f1f1f1;
   --s-color-surface-track: #ececec;
   --s-color-surface-panel-header: #f9f9f9;
+  --s-gradient-header-convex: linear-gradient(to bottom, #fcfcfc 0%, #fafafa 45%, #f6f6f6 80%, #f4f4f4 100%);
   --s-color-border: #dcdcdc;
   --s-color-border-soft: #eaeaea;
   --s-color-border-muted: #e5e5e5;
@@ -55,30 +56,6 @@
   --s-color-bullet-panel: rgba(255, 255, 255, 0.85);
   --s-color-bullet-dot: #d8d8d8;
   --s-color-bullet-dot-hover: #b0b0b0;
-  --s-color-onestep-dim: rgba(0, 0, 0, 0.4);
-  --s-color-onestep-root-dim: rgba(0, 0, 0, 0.7);
-  --s-color-onestep-disable-dim: rgba(0, 0, 0, 0.7);
-  --s-color-onestep-content-bg: rgba(0, 0, 0, 0.25);
-  --s-color-onestep-content-title-bg: rgba(0, 0, 0, 0.353);
-  --s-color-onestep-topbar-dim: rgba(0, 0, 0, 0.4);
-  --s-color-onestep-date-bg: rgba(0, 0, 0, 0.149);
-  --s-color-onestep-item-active-bg: rgba(255, 255, 255, 0.12);
-  --s-color-onestep-divider: rgba(255, 255, 255, 0.08);
-  --s-color-onestep-shadow-line: rgba(0, 0, 0, 0.24);
-  --s-color-onestep-side-shadow: rgba(0, 0, 0, 0.35);
-  --s-color-onestep-topbar-text: rgba(255, 255, 255, 0.8);
-  --s-color-onestep-topbar-text-dim: rgba(255, 255, 255, 0.353);
-  --s-color-onestep-title-text: rgba(255, 255, 255, 0.7);
-  --s-color-onestep-item-text: rgba(255, 255, 255, 0.8);
-  --s-color-onestep-item-text-strong: rgba(255, 255, 255, 0.9);
-  --s-color-onestep-subtle-text: rgba(255, 255, 255, 0.3);
-  --s-color-onestep-more-text: rgba(255, 255, 255, 0.247);
-  --s-color-onestep-photo-fail-bg: #181818;
-  --s-color-onestep-photo-pressed-mask: rgba(0, 0, 0, 0.22);
-  --s-color-drag-bubble-bg: rgba(0, 0, 0, 0.72);
-  --s-color-boom-popup-divider: rgba(0, 0, 0, 0.078);
-  --s-color-boom-search-webview: #fbfbfb;
-  --s-color-boom-search-placeholder: #e7e7e7;
   --s-color-surface-frosted: rgba(255, 255, 255, 0.96);
   --s-color-progress-dialog-bg: rgba(235, 235, 235, 0.953);
   --s-color-progress-dialog-bg-dark: rgba(13, 13, 13, 0.851);
@@ -132,14 +109,14 @@
   );
 
   /* --- Gradients calibrated from 9-patch assets --- */
-  --s-gradient-button-gray: linear-gradient(180deg, #fefefe 0%, #f7f7f7 42%, #e5e5e5 100%);
-  --s-gradient-button-gray-hover: linear-gradient(180deg, #ffffff 0%, #fbfbfb 42%, #ededed 100%);
-  --s-gradient-button-gray-active: linear-gradient(180deg, #d7d7d7 0%, #e3e3e3 58%, #eeeeee 100%);
-  --s-gradient-button-blue: linear-gradient(180deg, #6f94e9 0%, #6a90e8 25%, #6088e6 50%, #5981e3 75%, #5279e0 100%);
-  --s-gradient-button-blue-hover: linear-gradient(180deg, #7d9eed 0%, #7293eb 25%, #6890ea 50%, #5f88e6 75%, #5880e3 100%);
-  --s-gradient-button-blue-active: linear-gradient(180deg, #5378d2 0%, #567bd3 25%, #587dd4 50%, #5b7fd5 75%, #5e82d5 100%);
-  --s-gradient-button-danger: linear-gradient(180deg, #e8655c 0%, #e65c53 48%, #e2534b 100%);
-  --s-gradient-button-danger-hover: linear-gradient(180deg, #ed7068 0%, #e6635a 48%, #d9554e 100%);
+  --s-gradient-button-gray: linear-gradient(180deg, #fcfcfc 0%, #f7f7f7 42%, #ececec 100%);
+  --s-gradient-button-gray-hover: linear-gradient(180deg, #ffffff 0%, #fafafa 42%, #f1f1f1 100%);
+  --s-gradient-button-gray-active: linear-gradient(180deg, #dfdfdf 0%, #e6e6e6 58%, #eeeeee 100%);
+  --s-gradient-button-blue: linear-gradient(180deg, #6b8ee6 0%, #6587e2 25%, #5b7de0 50%, #5375db 75%, #4c6ed7 100%);
+  --s-gradient-button-blue-hover: linear-gradient(180deg, #7898ea 0%, #6e90e7 25%, #6385e5 50%, #597ce0 75%, #5174db 100%);
+  --s-gradient-button-blue-active: linear-gradient(180deg, #597bd3 0%, #5c7ed4 25%, #5f81d4 50%, #6284d5 75%, #6586d5 100%);
+  --s-gradient-button-danger: linear-gradient(180deg, #e45c53 0%, #e0534a 48%, #d84940 100%);
+  --s-gradient-button-danger-hover: linear-gradient(180deg, #e9675e 0%, #e05950 48%, #d44940 100%);
   --s-gradient-button-danger-active: linear-gradient(180deg, #d3514a 0%, #d4554c 48%, #d55850 100%);
   --s-gradient-button-top-highlight: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.24) 100%);
   --s-gradient-button-bottom-lip: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.12) 100%);
@@ -174,13 +151,6 @@
   --s-gradient-switch-thumb-face: radial-gradient(circle at 50% 25%, #ffffff 0%, #f7f7f7 35%, #ececec 70%, #dcdcdc 100%);
   /* central recess band overlaid on the thumb face (shadow line + bottom sheen) */
   --s-gradient-switch-thumb-recess: linear-gradient(180deg, rgba(0, 0, 0, 0.06) 0%, rgba(0, 0, 0, 0.02) 50%, rgba(255, 255, 255, 0.25) 100%);
-  --s-gradient-boom-search-bar: linear-gradient(180deg, #ffffff 0%, #f1f1f1 100%);
-  --s-gradient-boom-search-webview: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(247, 247, 247, 0.78) 100%);
-  --s-gradient-onestep-topbar-sheen: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 42%, rgba(0, 0, 0, 0.18) 100%);
-  --s-gradient-onestep-shortcut-icon: linear-gradient(180deg, rgba(255, 255, 255, 0.24) 0%, rgba(255, 255, 255, 0.08) 42%, rgba(0, 0, 0, 0.24) 100%);
-  --s-gradient-onestep-previous-icon: linear-gradient(180deg, rgba(255, 255, 255, 0.16) 0%, rgba(0, 0, 0, 0.32) 100%);
-  --s-gradient-onestep-photo-thumb: linear-gradient(135deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.04) 48%, rgba(0, 0, 0, 0.16) 100%);
-  --s-gradient-onestep-photo-action: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.3) 100%);
   --s-slider-fill-blue-bg: linear-gradient(180deg, #94adff 0%, #6b88e6 50%, #4761be 100%);
   --s-slider-fill-grey-bg: linear-gradient(180deg, #e2e2e2 0%, #c2c2c2 50%, #a8a8a8 100%);
 
@@ -204,12 +174,12 @@
   --s-shadow-list-icon-border: inset -1px 0 0 var(--s-color-separator);
   --s-shadow-list-icon-border-inverse: inset -1px 0 0 var(--s-color-separator-inverse);
   --s-shadow-floating-control: 0 4px 12px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04), inset 0 0 0 1px rgba(0, 0, 0, 0.05);
-  --s-shadow-button-idle: var(--s-highlight-inner), var(--s-shadow-drop), var(--s-shadow-ambient);
-  --s-shadow-button-9patch: inset 0 1px 0 rgba(255, 255, 255, 0.95), inset 0 -1px 0 rgba(0, 0, 0, 0.16), 0 1px 0 rgba(255, 255, 255, 0.9), 0 2px 3px rgba(0, 0, 0, 0.16);
-  --s-shadow-button-9patch-blue: inset 0 1px 0 rgba(255, 255, 255, 0.35), inset 0 -1px 0 rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.45), 0 2px 3px rgba(0, 0, 0, 0.18);
-  --s-shadow-button-9patch-danger: inset 0 1px 0 rgba(255, 255, 255, 0.34), inset 0 -1px 0 rgba(0, 0, 0, 0.22), 0 1px 0 rgba(255, 255, 255, 0.45), 0 2px 3px rgba(0, 0, 0, 0.18);
-  --s-shadow-button-9patch-pressed: inset 0 3px 6px rgba(0, 0, 0, 0.4), inset 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 0 rgba(255, 255, 255, 0.55);
-  --s-shadow-button-9patch-disabled: inset 0 1px 0 rgba(255, 255, 255, 0.55), inset 0 -1px 0 rgba(0, 0, 0, 0.08);
+  --s-shadow-button-idle: var(--s-highlight-inner), 0 1px 3px rgba(0, 0, 0, 0.08), var(--s-shadow-ambient);
+  --s-shadow-button-9patch: inset 0 1px 0 rgba(255, 255, 255, 0.6), inset 0 -1px 0 rgba(0, 0, 0, 0.1), 0 1.5px 2px rgba(0, 0, 0, 0.1);
+  --s-shadow-button-9patch-blue: inset 0 1px 0 rgba(255, 255, 255, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.12), 0 1.5px 2px rgba(0, 0, 0, 0.12);
+  --s-shadow-button-9patch-danger: inset 0 1px 0 rgba(255, 255, 255, 0.24), inset 0 -1px 0 rgba(0, 0, 0, 0.14), 0 1.5px 2px rgba(0, 0, 0, 0.12);
+  --s-shadow-button-9patch-pressed: inset 0 2px 4px rgba(0, 0, 0, 0.3), inset 0 1px 2px rgba(0, 0, 0, 0.15);
+  --s-shadow-button-9patch-disabled: inset 0 1px 0 rgba(255, 255, 255, 0.4), inset 0 -1px 0 rgba(0, 0, 0, 0.05);
   --s-shadow-pressed: inset 0 3px 6px rgba(0, 0, 0, 0.2), inset 0 1px 2px rgba(0, 0, 0, 0.1);
   --s-shadow-button-pressed: var(--s-shadow-pressed);
   --s-shadow-inset-groove: inset 0 2px 4px rgba(0, 0, 0, 0.1), inset 0 4px 8px rgba(0, 0, 0, 0.05), 0 1px 0 rgba(255, 255, 255, 0.8);
@@ -223,7 +193,7 @@
   --s-shadow-switch-track: inset 0 3px 5px rgba(0, 0, 0, 0.16), inset 0 -1px 1.5px rgba(255, 255, 255, 0.78), 0 1px 0.5px rgba(255, 255, 255, 0.95);
   --s-shadow-switch-ex-mask: inset 0 3px 5px rgba(0, 0, 0, 0.15), inset 0 -1px 1.5px rgba(255, 255, 255, 0.76), 0 1px 0.5px rgba(255, 255, 255, 0.85);
   --s-shadow-switch-ex-frame: inset 0 1px 2px rgba(0, 0, 0, 0.16), inset 0 -1.5px 2px rgba(255, 255, 255, 0.82), inset 0 0 0 1px rgba(0, 0, 0, 0.1), 0 1px 1px rgba(255, 255, 255, 0.9);
-  --s-shadow-switch-ex-thumb: inset 0 1px 0 rgba(255, 255, 255, 0.98), inset 0 -1px 0 rgba(0, 0, 0, 0.16), 0 8px 12px rgba(0, 0, 0, 0.18), 0 3px 4px rgba(0, 0, 0, 0.16);
+  --s-shadow-switch-ex-thumb: inset 0 0 0 0.5px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.98), inset 0 -1px 0 rgba(0, 0, 0, 0.16), 0 8px 12px rgba(0, 0, 0, 0.18), 0 3px 4px rgba(0, 0, 0, 0.16);
   --s-shadow-switch-ex-thumb-face: inset 0 1px 0 rgba(255, 255, 255, 0.9), inset 0 -1px 1px rgba(0, 0, 0, 0.1);
   --s-shadow-switch-ex-dimple: inset 0 1px 3.5px rgba(0, 0, 0, 0.025), 0 0.8px 0.8px rgba(255, 255, 255, 0.8);
   --s-gradient-switch-ex-dimple: linear-gradient(180deg, #f0f0f0 0%, #f7f7f7 100%);
@@ -234,14 +204,6 @@
   --s-shadow-progress-fill: inset 0 1px 0 rgba(255, 255, 255, 0.4), inset 0 -1px 2px rgba(0, 0, 0, 0.2);
   --s-shadow-progress-dialog: 0 14px 36px rgba(0, 0, 0, 0.16), 0 3px 10px rgba(0, 0, 0, 0.08), var(--s-highlight-inner-strong);
   --s-shadow-progress-dialog-dark: 0 14px 36px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.08);
-  --s-shadow-drag-bubble: 0 6px 14px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.16);
-  --s-shadow-onestep-panel: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 6px 18px rgba(0, 0, 0, 0.18);
-  --s-shadow-onestep-topbar: inset 0 -4px 0 var(--s-color-onestep-shadow-line), inset 4px 0 0 var(--s-color-onestep-side-shadow), inset -4px 0 0 var(--s-color-onestep-side-shadow);
-  --s-shadow-onestep-shortcut-icon: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 1px 3px rgba(0, 0, 0, 0.2);
-  --s-shadow-boom-option-popup: 0 8px 18px rgba(0, 0, 0, 0.12), 0 2px 5px rgba(0, 0, 0, 0.08), var(--s-highlight-inner-strong);
-  --s-shadow-boom-option-popup-filter: 0 2px 3px rgba(0, 0, 0, 0.1);
-  --s-shadow-boom-search-window: 0 16px 34px rgba(0, 0, 0, 0.18), 0 4px 12px rgba(0, 0, 0, 0.1), var(--s-highlight-inner-strong);
-  --s-shadow-boom-search-bar: 0 2px 8px rgba(0, 0, 0, 0.08), var(--s-highlight-inner-strong);
   --s-slider-node-shadow: inset 0 1.2px 2.5px rgba(0, 0, 0, 0.08), 0 1px 0 rgba(255, 255, 255, 0.95);
   --s-shadow-close-button: 0 2px 6px rgba(0, 0, 0, 0.2);
   --s-shadow-text-engraved: 0 -1px 0 rgba(0, 0, 0, 0.2);
@@ -265,14 +227,9 @@
   /* --- Typography from official sp values --- */
   --s-font-size-caption: 12px;
   --s-font-size-progress-message: 13px;
-  --s-font-size-float-text: 13px;
-  --s-font-size-drag: 13.5px;
   --s-font-size-title-button: 13.5px;
-  --s-font-size-onestep-date: 10px;
-  --s-font-size-onestep-url: 9px;
-  --s-font-size-onestep-topbar-label: 11px;
   --s-font-size-body-sm: 14px;
-  --s-font-size-chip: 15px;
+  --s-font-size-emphasis: 15px;
   --s-font-size-body: 16px;
   --s-font-size-setting-title: 18px;
   --s-font-size-titlebar: 20px;
@@ -287,47 +244,6 @@
   --s-space-6: 30px; /* setting item left/right rhythm */
   --s-space-7: 40px;
   --s-size-sidebar-width: 48px;
-  --s-size-onestep-sidebar-top-offset: 85.3px;
-  --s-size-onestep-sidebar-footer-height: 89.3px;
-  --s-size-onestep-sidebar-footer-item-height: 42.6px;
-  --s-size-onestep-sidebar-item-padding-top: 3px;
-  --s-size-onestep-sidebar-item-padding-bottom: 3px;
-  --s-size-onestep-content-title-height: 40px;
-  --s-size-onestep-date-height: 24px;
-  --s-size-onestep-item-row-height: 51px;
-  --s-size-onestep-bookmark-row-height: 45px;
-  --s-size-onestep-item-padding-left: 15px;
-  --s-size-onestep-bookmark-padding-x: 12px;
-  --s-size-onestep-clear-width: 36px;
-  --s-size-onestep-clear-icon: 14px;
-  --s-size-onestep-copy-icon: 12px;
-  --s-size-onestep-copy-icon-margin-x: 13px;
-  --s-size-onestep-file-icon: 26px;
-  --s-size-onestep-file-icon-gap: 9px;
-  --s-size-onestep-shortcut-icon: 32px;
-  --s-size-onestep-contact-badge-size: 10px;
-  --s-size-onestep-contact-badge-right: 7px;
-  --s-size-onestep-contact-badge-bottom: 6px;
-  --s-size-onestep-contact-label-margin-top: -6px;
-  --s-size-onestep-contact-label-margin-bottom: 6px;
-  --s-size-onestep-topbar-height: 64px;
-  --s-size-onestep-topbar-dim-space: 3px;
-  --s-size-onestep-topbar-icon-width: 45px;
-  --s-size-onestep-topbar-icon-height: 53px;
-  --s-size-onestep-topbar-icon-content: 33px;
-  --s-size-onestep-topbar-label-gap: 4px;
-  --s-size-onestep-topbar-label-margin: 4px;
-  --s-size-onestep-topbar-label-max-width: 50px;
-  --s-size-onestep-topbar-text-spacer: 8px;
-  --s-size-onestep-topbar-arrow-width: 9px;
-  --s-size-onestep-topbar-arrow-height: 15px;
-  --s-size-onestep-topbar-arrow-margin-top: 1px;
-  --s-size-onestep-shadow-edge: 4px;
-  --s-size-onestep-photo: 80px;
-  --s-size-onestep-photo-gap: 5px;
-  --s-size-onestep-photo-bottom-padding: 10px;
-  --s-size-onestep-gallery-text-bottom: 9px;
-  --s-size-chip-row-height: 54px;
   --s-size-button-sm-min-height: 32px;
   --s-size-button-md-min-height: 40px;
   --s-size-button-lg-min-height: 52px;
@@ -335,11 +251,6 @@
   --s-size-button-padding-x-md: 20px;
   --s-size-button-padding-x-lg: 28px;
   --s-size-card-padding-lg: 32px;
-  --s-size-chip-min-width: 33px;
-  --s-size-chip-min-width-compact: 21px;
-  --s-size-chip-max-width: 260px;
-  --s-size-chip-min-height: 34px;
-  --s-size-chip-padding-x: 14px;
   --s-size-button-border: 1px;
   --s-size-button-top-highlight: 45%;
   --s-size-button-bottom-lip: 38%;
@@ -456,35 +367,6 @@
   --s-size-progress-dialog-spinner-margin-top: 2px;
   --s-size-progress-dialog-message-padding-x: 30px;
   --s-size-progress-dialog-enter-y: 8px;
-  --s-size-drag-icon: 48px;
-  --s-size-float-text-max-width: 180px;
-  --s-size-drag-bubble-max-width: 159px;
-  --s-size-boom-option-popup-width: 271px;
-  --s-size-boom-option-row-height: 45px;
-  --s-size-boom-option-text-max-width: 122px;
-  --s-size-boom-option-check-margin: 7px;
-  --s-size-boom-option-icon-width: 56px;
-  --s-size-boom-option-check-width: 30px;
-  --s-size-boom-option-check-icon-width: 18px;
-  --s-size-boom-option-check-icon-height: 14px;
-  --s-size-boom-option-divider-height: 2px;
-  --s-size-boom-option-arrow: 14px;
-  --s-size-boom-option-arrow-height: 8px;
-  --s-size-boom-option-arrow-offset-y: 1px;
-  --s-size-boom-option-arrow-x-offset: 44px;
-  --s-size-boom-popup-vertical-offset: 74px;
-  --s-size-boom-search-panel-width: 350px;
-  --s-size-boom-search-panel-height: 504px;
-  --s-size-boom-search-webview-margin: 45px;
-  --s-size-boom-search-title-max-width: 178px;
-  --s-size-boom-search-bar-height: 45px;
-  --s-size-boom-search-icon-button: 40px;
-  --s-size-boom-search-browser-icon: 17px;
-  --s-size-boom-search-action-icon: 18px;
-  --s-size-boom-search-mode-button: 38px;
-  --s-size-boom-search-spinner: 22px;
-  --s-size-boom-search-spinner-border: 3px;
-
   /* --- Border radii --- */
   --s-radius-xs: 4px;
   --s-radius-sm: 6px;

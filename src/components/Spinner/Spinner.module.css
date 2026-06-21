@@ -1,0 +1,51 @@
+.spinner {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  vertical-align: text-bottom;
+}
+
+.spinner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--s-radius-pill);
+  background: var(--s-gradient-spinner);
+  animation: spin 900ms linear infinite;
+}
+
+.core {
+  position: relative;
+  width: var(--s-size-progress-spinner-core);
+  height: var(--s-size-progress-spinner-core);
+  border-radius: var(--s-radius-pill);
+  background: var(--s-color-surface-flat);
+  box-shadow: var(--s-shadow-thumb-dimple);
+}
+
+.sm {
+  width: var(--s-size-icon-sm);
+  height: var(--s-size-icon-sm);
+}
+
+.md {
+  width: var(--s-size-icon-md);
+  height: var(--s-size-icon-md);
+}
+
+.lg {
+  width: var(--s-size-progress-spinner);
+  height: var(--s-size-progress-spinner);
+}
+
+.dark .core {
+  background: var(--s-color-progress-dialog-bg-dark);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(1turn);
+  }
+}

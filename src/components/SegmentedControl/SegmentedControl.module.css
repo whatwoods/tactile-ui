@@ -49,6 +49,16 @@
   color: var(--s-color-text-secondary);
 }
 
+.item:disabled {
+  opacity: var(--s-opacity-disabled-text);
+  cursor: not-allowed;
+}
+
+.item:disabled:hover {
+  background: var(--s-gradient-button-gray);
+  color: var(--s-color-text-tertiary);
+}
+
 .active {
   background: var(--s-color-surface-pressed);
   color: var(--s-color-text-primary);

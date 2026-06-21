@@ -1,0 +1,465 @@
+.playgroundSection {
+  padding: 80px 24px;
+  background: var(--s-texture-bg);
+  border-bottom: 1px solid var(--s-color-border-soft);
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.sectionTitle {
+  font-size: 28px;
+  font-weight: 300;
+  color: var(--s-color-text-primary);
+  margin-bottom: 12px;
+}
+
+.sectionSubtitle {
+  font-size: 14px;
+  color: var(--s-color-text-secondary);
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+/* Category Groupings */
+.categories {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+
+.categoryGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  scroll-margin-top: 130px; /* Offset for sticky header */
+}
+
+.categoryTitle {
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--s-color-text-primary);
+  margin: 0 0 4px 0;
+  padding-left: 8px;
+  border-left: 3px solid var(--s-color-primary);
+  letter-spacing: -0.2px;
+}
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 430px), 1fr));
+  gap: 32px;
+}
+
+.cardContentLayout {
+  display: flex;
+  flex-direction: column;
+}
+
+.cardContentLayout :global(svg) {
+  width: 22px;
+  height: 22px;
+}
+
+.switchRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 76px;
+  border-bottom: 1px solid var(--s-color-border-soft);
+  padding: 0 var(--s-space-6);
+  box-sizing: border-box;
+}
+
+.sliderRow {
+  --s-size-slider-control-height: 32px;
+  --s-size-slider-track-height: 8px;
+  --s-size-slider-track-padding-x: 13px;
+  --s-size-slider-node-size: 14px;
+  --s-size-slider-node-border-width: 3px;
+  --s-size-slider-thumb: 26px;
+  --s-size-slider-thumb-dimple: 9px;
+  --s-size-slider-label-height: 20px;
+
+  height: 76px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--s-color-border-soft);
+  padding: 0 var(--s-space-6);
+  box-sizing: border-box;
+}
+
+.sliderRow:last-child {
+  border-bottom: none;
+}
+
+.controlLabel {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--s-color-text-primary);
+}
+
+/* Forms layout */
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.phoneInputContainer {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: var(--s-size-input-height);
+  padding: 0 var(--s-size-input-padding-x);
+  border-radius: var(--s-radius-md);
+  background: var(--s-color-surface-sunken);
+  box-shadow: var(--s-shadow-input);
+  border: 1px solid var(--s-color-border-soft);
+  box-sizing: border-box;
+}
+
+.countryCode {
+  font-size: var(--s-font-size-body);
+  color: var(--s-color-text-secondary);
+  margin-right: var(--s-space-4);
+  font-weight: 500;
+  user-select: none;
+}
+
+.phoneInput {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: var(--s-font-size-body);
+  color: var(--s-color-text-primary);
+  outline: none;
+  padding: 0;
+  width: 100%;
+}
+
+.phoneInput::placeholder {
+  color: var(--s-color-text-tertiary);
+}
+
+.smsCodeRow {
+  display: flex;
+  gap: var(--s-space-4);
+  align-items: center;
+  width: 100%;
+}
+
+.smsInputWrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  height: var(--s-size-input-height);
+  padding: 0 var(--s-size-input-padding-x);
+  border-radius: var(--s-radius-md);
+  background: var(--s-color-surface-sunken);
+  box-shadow: var(--s-shadow-input);
+  border: 1px solid var(--s-color-border-soft);
+  box-sizing: border-box;
+}
+
+.smsInput {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: var(--s-font-size-body);
+  color: var(--s-color-text-primary);
+  outline: none;
+  padding: 0;
+  width: 100%;
+}
+
+.smsInput::placeholder {
+  color: var(--s-color-text-tertiary);
+}
+
+.smsButton {
+  flex-shrink: 0;
+  height: var(--s-size-input-height) !important;
+  min-height: var(--s-size-input-height) !important;
+  padding: 0 var(--s-space-4) !important;
+}
+
+.smsSubmitButton {
+  width: 100%;
+  margin-top: 12px;
+}
+
+.smsSubmitButtonDisabled {
+  width: 100%;
+  margin-top: 12px;
+  background: color-mix(in srgb, var(--s-color-primary) 18%, var(--s-color-surface-flat)) !important;
+  border-color: color-mix(in srgb, var(--s-color-primary) 24%, var(--s-color-surface-flat)) !important;
+  color: var(--s-color-white) !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  cursor: not-allowed;
+}
+
+.smsDisclaimer {
+  font-size: var(--s-font-size-caption);
+  color: var(--s-color-text-secondary);
+}
+
+.formHelperRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.formLinks {
+  display: flex;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.formLink {
+  color: var(--s-color-primary-active);
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.formLink:hover {
+  text-decoration: underline;
+}
+
+.formDivider {
+  color: var(--s-color-border-strong);
+}
+
+.socialLoginSection {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.socialHeaderRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.socialLabel {
+  font-size: var(--s-font-size-body-sm);
+  color: var(--s-color-text-secondary);
+}
+
+.socialIconsRow {
+  display: flex;
+  gap: 16px;
+}
+
+.socialIconBtn {
+  background: transparent;
+  border: none;
+  color: var(--s-color-icon-muted);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--s-duration-fast) ease;
+}
+
+.socialIconBtn:hover {
+  color: var(--s-color-text-primary);
+}
+
+.socialDivider {
+  height: 1px;
+  background: var(--s-color-border-soft);
+  width: 100%;
+}
+
+.termsAgreement {
+  text-align: center;
+  font-size: var(--s-font-size-caption);
+  color: var(--s-color-text-secondary);
+  line-height: 1.4;
+}
+
+
+.termsLink {
+  color: var(--s-color-primary-active);
+  text-decoration: none;
+}
+
+.termsLink:hover {
+  text-decoration: underline;
+}
+
+.optionsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.fieldLabel {
+  display: block;
+  font-size: 14px;
+  color: var(--s-color-text-secondary);
+  margin-bottom: 8px;
+}
+
+/* Feedback Layout */
+.feedbackContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.buttonsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+.popoversRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.popoverInner {
+  display: grid;
+  gap: 10px;
+  min-width: 180px;
+}
+
+.popoverTitle {
+  color: var(--s-color-text-primary);
+  font-size: var(--s-font-size-body-sm);
+}
+
+.popoverDesc {
+  color: var(--s-color-text-secondary);
+  font-size: var(--s-font-size-caption);
+  line-height: 1.6;
+}
+
+.syncStatus {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--s-color-text-secondary);
+  font-size: var(--s-font-size-body-sm);
+}
+
+.badges {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Modal trigger box */
+.modalTriggersContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.modalIntroText {
+  font-size: 14px;
+  color: var(--s-color-text-secondary);
+  line-height: 1.6;
+}
+
+.modalButtonsGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+@media (max-width: 768px) {
+  .cardsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.groupSubTitle {
+  font-size: 12px;
+  color: var(--s-color-text-tertiary);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: var(--s-space-2) var(--s-space-5) 0;
+  margin: var(--s-space-4) 0 var(--s-space-3);
+  user-select: none;
+}
+
+.referenceCard {
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.referenceCard > div[class*="padding-"] {
+  padding: 12px 10px;
+}
+
+.settingGroupsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.referenceSettingItem.referenceSettingItem {
+  min-height: 50px;
+}
+
+.referenceList.referenceList {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.02), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.referenceListItem.referenceListItem {
+  min-height: 50px;
+}
+
+.referenceListValue,
+.referenceListLink {
+  color: color-mix(in srgb, var(--s-color-primary) 32%, var(--s-color-text-secondary));
+  font-size: var(--s-font-size-emphasis);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.groupDescription {
+  font-size: var(--s-font-size-caption); /* 12sp or 13sp */
+  color: var(--s-color-text-secondary);
+  padding-left: 20px; /* Aligns perfectly with SettingItem text layout start */
+  margin-top: 8px;
+  margin-bottom: 2px;
+  line-height: 1.4;
+  user-select: none;
+}
+
+.groupTitle {
+  font-size: 13px;
+  color: var(--s-color-text-secondary);
+  font-weight: 400;
+  padding-left: 20px; /* Horizontally aligned with the row title text */
+  margin-top: 18px;
+  margin-bottom: 8px;
+  user-select: none;
+}
+
+/* Remove top margin from the very first group title in the card */
+.referenceCard h5:first-of-type {
+  margin-top: 0;
+}

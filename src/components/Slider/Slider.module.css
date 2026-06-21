@@ -13,7 +13,7 @@
 .markLabel {
   position: absolute;
   transform: translateX(-50%);
-  font-size: var(--s-font-size-chip);
+  font-size: var(--s-font-size-emphasis);
   color: var(--s-color-text-disabled-solid);
   transition: color var(--s-transition-fast);
   cursor: pointer;
@@ -64,14 +64,38 @@
 .trackNode {
   position: absolute;
   top: 50%;
-  width: var(--s-size-slider-node-size);
-  height: var(--s-size-slider-node-size);
+  width: calc(var(--s-size-slider-node-size) + var(--s-size-slider-track-height));
+  height: calc(var(--s-size-slider-node-size) + var(--s-size-slider-track-height));
   border-radius: 50%;
-  background: var(--s-color-surface-flat);
-  border: var(--s-size-slider-node-border-width) solid var(--s-color-surface-track);
-  box-shadow: var(--s-slider-node-shadow);
+  background: var(--s-color-surface-track);
+  box-shadow: var(--s-shadow-inset-groove);
   transform: translate(-50%, -50%);
   z-index: 1;
+}
+
+.trackNode::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: var(--s-size-slider-track-height);
+  transform: translate(-50%, -50%);
+  background: var(--s-color-surface-track);
+  box-shadow: var(--s-shadow-inset-groove);
+}
+
+.trackNode::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(var(--s-size-slider-node-size) - var(--s-size-slider-node-border-width) * 2);
+  height: calc(var(--s-size-slider-node-size) - var(--s-size-slider-node-border-width) * 2);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: var(--s-color-surface-flat);
+  box-shadow: var(--s-slider-node-shadow);
 }
 
 .fill {
@@ -104,9 +128,9 @@
   width: var(--s-size-slider-thumb); /* Reverted to 30px */
   height: var(--s-size-slider-thumb); /* Reverted to 30px */
   border-radius: 50%;
-  background: var(--s-gradient-thumb);
-  box-shadow: var(--s-shadow-control-thumb);
-  border: 1px solid var(--s-color-border-hairline);
+  background: var(--s-gradient-switch-thumb-face);
+  box-shadow: var(--s-shadow-switch-ex-thumb);
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -122,8 +146,8 @@
   width: var(--s-size-slider-thumb-dimple); /* Reverted to 12px */
   height: var(--s-size-slider-thumb-dimple); /* Reverted to 12px */
   border-radius: 50%;
-  background: var(--s-gradient-thumb-dimple);
-  box-shadow: var(--s-shadow-thumb-dimple);
+  background: var(--s-gradient-switch-ex-dimple);
+  box-shadow: var(--s-shadow-switch-ex-dimple);
 }
 
 .thumbDot {

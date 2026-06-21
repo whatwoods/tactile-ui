@@ -1,0 +1,123 @@
+.trigger {
+  display: inline-flex;
+}
+
+.scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 1190;
+  background: var(--s-color-overlay-modal);
+  animation: fadeIn var(--s-transition-fast);
+}
+
+.content {
+  position: fixed;
+  z-index: 1200;
+  min-width: var(--s-size-select-dropdown-min-width);
+  max-width: min(var(--s-size-dialog-width), calc(100vw - var(--s-space-7)));
+  padding: var(--s-space-4);
+  border-radius: var(--s-radius-lg);
+  border: 1px solid var(--s-color-border-soft);
+  background: var(--s-color-surface-frosted);
+  box-shadow: var(--s-shadow-dropdown);
+  color: var(--s-color-text-secondary);
+  animation: popIn var(--s-transition-physics);
+}
+
+.top {
+  transform: translate(-50%, calc(-100% - var(--s-space-3)));
+}
+
+.bottom {
+  transform: translate(-50%, var(--s-space-3));
+}
+
+.left {
+  transform: translate(calc(-100% - var(--s-space-3)), -50%);
+}
+
+.right {
+  transform: translate(var(--s-space-3), -50%);
+}
+
+.start.top,
+.start.bottom {
+  transform: translate(0, var(--s-space-3));
+}
+
+.start.top {
+  transform: translate(0, calc(-100% - var(--s-space-3)));
+}
+
+.end.top {
+  transform: translate(-100%, calc(-100% - var(--s-space-3)));
+}
+
+.end.bottom {
+  transform: translate(-100%, var(--s-space-3));
+}
+
+.start.left,
+.start.right {
+  transform: translate(var(--s-space-3), 0);
+}
+
+.start.left {
+  transform: translate(calc(-100% - var(--s-space-3)), 0);
+}
+
+.end.left {
+  transform: translate(calc(-100% - var(--s-space-3)), -100%);
+}
+
+.end.right {
+  transform: translate(var(--s-space-3), -100%);
+}
+
+.arrow {
+  position: absolute;
+  width: var(--s-space-4);
+  height: var(--s-space-4);
+  background: inherit;
+  transform: rotate(45deg);
+  box-shadow: var(--s-shadow-dropdown);
+}
+
+.top .arrow {
+  left: calc(50% - var(--s-space-2));
+  bottom: calc(var(--s-space-2) * -1);
+}
+
+.bottom .arrow {
+  left: calc(50% - var(--s-space-2));
+  top: calc(var(--s-space-2) * -1);
+}
+
+.left .arrow {
+  right: calc(var(--s-space-2) * -1);
+  top: calc(50% - var(--s-space-2));
+}
+
+.right .arrow {
+  left: calc(var(--s-space-2) * -1);
+  top: calc(50% - var(--s-space-2));
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: translateY(var(--s-size-dialog-enter-y)) scale(0.985);
+  }
+  to {
+    opacity: 1;
+  }
+}

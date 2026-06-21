@@ -27,6 +27,20 @@
   justify-content: center;
   min-width: 0;
   white-space: nowrap;
+  gap: inherit;
+}
+
+.loading .inner {
+  opacity: var(--s-opacity-subtle);
+}
+
+.loadingIndicator {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .sm {
@@ -50,19 +64,19 @@
 .secondary {
   background: var(--s-gradient-button-gray);
   color: var(--s-color-text-primary);
-  border: 1px solid var(--s-color-button-gray-border);
+  border: 0.5px solid var(--s-color-border);
   box-shadow: var(--s-shadow-button-9patch);
   text-shadow: var(--s-shadow-text-highlight);
 }
 
 .secondary:hover {
   background: var(--s-gradient-button-gray-hover);
-  border-color: var(--s-color-button-gray-border-hover);
+  border-color: var(--s-color-border-strong);
 }
 
 .secondary:active {
   background: var(--s-gradient-button-gray-active);
-  border-color: var(--s-color-button-gray-border-active);
+  border-color: var(--s-color-button-gray-border);
   box-shadow: var(--s-shadow-button-9patch-pressed);
   transform: translateY(1px);
 }
@@ -70,7 +84,7 @@
 .secondary:disabled {
   border-image-source: none;
   background: var(--s-gradient-button-gray);
-  border-color: var(--s-color-button-gray-border);
+  border-color: var(--s-color-border);
   box-shadow: var(--s-shadow-button-9patch-disabled);
   opacity: var(--s-opacity-disabled-text);
   cursor: not-allowed;

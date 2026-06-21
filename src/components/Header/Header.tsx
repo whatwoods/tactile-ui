@@ -1,106 +1,39 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './Header.module.css';
+import { useScrollSpy } from '../../hooks/useScrollSpy';
 
 export const Header: React.FC = () => {
   const [isSticky, setIsSticky] = useState(false);
-  const [activeSection, setActiveSection] = useState('hero');
-  const [activeSubItem, setActiveSubItem] = useState('拟物原则');
 
-  const isProgrammaticScrollRef = useRef(false);
-  const scrollTimeoutRef = useRef<number | null>(null);
+  // Unified scroll spy hook calls
+  const mainActiveId = useScrollSpy(['hero-section', 'playground-section', 'tokens-section'], 150);
+  const subActiveId = useScrollSpy(['hero-section', 'controls-group', 'forms-group', 'feedback-group'], 150);
+
+  // Map spied active IDs to UI states
+  const activeSection = 
+    mainActiveId === 'tokens-section' ? 'tokens' : 
+    mainActiveId === 'playground-section' ? 'playground' : 'hero';
+
+  const activeSubItem = 
+    subActiveId === 'controls-group' ? '物理控制' :
+    subActiveId === 'forms-group' ? '拟物表单' :
+    subActiveId === 'feedback-group' ? '反馈浮层' : '拟物原则';
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollPos = window.scrollY;
-      
-      // Sticky header logic (always run this to keep sticky header responsive)
       if (scrollPos > 80) {
         setIsSticky(true);
       } else {
         setIsSticky(false);
       }
-
-      // Skip active section tracking during programmatic smooth scroll
-      if (isProgrammaticScrollRef.current) return;
-
-      const windowHeight = window.innerHeight;
-      
-      // Main section tracking
-      const playgroundEl = document.getElementById('playground-section');
-      const tokensEl = document.getElementById('tokens-section');
-
-      let currentSec = 'hero';
-      if (tokensEl && scrollPos >= tokensEl.offsetTop - windowHeight / 2) {
-        currentSec = 'tokens';
-      } else if (playgroundEl && scrollPos >= playgroundEl.offsetTop - windowHeight / 2) {
-        currentSec = 'playground';
-      }
-      setActiveSection(currentSec);
-
-      // Sub nav item tracking within playground
-      if (currentSec === 'playground') {
-        const switchEl = document.getElementById('switch-card');
-        const formEl = document.getElementById('form-card');
-        const dialogEl = document.getElementById('dialog-card');
-        const buffer = windowHeight / 3;
-
-        if (dialogEl && scrollPos >= dialogEl.offsetTop - buffer) {
-          // If we scroll past the dialog card, highlight SegmentedControl or Dialog
-          // We'll highlight Dialog if we are lower down
-          if (scrollPos >= dialogEl.offsetTop - buffer + 100) {
-            setActiveSubItem('对话弹窗');
-          } else {
-            setActiveSubItem('分段选择');
-          }
-        } else if (formEl && scrollPos >= formEl.offsetTop - buffer) {
-          // If we are at the form card
-          if (scrollPos >= formEl.offsetTop - buffer + 120) {
-            setActiveSubItem('输入框');
-          } else {
-            setActiveSubItem('复选框');
-          }
-        } else if (switchEl && scrollPos >= switchEl.offsetTop - buffer) {
-          if (scrollPos >= switchEl.offsetTop - buffer + 120) {
-            setActiveSubItem('滑块');
-          } else {
-            setActiveSubItem('开关');
-          }
-        }
-      } else {
-        setActiveSubItem('拟物原则');
-      }
-    };
-
-    const handleScrollEndNative = () => {
-      isProgrammaticScrollRef.current = false;
-      if (scrollTimeoutRef.current) {
-        window.clearTimeout(scrollTimeoutRef.current);
-        scrollTimeoutRef.current = null;
-      }
-    };
-
-    const handleScrollEndCustom = () => {
-      isProgrammaticScrollRef.current = false;
-      if (scrollTimeoutRef.current) {
-        window.clearTimeout(scrollTimeoutRef.current);
-        scrollTimeoutRef.current = null;
-      }
-    };
-
-    const handleScrollStartCustom = () => {
-      isProgrammaticScrollRef.current = true;
     };
 
     window.addEventListener('scroll', handleScroll);
-    window.addEventListener('scrollend', handleScrollEndNative);
-    window.addEventListener('smartisan-scroll-start', handleScrollStartCustom);
-    window.addEventListener('smartisan-scroll-end', handleScrollEndCustom);
+    handleScroll();
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('scrollend', handleScrollEndNative);
-      window.removeEventListener('smartisan-scroll-start', handleScrollStartCustom);
-      window.removeEventListener('smartisan-scroll-end', handleScrollEndCustom);
     };
   }, []);
 
@@ -112,49 +45,15 @@ export const Header: React.FC = () => {
 
   const subNavItems = [
     { label: '拟物原则', targetId: 'hero-section' },
-    { label: '开关', targetId: 'switch-card' },
-    { label: '滑块', targetId: 'switch-card' },
-    { label: '复选框', targetId: 'form-card' },
-    { label: '输入框', targetId: 'form-card' },
-    { label: '分段选择', targetId: 'dialog-card' },
-    { label: '对话弹窗', targetId: 'dialog-card' }
+    { label: '物理控制', targetId: 'controls-group' },
+    { label: '拟物表单', targetId: 'forms-group' },
+    { label: '反馈浮层', targetId: 'feedback-group' }
   ];
 
-  const handleNavClick = (e: React.MouseEvent, targetId: string, subLabel?: string) => {
+  const handleNavClick = (e: React.MouseEvent, targetId: string) => {
     e.preventDefault();
 
-    // Set programmatic scroll lock to prevent scrollspy updates during smooth scrolling
-    if (scrollTimeoutRef.current) {
-      window.clearTimeout(scrollTimeoutRef.current);
-    }
-    isProgrammaticScrollRef.current = true;
     window.dispatchEvent(new CustomEvent('smartisan-scroll-start'));
-    
-    scrollTimeoutRef.current = window.setTimeout(() => {
-      isProgrammaticScrollRef.current = false;
-      window.dispatchEvent(new CustomEvent('smartisan-scroll-end'));
-    }, 1000); // safety fallback
-
-    // Instantly set the active states to the clicked targets for instant visual feedback
-    if (subLabel) {
-      setActiveSubItem(subLabel);
-      if (subLabel === '拟物原则') {
-        setActiveSection('hero');
-      } else {
-        setActiveSection('playground');
-      }
-    } else {
-      if (targetId === 'hero-section') {
-        setActiveSection('hero');
-        setActiveSubItem('拟物原则');
-      } else if (targetId === 'playground-section') {
-        setActiveSection('playground');
-        setActiveSubItem('开关');
-      } else if (targetId === 'tokens-section') {
-        setActiveSection('tokens');
-        setActiveSubItem('拟物原则');
-      }
-    }
 
     const element = document.getElementById(targetId);
     if (element) {
@@ -166,6 +65,17 @@ export const Header: React.FC = () => {
         top: offsetPosition,
         behavior: 'smooth'
       });
+
+      const handleScrollEnd = () => {
+        window.dispatchEvent(new CustomEvent('smartisan-scroll-end'));
+        window.removeEventListener('scrollend', handleScrollEnd);
+      };
+      window.addEventListener('scrollend', handleScrollEnd);
+
+      // Fallback
+      setTimeout(() => {
+        window.dispatchEvent(new CustomEvent('smartisan-scroll-end'));
+      }, 1000);
 
       // Highlight target card with breathing glow animation
       if (targetId !== 'hero-section' && targetId !== 'tokens-section') {
@@ -208,7 +118,6 @@ export const Header: React.FC = () => {
             <a
               href="file:///Users/way/Developer/webs/smartisan-ui/DESIGN.md"
               className={styles.mainLink}
-              onClick={(e) => handleNavClick(e, 'tokens-section')}
             >
               组件库规范
             </a>
@@ -247,7 +156,7 @@ export const Header: React.FC = () => {
                 key={item.label}
                 href={`#${item.targetId}`}
                 className={`${styles.subLink} ${activeSubItem === item.label ? styles.subLinkActive : ''}`}
-                onClick={(e) => handleNavClick(e, item.targetId, item.label)}
+                onClick={(e) => handleNavClick(e, item.targetId)}
               >
                 {item.label}
               </a>

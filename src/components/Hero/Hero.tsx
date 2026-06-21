@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './Hero.module.css';
+import { Button } from '../Button/Button';
 import { Switch } from '../Switch/Switch';
 
 
@@ -7,28 +8,24 @@ const MODES = [
   {
     name: 'TACTILE_OS',
     lines: ['SYS: TACTILE OS', 'DEPTH: 1.618px', 'TOUCH: ACTIVE'],
-    desc: '拟物与现代相融，感受物理质感',
+    desc: '让指尖重新记住按下去的感觉',
     led: 'green'
   },
   {
     name: 'AI_COPT',
     lines: ['AGT: GEMINI 3.5', 'INFERENCE: OK', 'TEMP: 36.5°C'],
-    desc: '为 AI 代码助手优化的设计令牌规则',
+    desc: '机器读懂规则，人类专注感受',
     led: 'blue'
   },
   {
     name: 'GOLDEN_R',
     lines: ['RATIO: 1.61803', 'GRID: 4px BASE', 'FLOW: HARMONIC'],
-    desc: '黄金比例节奏，建立稳定秩序感',
+    desc: '万物生长的比例，界面呼吸的节奏',
     led: 'orange'
   }
 ];
 
-interface HeroProps {
-  onEnterWorkbench?: () => void;
-}
-
-export const Hero: React.FC<HeroProps> = ({ onEnterWorkbench }) => {
+export const Hero: React.FC = () => {
   const [power, setPower] = useState(true);
   const [modeIdx, setModeIdx] = useState(0);
   const [audioEnabled, setAudioEnabled] = useState(true);
@@ -256,30 +253,36 @@ export const Hero: React.FC<HeroProps> = ({ onEnterWorkbench }) => {
             <div className={styles.controlGroup}>
               <span className={styles.controlTitle}>KEYS</span>
               <div className={styles.buttonsRow}>
-                <button 
+                <Button
+                  variant="secondary"
+                  size="sm"
                   className={`${styles.pushKey} ${audioEnabled ? styles.pushKeyActive : ''}`}
                   onClick={handleSoundBtn}
                   disabled={!power}
                   title="Toggle Audio Feedback"
                 >
                   <span className={styles.keyLabel}>AUDIO</span>
-                </button>
-                <button 
+                </Button>
+                <Button
+                  variant="secondary"
+                  size="sm"
                   className={`${styles.pushKey} ${boost ? styles.pushKeyActive : ''}`}
                   onClick={handleBoostBtn}
                   disabled={!power}
                   title="Toggle Display Boost"
                 >
                   <span className={styles.keyLabel}>BOOST</span>
-                </button>
-                <button 
+                </Button>
+                <Button
+                  variant="secondary"
+                  size="sm"
                   className={`${styles.pushKey} ${diag ? styles.pushKeyActive : ''}`}
                   onClick={handleDiagBtn}
                   disabled={!power}
                   title="Toggle Diagnostic Details"
                 >
                   <span className={styles.keyLabel}>DIAG</span>
-                </button>
+                </Button>
               </div>
             </div>
           </div>
@@ -287,33 +290,28 @@ export const Hero: React.FC<HeroProps> = ({ onEnterWorkbench }) => {
 
         {/* Text descriptions next to/below the console */}
         <div className={styles.heroTextContent}>
-          <h2 className={styles.heroTitle}>Smartisan UI 设计系统</h2>
+          <h2 className={styles.heroTitle}>让屏幕重新拥有手感</h2>
           <p className={styles.heroSubtitle}>
-            面向现代 Web 应用的精致拟物主义设计系统。
-            通过细致入微的光影、物理深度、边缘高光与触觉阻尼，为用户重塑真实而饱满的交互感官。
-            请尝试操作左侧控制台中的物理拨码开关、模式旋钮与琴键按钮，在触控与反馈中感受物理世界的细节。
+            有些东西正在从屏幕上消失——不是功能，而是触碰一个按钮时，指尖下方微微凹陷的确信感。
+            Tactile UI 用光影的厚度、阴影的呼吸和黄金比例的韵脚，重新翻译那些物理世界里真正有价值的交互暗示。
+            试着拨动左侧控制台上的开关。那个「咔」的瞬间，就是我们在意的全部。
           </p>
           
           <div className={styles.ctaButtonGroup}>
-            <button className={`${styles.ctaButton} ${styles.ctaPrimary}`} onClick={scrollToPlayground}>
+            <Button variant="primary" size="lg" className={styles.ctaButton} onClick={scrollToPlayground}>
               开始体验
-            </button>
-            {onEnterWorkbench && (
-              <button className={`${styles.ctaButton} ${styles.ctaCreative}`} onClick={onEnterWorkbench}>
-                物理交互实验室 🔬
-              </button>
-            )}
-            <a 
-              href="#tokens-section" 
-              className={`${styles.ctaButton} ${styles.ctaSecondary}`}
-              onClick={(e) => {
-                e.preventDefault();
+            </Button>
+            <Button
+              variant="secondary"
+              size="lg"
+              className={styles.ctaButton}
+              onClick={() => {
                 const designEl = document.getElementById('tokens-section');
                 if (designEl) designEl.scrollIntoView({ behavior: 'smooth' });
               }}
             >
               设计规范
-            </a>
+            </Button>
           </div>
         </div>
       </div>

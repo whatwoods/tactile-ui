@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
+import { useFocusTrap } from '../../utils/focusTrap';
 import styles from './ActionSheet.module.css';
 
 export interface ActionSheetAction {
@@ -27,25 +28,20 @@ export const ActionSheet: React.FC<ActionSheetProps> = ({
   cancelLabel = '取消',
   cancelPosition = 'right',
 }) => {
+  const sheetRef = useRef<HTMLElement>(null);
+
+  useFocusTrap(sheetRef, isOpen, onClose);
+
   useEffect(() => {
     if (!isOpen) return;
 
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
 
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        onClose();
-      }
-    };
-
-    document.addEventListener('keydown', handleKeyDown);
-
     return () => {
       document.body.style.overflow = previousOverflow;
-      document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [isOpen, onClose]);
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
@@ -63,10 +59,12 @@ export const ActionSheet: React.FC<ActionSheetProps> = ({
   return (
     <div className={styles.overlay} onClick={onClose}>
       <section
+        ref={sheetRef}
         className={styles.sheet}
         role="dialog"
         aria-modal="true"
         aria-label={typeof title === 'string' ? title : 'Action sheet'}
+        tabIndex={-1}
         onClick={(event) => event.stopPropagation()}
       >
         <header className={styles.header}>

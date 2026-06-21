@@ -1,12 +1,13 @@
 .titleBar {
   position: relative;
-  min-height: var(--s-size-titlebar-height);
+  min-height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--s-color-surface-panel-header);
-  border-bottom: 1px solid var(--s-color-border-soft);
-  color: var(--s-color-text-title);
+  background: var(--s-gradient-header-convex);
+  border-bottom: 1px solid var(--s-color-border);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  color: var(--s-color-text-primary);
   box-sizing: border-box;
   width: 100%;
 }
@@ -29,10 +30,10 @@
 
 .title {
   margin: 0;
-  font-size: var(--s-font-size-titlebar);
+  font-size: var(--s-font-size-setting-title);
   font-weight: 500;
   line-height: 1.2;
-  color: var(--s-color-text-title);
+  color: var(--s-color-text-primary);
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -72,6 +73,7 @@
 }
 
 .backButton {
+  gap: 6px;
   border: 1px solid var(--s-color-button-gray-border);
   background: var(--s-gradient-button-gray);
   box-shadow: var(--s-shadow-button-9patch);
@@ -129,8 +131,8 @@
 
 .backIcon {
   flex: 0 0 auto;
-  width: var(--s-size-titlebar-back-icon-width);
-  height: var(--s-size-titlebar-back-icon-height);
+  width: auto;
+  height: 11px;
 }
 
 .buttonText {

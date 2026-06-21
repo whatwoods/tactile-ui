@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from '../Button/Button';
 import styles from './Card.module.css';
 
 interface CardProps {
@@ -7,6 +8,7 @@ interface CardProps {
   title?: React.ReactNode;
   padding?: 'none' | 'sm' | 'md' | 'lg';
   className?: string;
+  onBack?: () => void;
 }
 
 export const Card: React.FC<CardProps> = ({ 
@@ -14,12 +16,26 @@ export const Card: React.FC<CardProps> = ({
   children, 
   title,
   padding = 'md',
-  className = ''
+  className = '',
+  onBack
 }) => {
   return (
     <div id={id} className={`${styles.card} ${className}`}>
       {title && (
         <div className={styles.header}>
+          {onBack && (
+            <Button 
+              variant="secondary"
+              size="sm"
+              className={styles.backButton}
+              onClick={onBack}
+            >
+              <svg className={styles.backIcon} viewBox="0 0 8 14" fill="none">
+                <path d="M7 1L1 7L7 13" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              <span>返回</span>
+            </Button>
+          )}
           <h3 className={styles.title}>{title}</h3>
         </div>
       )}

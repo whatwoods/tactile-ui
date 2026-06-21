@@ -4,6 +4,7 @@ import styles from './SegmentedControl.module.css';
 interface Option {
   label: string;
   value: string;
+  disabled?: boolean;
 }
 
 interface SegmentedControlProps {
@@ -11,6 +12,7 @@ interface SegmentedControlProps {
   value?: string;
   defaultValue?: string;
   onChange?: (value: string) => void;
+  disabled?: boolean;
 }
 
 export const SegmentedControl: React.FC<SegmentedControlProps> = ({
@@ -18,6 +20,7 @@ export const SegmentedControl: React.FC<SegmentedControlProps> = ({
   value,
   defaultValue,
   onChange,
+  disabled = false,
 }) => {
   const [internalValue, setInternalValue] = React.useState(defaultValue || options[0]?.value);
   
@@ -25,16 +28,25 @@ export const SegmentedControl: React.FC<SegmentedControlProps> = ({
   const currentValue = isControlled ? value : internalValue;
 
   const handleSelect = (val: string) => {
+    const option = options.find((item) => item.value === val);
+    if (disabled || option?.disabled) return;
     if (!isControlled) {
       setInternalValue(val);
     }
     onChange?.(val);
   };
 
-  const selectedIndex = Math.max(0, options.findIndex(o => o.value === currentValue));
+  const selectedIndex = options.findIndex(o => o.value === currentValue);
+  const activeIndex = selectedIndex >= 0 ? selectedIndex : options.findIndex((option) => !option.disabled);
   const moveSelection = (direction: -1 | 1) => {
-    if (options.length === 0) return;
-    const nextIndex = (selectedIndex + direction + options.length) % options.length;
+    if (disabled || options.length === 0) return;
+    const enabledOptions = options
+      .map((option, index) => ({ option, index }))
+      .filter(({ option }) => !option.disabled);
+    if (enabledOptions.length === 0) return;
+    const enabledIndex = enabledOptions.findIndex(({ index }) => index === activeIndex);
+    const safeIndex = enabledIndex >= 0 ? enabledIndex : 0;
+    const nextIndex = enabledOptions[(safeIndex + direction + enabledOptions.length) % enabledOptions.length].index;
     handleSelect(options[nextIndex].value);
   };
 
@@ -42,6 +54,7 @@ export const SegmentedControl: React.FC<SegmentedControlProps> = ({
     <div
       className={styles.container}
       role="radiogroup"
+      aria-disabled={disabled || undefined}
       onKeyDown={(event) => {
         if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
           event.preventDefault();
@@ -54,15 +67,18 @@ export const SegmentedControl: React.FC<SegmentedControlProps> = ({
       }}
     >
       {options.map((option, index) => {
-        const isActive = index === selectedIndex;
+        const isActive = index === activeIndex;
+        const isDisabled = disabled || option.disabled;
         return (
           <button
             key={option.value}
             role="radio"
             aria-checked={isActive}
-            tabIndex={isActive ? 0 : -1}
+            aria-disabled={isDisabled || undefined}
+            tabIndex={isActive && !isDisabled ? 0 : -1}
             className={`${styles.item} ${isActive ? styles.active : ''}`}
             onClick={() => handleSelect(option.value)}
+            disabled={isDisabled}
             type="button"
           >
             {option.label}

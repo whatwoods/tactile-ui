@@ -34,7 +34,7 @@
 .content {
   padding: 0 var(--s-size-dialog-content-padding-x) var(--s-size-dialog-content-padding-bottom);
   color: var(--s-color-text-secondary);
-  font-size: var(--s-font-size-chip);
+  font-size: var(--s-font-size-emphasis);
   line-height: 1.6;
 }
 

@@ -1,0 +1,51 @@
+.skeleton {
+  display: block;
+  overflow: hidden;
+  background: var(--s-color-surface-sunken);
+  box-shadow: var(--s-shadow-input);
+}
+
+.animated {
+  background:
+    linear-gradient(
+      90deg,
+      var(--s-color-surface-sunken),
+      var(--s-color-surface-hover),
+      var(--s-color-surface-sunken)
+    );
+  background-size: 200% 100%;
+  animation: shimmer var(--s-duration-slower) var(--s-ease-standard) infinite;
+}
+
+.text {
+  width: 100%;
+  height: var(--s-font-size-body);
+  border-radius: var(--s-radius-xs);
+}
+
+.rect {
+  width: 100%;
+  min-height: var(--s-size-button-lg-min-height);
+  border-radius: var(--s-radius-md);
+}
+
+.circle {
+  width: var(--s-size-icon-surface);
+  height: var(--s-size-icon-surface);
+  border-radius: var(--s-radius-pill);
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-space-3);
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: -100% 0;
+  }
+}

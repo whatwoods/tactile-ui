@@ -3,7 +3,7 @@
   align-items: stretch;
   min-height: var(--s-size-list-row-min-height);
   background: var(--s-color-surface-flat);
-  color: var(--s-color-text-primary);
+  color: var(--s-color-text-title);
   width: 100%;
   border: none;
   border-bottom: 1px solid var(--s-color-separator);
@@ -22,6 +22,7 @@
 .clickable:active {
   background: var(--s-color-primary);
   color: var(--s-color-text-inverse);
+  box-shadow: var(--s-shadow-pressed);
   transition: none;
 }
 
@@ -66,7 +67,7 @@
 }
 
 .noIcon {
-  padding-left: var(--s-size-list-text-margin-x);
+  padding-left: 20px;
 }
 
 .item:last-child {
@@ -80,7 +81,7 @@
 }
 
 .title {
-  font-size: var(--s-font-size-setting-title);
+  font-size: var(--s-font-size-body);
   line-height: 1.25;
   color: inherit;
   overflow: hidden;
@@ -104,10 +105,11 @@
   transition: none;
 }
 
+
 .value {
   font-size: var(--s-font-size-title-button);
   color: var(--s-color-text-secondary);
-  margin-left: var(--s-size-list-value-gap);
+  margin-left: auto;
   min-width: 0;
   white-space: nowrap;
   text-align: right;
@@ -121,6 +123,7 @@
   color: var(--s-color-text-inverse);
   transition: none;
 }
+
 
 .chevron {
   margin-left: var(--s-size-list-arrow-margin-right);
@@ -159,3 +162,5 @@
   color: var(--s-color-text-inverse);
   transition: none;
 }
+
+

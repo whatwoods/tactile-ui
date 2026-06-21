@@ -81,7 +81,7 @@ export const Slider: React.FC<SliderProps> = ({
     if (!disabled && e.target) {
       try {
         (e.target as HTMLElement).releasePointerCapture(e.pointerId);
-      } catch (err) {
+      } catch {
         // Safe check
       }
     }

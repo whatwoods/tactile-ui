@@ -90,7 +90,7 @@ export const SettingItem: React.FC<SettingItemProps> = ({
       )}
       {accessory === 'switch' && (
         <span className={styles.switchSlot}>
-          <Switch checked={isChecked} disabled={disabled} onChange={handleSwitchChange} readOnly />
+          <Switch size="sm" checked={isChecked} disabled={disabled} onChange={handleSwitchChange} readOnly />
         </span>
       )}
       {accessory === 'check' && (

@@ -74,7 +74,7 @@ export const TitleBar: React.FC<TitleBarProps> = ({
         {onBack && (
           <button ref={backBtnRef} className={styles.backButton} type="button" onClick={onBack}>
             <svg className={styles.backIcon} viewBox="0 0 8 14" fill="none" aria-hidden="true">
-              <path d="M7 1L1 7L7 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M7 1L1 7L7 13" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
             <span className={styles.buttonText}>{backLabel}</span>
           </button>

@@ -115,7 +115,6 @@
   width: 100%;
   height: 100%;
   border-radius: 50%; /* perfect circular knob shape */
-  border: 1px solid var(--s-color-border-strong);
   background: var(--s-gradient-switch-thumb-face);
   box-shadow: var(--s-shadow-switch-ex-thumb);
   box-sizing: border-box;
@@ -144,3 +143,17 @@
 .dragging .thumb {
   transition: none;
 }
+
+/* Small / Compact size configuration for SettingItem rows */
+.sm {
+  --s-size-switch-width: 62px;
+  --s-size-switch-height: 26px;
+  --s-size-switch-track-width: 62px;
+  --s-size-switch-track-height: 26px;
+  --s-size-switch-thumb-width: 26px;
+  --s-size-switch-thumb-travel: 36px; /* 62px - 26px = 36px travel */
+  --s-size-switch-dot: 9px;
+  --s-size-switch-dot-on-x: 8.5px; /* (26px - 9px) / 2 = 8.5px, perfect concentric circle */
+  --s-size-switch-thumb-dimple: 10px;
+}
+

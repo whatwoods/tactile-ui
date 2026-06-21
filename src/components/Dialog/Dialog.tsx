@@ -1,4 +1,5 @@
-import React, { useEffect, useId } from 'react';
+import React, { useEffect, useId, useRef } from 'react';
+import { useFocusTrap } from '../../utils/focusTrap';
 import styles from './Dialog.module.css';
 
 interface DialogProps {
@@ -10,6 +11,9 @@ interface DialogProps {
 
 export const Dialog: React.FC<DialogProps> = ({ isOpen, onClose, title, children }) => {
   const titleId = useId();
+  const dialogRef = useRef<HTMLDivElement>(null);
+
+  useFocusTrap(dialogRef, isOpen, onClose);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -17,30 +21,23 @@ export const Dialog: React.FC<DialogProps> = ({ isOpen, onClose, title, children
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
 
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        onClose();
-      }
-    };
-
-    document.addEventListener('keydown', handleKeyDown);
-
     return () => {
       document.body.style.overflow = previousOverflow;
-      document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [isOpen, onClose]);
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
   return (
     <div className={styles.overlay} onClick={onClose}>
       <div
+        ref={dialogRef}
         className={styles.dialog}
         role="dialog"
         aria-modal="true"
         aria-labelledby={title ? titleId : undefined}
         aria-label={title ? undefined : 'Dialog'}
+        tabIndex={-1}
         onClick={(event) => event.stopPropagation()}
       >
         <button className={styles.closeButton} onClick={onClose} aria-label="Close">

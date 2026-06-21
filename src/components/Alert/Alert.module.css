@@ -1,0 +1,124 @@
+.alert {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  gap: var(--s-space-3);
+  align-items: start;
+  padding: var(--s-space-4);
+  border: 1px solid var(--s-color-border-soft);
+  border-radius: var(--s-radius-md);
+  background: var(--s-color-surface-raised);
+  box-shadow: var(--s-shadow-raised);
+  color: var(--s-color-text-primary);
+}
+
+.banner {
+  width: 100%;
+  border-radius: var(--s-radius-sm);
+}
+
+.icon {
+  width: var(--s-size-icon-md);
+  height: var(--s-size-icon-md);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--s-color-text-tertiary);
+}
+
+.icon svg {
+  width: var(--s-size-icon-sm);
+  height: var(--s-size-icon-sm);
+}
+
+.content {
+  min-width: 0;
+}
+
+.title {
+  font-size: var(--s-font-size-body-sm);
+  font-weight: 600;
+  color: var(--s-color-text-primary);
+}
+
+.message {
+  margin-top: var(--s-space-1);
+  font-size: var(--s-font-size-body-sm);
+  line-height: var(--s-line-height-body);
+  color: var(--s-color-text-secondary);
+}
+
+.action {
+  align-self: center;
+}
+
+.closeButton {
+  width: var(--s-size-icon-md);
+  height: var(--s-size-icon-md);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: var(--s-radius-pill);
+  background: var(--s-color-transparent);
+  color: var(--s-color-text-tertiary);
+  cursor: pointer;
+  transition:
+    background var(--s-transition-fast),
+    color var(--s-transition-fast),
+    transform var(--s-transition-fast);
+}
+
+.closeButton svg {
+  width: var(--s-size-icon-xs);
+  height: var(--s-size-icon-xs);
+}
+
+.closeButton:hover {
+  background: var(--s-color-social-hover-bg);
+  color: var(--s-color-text-primary);
+}
+
+.closeButton:active {
+  transform: translateY(var(--s-size-button-press-y));
+}
+
+.closeButton:focus-visible {
+  outline: var(--s-size-control-focus-ring) solid var(--s-color-primary);
+  outline-offset: var(--s-size-control-focus-offset);
+}
+
+.info {
+  border-color: var(--s-color-primary-border);
+}
+
+.info .icon {
+  color: var(--s-color-primary);
+}
+
+.success {
+  border-color: var(--s-color-success-active);
+}
+
+.success .icon {
+  color: var(--s-color-success);
+}
+
+.danger {
+  border-color: var(--s-color-danger-active);
+}
+
+.danger .icon {
+  color: var(--s-color-danger);
+}
+
+.warning {
+  border-color: var(--s-color-button-gray-border-active);
+}
+
+.warning .icon {
+  color: var(--s-color-text-primary);
+}
+
+.neutral .icon {
+  color: var(--s-color-icon-muted);
+}

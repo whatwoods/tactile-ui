@@ -8,6 +8,7 @@ interface SwitchProps {
   disabled?: boolean;
   variant?: 'positive' | 'negative';
   readOnly?: boolean;
+  size?: 'sm' | 'md';
 }
 
 export const Switch: React.FC<SwitchProps> = ({
@@ -17,6 +18,7 @@ export const Switch: React.FC<SwitchProps> = ({
   disabled = false,
   variant = 'positive',
   readOnly = false,
+  size = 'sm',
 }) => {
   const [internalChecked, setInternalChecked] = useState(defaultChecked);
   const [dragProgress, setDragProgress] = useState<number | null>(null);
@@ -110,7 +112,7 @@ export const Switch: React.FC<SwitchProps> = ({
   if (readOnly) {
     return (
       <div
-        className={`${styles.switch} ${isChecked ? styles.on : ''} ${styles[variant]} ${dragProgress !== null ? styles.dragging : ''}`}
+        className={`${styles.switch} ${isChecked ? styles.on : ''} ${styles[variant]} ${size === 'sm' ? styles.sm : ''} ${dragProgress !== null ? styles.dragging : ''}`}
         style={{ '--switch-progress': progress } as React.CSSProperties}
       >
         <div className={styles.track}>
@@ -134,7 +136,7 @@ export const Switch: React.FC<SwitchProps> = ({
       role="switch"
       aria-checked={isChecked}
       disabled={disabled}
-      className={`${styles.switch} ${isChecked ? styles.on : ''} ${styles[variant]} ${dragProgress !== null ? styles.dragging : ''}`}
+      className={`${styles.switch} ${isChecked ? styles.on : ''} ${styles[variant]} ${size === 'sm' ? styles.sm : ''} ${dragProgress !== null ? styles.dragging : ''}`}
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
       onPointerUp={handlePointerUp}

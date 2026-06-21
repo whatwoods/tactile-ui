@@ -5,11 +5,11 @@
   display: flex;
   align-items: center;
   gap: var(--s-space-3);
-  padding: var(--s-space-3) var(--s-space-4) var(--s-space-3) var(--s-space-6);
+  padding: var(--s-space-3) var(--s-space-4) var(--s-space-3) 20px;
   border: none;
   border-bottom: 1px solid var(--s-color-separator);
   background: var(--s-color-surface-flat);
-  color: var(--s-color-text-primary);
+  color: var(--s-color-text-title);
   text-align: left;
   transition:
     background-color var(--s-transition-fast),
@@ -32,12 +32,12 @@
 .clickable:active {
   background: var(--s-color-primary);
   color: var(--s-color-text-inverse);
+  box-shadow: var(--s-shadow-pressed);
   transition: none;
 }
 
 .selected {
   background: var(--s-color-surface-flat);
-  color: var(--s-color-text-primary);
 }
 
 .disabled {
@@ -85,6 +85,7 @@
   transition: none;
 }
 
+
 .copy {
   flex: 1 1 auto;
   min-width: 0;
@@ -108,7 +109,7 @@
 }
 
 .title {
-  font-size: var(--s-font-size-setting-title);
+  font-size: var(--s-font-size-body);
   line-height: 1.22;
   font-weight: 400;
   color: inherit;
@@ -140,6 +141,7 @@
   transition: none;
 }
 
+
 .chevron,
 .checkMark {
   flex: 0 0 var(--s-size-setting-arrow-width);
@@ -154,6 +156,7 @@
 .checkMark {
   flex-basis: var(--s-size-selected-icon-canvas);
   width: var(--s-size-selected-icon-canvas);
+  margin-left: auto;
 }
 
 .chevronSvg {
@@ -175,6 +178,7 @@
   color: var(--s-color-text-inverse);
   transition: none;
 }
+
 
 .switchSlot {
   flex: 0 0 auto;

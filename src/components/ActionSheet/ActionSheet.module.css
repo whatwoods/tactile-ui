@@ -47,7 +47,7 @@
 .title {
   margin: 0;
   text-align: center;
-  font-size: var(--s-font-size-chip);
+  font-size: var(--s-font-size-emphasis);
   font-weight: 500;
   color: var(--s-color-text-primary);
   overflow: hidden;
@@ -69,7 +69,7 @@
 
 .content {
   color: var(--s-color-text-secondary);
-  font-size: var(--s-font-size-chip);
+  font-size: var(--s-font-size-emphasis);
   line-height: 1.6;
   padding: var(--s-space-3) var(--s-space-4) var(--s-space-5);
   text-align: center;

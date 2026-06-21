@@ -1,0 +1,116 @@
+.trigger {
+  display: inline-flex;
+  min-width: 0;
+}
+
+.tooltip {
+  position: fixed;
+  z-index: 1300;
+  max-width: min(300px, calc(100vw - var(--s-space-7)));
+  padding: var(--s-space-2) var(--s-space-3);
+  border-radius: var(--s-radius-md);
+  border: 1px solid var(--s-color-border-hairline);
+  background: var(--s-color-surface-flat);
+  color: var(--s-color-text-primary);
+  box-shadow: var(--s-shadow-panel);
+  font-size: var(--s-font-size-caption);
+  line-height: var(--s-line-height-body);
+  pointer-events: none;
+  animation: appear var(--s-transition-fast);
+}
+
+.top {
+  transform: translate(-50%, calc(-100% - var(--s-space-2)));
+}
+
+.bottom {
+  transform: translate(-50%, var(--s-space-2));
+}
+
+.left {
+  transform: translate(calc(-100% - var(--s-space-2)), -50%);
+}
+
+.right {
+  transform: translate(var(--s-space-2), -50%);
+}
+
+.start.top,
+.start.bottom {
+  transform: translate(0, var(--tooltip-y, 0));
+}
+
+.start.top {
+  transform: translate(0, calc(-100% - var(--s-space-2)));
+}
+
+.start.bottom {
+  transform: translate(0, var(--s-space-2));
+}
+
+.end.top {
+  transform: translate(-100%, calc(-100% - var(--s-space-2)));
+}
+
+.end.bottom {
+  transform: translate(-100%, var(--s-space-2));
+}
+
+.start.left,
+.start.right {
+  transform: translate(var(--tooltip-x, 0), 0);
+}
+
+.start.left {
+  transform: translate(calc(-100% - var(--s-space-2)), 0);
+}
+
+.start.right {
+  transform: translate(var(--s-space-2), 0);
+}
+
+.end.left {
+  transform: translate(calc(-100% - var(--s-space-2)), -100%);
+}
+
+.end.right {
+  transform: translate(var(--s-space-2), -100%);
+}
+
+.arrow {
+  position: absolute;
+  width: var(--s-space-3);
+  height: var(--s-space-3);
+  background: inherit;
+  transform: rotate(45deg);
+  box-shadow: var(--s-shadow-dropdown);
+}
+
+.top .arrow {
+  left: calc(50% - var(--s-space-2));
+  bottom: calc(var(--s-space-1) * -1);
+}
+
+.bottom .arrow {
+  left: calc(50% - var(--s-space-2));
+  top: calc(var(--s-space-1) * -1);
+}
+
+.left .arrow {
+  right: calc(var(--s-space-1) * -1);
+  top: calc(50% - var(--s-space-2));
+}
+
+.right .arrow {
+  left: calc(var(--s-space-1) * -1);
+  top: calc(50% - var(--s-space-2));
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

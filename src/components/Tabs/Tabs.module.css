@@ -1,0 +1,89 @@
+.tabs {
+  display: flex;
+  gap: var(--s-space-4);
+  width: 100%;
+}
+
+.horizontal {
+  flex-direction: column;
+}
+
+.vertical {
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.tabList {
+  display: inline-flex;
+  border-radius: var(--s-radius-md);
+  border: 1px solid var(--s-color-border-strong);
+  box-shadow: var(--s-shadow-raised);
+  overflow: hidden;
+}
+
+.vertical .tabList {
+  flex-direction: column;
+  min-width: var(--s-size-select-dropdown-min-width);
+}
+
+.tab {
+  min-height: var(--s-size-segmented-item-min-height);
+  padding: 0 var(--s-size-segmented-item-padding-x);
+  border: none;
+  border-right: 1px solid var(--s-color-border-muted);
+  background: var(--s-gradient-button-gray);
+  box-shadow: var(--s-highlight-inner);
+  color: var(--s-color-text-tertiary);
+  cursor: pointer;
+  font: inherit;
+  font-size: var(--s-font-size-title-button);
+  text-shadow: var(--s-shadow-text-highlight);
+  transition:
+    background var(--s-transition-fast),
+    color var(--s-transition-fast),
+    box-shadow var(--s-transition-fast);
+}
+
+.vertical .tab {
+  border-right: none;
+  border-bottom: 1px solid var(--s-color-border-muted);
+}
+
+.tab:last-child {
+  border-right: none;
+  border-bottom: none;
+}
+
+.tab:hover:not(:disabled):not(.active) {
+  background: var(--s-gradient-button-gray-hover);
+  color: var(--s-color-text-secondary);
+}
+
+.active {
+  background: var(--s-color-surface-pressed);
+  color: var(--s-color-text-primary);
+  font-weight: 500;
+  box-shadow: var(--s-shadow-inset-groove);
+}
+
+.tab:disabled {
+  opacity: var(--s-opacity-disabled-text);
+  cursor: not-allowed;
+}
+
+.tab:focus-visible {
+  outline: var(--s-size-control-focus-ring) solid var(--s-color-primary);
+  outline-offset: calc(var(--s-size-control-focus-ring) * -1);
+}
+
+.panel {
+  min-width: 0;
+  color: var(--s-color-text-secondary);
+  font-size: var(--s-font-size-body-sm);
+  line-height: var(--s-line-height-body);
+}
+
+.panel:focus-visible {
+  outline: var(--s-size-control-focus-ring) solid var(--s-color-primary);
+  outline-offset: var(--s-size-control-focus-offset);
+}

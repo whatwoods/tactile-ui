@@ -76,22 +76,30 @@
 }
 
 .menuHeader {
-  background: var(--s-color-surface-raised);
-  padding: var(--s-space-3) var(--s-space-4);
+  background: var(--s-color-surface-flat);
+  padding: var(--s-space-2) var(--s-space-4);
   border-bottom: 1px solid var(--s-color-border-soft);
+  text-align: left;
 }
 
 .menuTitle {
-  font-size: var(--s-font-size-body-sm);
+  font-size: var(--s-font-size-caption);
   color: var(--s-color-text-tertiary);
+  font-weight: 500;
 }
 
 .list {
   list-style: none;
   padding: 0;
   margin: 0;
-  max-height: var(--s-size-select-dropdown-max-height);
+  max-height: none;
   overflow-y: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+
+.list::-webkit-scrollbar {
+  display: none; /* WebKit */
 }
 
 .item {

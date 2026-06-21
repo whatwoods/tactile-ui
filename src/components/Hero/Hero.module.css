@@ -388,7 +388,7 @@
   justify-content: center;
 }
 
-.pushKey {
+.pushKey.pushKey {
   flex: 1;
   height: 38px;
   background: var(--s-gradient-button-gray);
@@ -470,69 +470,9 @@
 }
 
 .ctaButton {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 500;
-  font-size: var(--s-font-size-body);
-  padding: var(--s-space-3) 24px;
+  min-width: 112px;
   border-radius: var(--s-radius-md);
-  cursor: pointer;
-  transition: all var(--s-duration-fast) var(--s-ease-standard);
   text-decoration: none;
-}
-
-.ctaPrimary {
-  background: var(--s-gradient-button-blue);
-  color: var(--s-color-text-inverse);
-  border: 1px solid var(--s-color-primary-border);
-  box-shadow: var(--s-highlight-inner), var(--s-shadow-drop), var(--s-shadow-ambient);
-  text-shadow: var(--s-shadow-text-engraved);
-}
-
-.ctaPrimary:hover {
-  background: var(--s-gradient-button-blue-hover);
-}
-
-.ctaPrimary:active {
-  background: var(--s-gradient-button-blue-active);
-  box-shadow: var(--s-shadow-button-pressed);
-  transform: translateY(1px);
-}
-
-.ctaSecondary {
-  background: var(--s-gradient-button-gray);
-  color: var(--s-color-text-primary);
-  border: 1px solid var(--s-color-border-strong);
-  box-shadow: var(--s-shadow-button-idle);
-}
-
-.ctaSecondary:hover {
-  background: var(--s-gradient-button-gray-hover);
-}
-
-.ctaSecondary:active {
-  background: var(--s-gradient-button-gray-active);
-  box-shadow: var(--s-shadow-button-pressed);
-  transform: translateY(1px);
-}
-
-.ctaCreative {
-  background: var(--s-gradient-button-danger);
-  color: var(--s-color-text-inverse);
-  border: 1px solid var(--s-color-button-danger-border);
-  box-shadow: var(--s-highlight-inner), var(--s-shadow-drop), var(--s-shadow-ambient);
-  text-shadow: var(--s-shadow-text-engraved);
-}
-
-.ctaCreative:hover {
-  background: var(--s-gradient-button-danger-hover);
-}
-
-.ctaCreative:active {
-  background: var(--s-gradient-button-danger-active);
-  box-shadow: var(--s-shadow-button-pressed);
-  transform: translateY(1px);
 }
 
 /* --- Responsive Adaptations --- */

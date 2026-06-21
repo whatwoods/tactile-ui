@@ -6,7 +6,8 @@
 // Helper to get browser AudioContext safely
 const getAudioContext = (): AudioContext | null => {
   try {
-    const AudioContextClass = window.AudioContext || (window as any).webkitAudioContext;
+    const audioWindow = window as Window & { webkitAudioContext?: typeof AudioContext };
+    const AudioContextClass = window.AudioContext || audioWindow.webkitAudioContext;
     if (!AudioContextClass) return null;
     return new AudioContextClass();
   } catch (e) {
