@@ -10,11 +10,10 @@ Repository: https://github.com/whatwoods/tactile-ui
 - Tactile UI is an AI-native React/Vite design system inspired by Smartisan OS
   design methods: order, proportion, depth, tactile feedback, and restrained
   craft.
-- The npm package name is currently `smartisan-ui`, but this repo is not a
-  published component package yet.
-- Treat it as a source-level component library plus a Vite demo site.
-- Do not invent package imports such as `import { Button } from 'smartisan-ui'`
-  unless a public package export is added later.
+- The npm package name is `tactile-ui`.
+- Treat it as a component library plus a Vite demo site.
+- Public package imports are available through `src/index.ts`, for example
+  `import { Button } from 'tactile-ui'`, after running the library build.
 
 ## 2. First Steps From A Fresh Clone
 
@@ -33,8 +32,10 @@ Useful commands:
 
 ```bash
 npm run dev      # local demo and component playground
-npm run lint     # ESLint
-npm run build    # TypeScript build plus Vite production build
+npm run lint     # ESLint plus design-token hardcoding guardrail
+npm run test     # component behavior tests
+npm run build    # library build plus Vite demo production build
+npm run pack:check # verify npm package contents
 npm run preview  # preview the production build
 ```
 
@@ -54,8 +55,16 @@ Before making design, component, or page changes:
 
 ## 4. How To Use The Components
 
-There is currently no `src/index.ts` public barrel export. Import components
-directly from their source files.
+Public package exports live in `src/index.ts`. Use the package entry when
+documenting consumer usage:
+
+```tsx
+import { Button, Card, Switch } from 'tactile-ui';
+import 'tactile-ui/style.css';
+```
+
+Inside unreleased source files in this repo, direct component imports are still
+acceptable when they match nearby code:
 
 Inside this repo:
 
