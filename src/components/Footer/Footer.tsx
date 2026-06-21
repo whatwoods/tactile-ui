@@ -30,25 +30,29 @@ export const Footer: React.FC = () => {
             <div className={styles.linksColumn}>
               <h5 className={styles.columnHeader}>官方资源</h5>
               <a 
-                href="https://github.com/SmartisanTech/android_frameworks_smartisanos-base" 
+                href="https://github.com/whatwoods/tactile-ui" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className={styles.link}
               >
-                Smartisan OS 开源仓库
+                GitHub 仓库
               </a>
             </div>
 
             <div className={styles.linksColumn}>
               <h5 className={styles.columnHeader}>设计系统</h5>
               <a 
-                href="file:///Users/way/Developer/webs/smartisan-ui/DESIGN.md" 
+                href="https://github.com/whatwoods/tactile-ui/blob/main/DESIGN.md" 
+                target="_blank" 
+                rel="noopener noreferrer"
                 className={styles.link}
               >
                 视觉与设计原则
               </a>
               <a 
-                href="#tokens-section" 
+                href="https://github.com/whatwoods/tactile-ui/blob/main/src/styles/tokens.css" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className={styles.link}
               >
                 全局设计令牌
@@ -64,12 +68,12 @@ export const Footer: React.FC = () => {
           <div className={styles.author}>
             <span>Designed by </span>
             <a 
-              href="https://github.com/way" 
+              href="https://github.com/whatwoods" 
               target="_blank" 
               rel="noopener noreferrer" 
               className={styles.authorLink}
             >
-              @way
+              @whatwoods
             </a>
           </div>
         </div>

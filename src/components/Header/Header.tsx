@@ -118,7 +118,9 @@ export const Header: React.FC = () => {
               </a>
             ))}
             <a
-              href="file:///Users/way/Developer/webs/smartisan-ui/DESIGN.md"
+              href="https://github.com/whatwoods/tactile-ui/blob/main/DESIGN.md"
+              target="_blank"
+              rel="noopener noreferrer"
               className={styles.mainLink}
             >
               组件库规范
@@ -131,7 +133,7 @@ export const Header: React.FC = () => {
             <button 
               className={styles.iconButton} 
               aria-label="Author's personal homepage" 
-              onClick={() => window.open('https://github.com/way', '_blank')}
+              onClick={() => window.open('https://github.com/whatwoods', '_blank')}
               title="作者个人主页"
             >
               <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">

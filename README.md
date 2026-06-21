@@ -120,7 +120,7 @@ function Example() {
 
 ---
 
-## 🎨 设计原则备忘 (详见 [DESIGN.md](file:///Users/way/Developer/webs/smartisan-ui/DESIGN.md))
+## 🎨 设计原则备忘 (详见 [DESIGN.md](https://github.com/whatwoods/tactile-ui/blob/main/DESIGN.md))
 
 > 先建立秩序，再加入触感；先保证可用，再表达风格。
 

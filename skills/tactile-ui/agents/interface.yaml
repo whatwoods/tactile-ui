@@ -1,0 +1,4 @@
+interface:
+  display_name: "Tactile UI"
+  short_description: "Use the Tactile UI design system"
+  default_prompt: "Use $tactile-ui to build or revise UI with the Tactile UI design system."

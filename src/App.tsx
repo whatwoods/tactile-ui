@@ -89,7 +89,7 @@ function App() {
         <SideNav
           items={SIDE_NAV_ITEMS}
           onGithubClick={() => {
-            window.open('https://github.com/SmartisanTech/android_frameworks_smartisanos-base', '_blank');
+            window.open('https://github.com/whatwoods/tactile-ui', '_blank');
           }}
         />
       </div>
