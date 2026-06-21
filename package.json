@@ -1,22 +1,62 @@
 {
-  "name": "smartisan-ui",
-  "private": true,
+  "name": "tactile-ui",
+  "private": false,
   "version": "0.0.0",
   "type": "module",
+  "description": "A tactile React design system inspired by Smartisan OS design methods.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/whatwoods/tactile-ui.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./style.css": "./dist/style.css"
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "build": "npm run build:lib && npm run build:demo",
+    "build:lib": "rm -rf dist && vite build --config vite.lib.config.ts && tsc -p tsconfig.lib.json",
+    "build:demo": "tsc -b && vite build",
+    "typecheck": "tsc -b",
+    "lint": "eslint . && npm run lint:tokens",
+    "lint:tokens": "node scripts/lint-design-tokens.mjs",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:visual": "playwright test tests/visual",
+    "audit:runtime": "npm audit --omit=dev",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release": "npm run build:lib && npm publish",
+    "size:check": "node scripts/check-package-size.mjs",
+    "pack:check": "node scripts/check-package-contents.mjs && npm run size:check && npm pack --dry-run",
+    "preview": "vite preview --outDir dist-demo"
   },
-  "dependencies": {
-    "@playwright/test": "^1.61.0",
-    "pngjs": "^7.0.0",
-    "react": "^19.2.6",
-    "react-dom": "^19.2.6"
+  "peerDependencies": {
+    "react": ">=18.2.0 <20",
+    "react-dom": ">=18.2.0 <20"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.31.0",
     "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.61.0",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
     "@types/node": "^24.12.3",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
@@ -25,8 +65,13 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.6.0",
+    "jsdom": "^29.1.1",
+    "pngjs": "^7.0.0",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.59.2",
-    "vite": "^8.0.12"
+    "vite": "^8.0.12",
+    "vitest": "^4.1.9"
   }
 }

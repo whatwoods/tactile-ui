@@ -7,14 +7,14 @@ export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextArea
   resize?: 'none' | 'vertical' | 'horizontal' | 'both';
 }
 
-export const Textarea: React.FC<TextareaProps> = ({
+export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(({
   label,
   error,
   className = '',
   id,
   resize = 'vertical',
   ...props
-}) => {
+}, ref) => {
   const reactId = useId();
   const textareaId = id || reactId;
 
@@ -23,6 +23,7 @@ export const Textarea: React.FC<TextareaProps> = ({
       {label && <label htmlFor={textareaId} className={styles.label}>{label}</label>}
       <div className={styles.textareaWrapper}>
         <textarea
+          ref={ref}
           id={textareaId}
           className={[
             styles.textarea,
@@ -37,4 +38,6 @@ export const Textarea: React.FC<TextareaProps> = ({
       {error && <span id={`${textareaId}-error`} className={styles.errorMessage}>{error}</span>}
     </div>
   );
-};
+});
+
+Textarea.displayName = 'Textarea';

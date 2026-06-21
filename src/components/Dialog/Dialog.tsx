@@ -2,7 +2,7 @@ import React, { useEffect, useId, useRef } from 'react';
 import { useFocusTrap } from '../../utils/focusTrap';
 import styles from './Dialog.module.css';
 
-interface DialogProps {
+export interface DialogProps {
   isOpen: boolean;
   onClose: () => void;
   title?: React.ReactNode;

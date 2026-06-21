@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Progress.module.css';
 
-interface ProgressProps {
+export interface ProgressProps {
   value?: number; // 0 to 100
 }
 

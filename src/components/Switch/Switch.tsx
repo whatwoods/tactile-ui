@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import styles from './Switch.module.css';
 
-interface SwitchProps {
+export interface SwitchProps {
   checked?: boolean;
   defaultChecked?: boolean;
   onChange?: (checked: boolean) => void;
@@ -53,7 +53,7 @@ export const Switch: React.FC<SwitchProps> = ({
       startChecked: isChecked,
       dragging: false,
     };
-    event.currentTarget.setPointerCapture(event.pointerId);
+    event.currentTarget.setPointerCapture?.(event.pointerId);
   };
 
   const handlePointerMove = (event: React.PointerEvent<HTMLButtonElement>) => {
@@ -81,7 +81,7 @@ export const Switch: React.FC<SwitchProps> = ({
     dragRef.current.dragging = false;
     setDragProgress(null);
     suppressClickRef.current = true;
-    event.currentTarget.releasePointerCapture(event.pointerId);
+    event.currentTarget.releasePointerCapture?.(event.pointerId);
     commitValue(nextValue);
   };
 

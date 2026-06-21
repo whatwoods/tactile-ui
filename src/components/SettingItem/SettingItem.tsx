@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Switch } from '../Switch/Switch';
 import styles from './SettingItem.module.css';
 
-type SettingItemAccessory = 'none' | 'chevron' | 'switch' | 'check';
+export type SettingItemAccessory = 'none' | 'chevron' | 'switch' | 'check';
 
 export interface SettingItemProps {
   title: React.ReactNode;

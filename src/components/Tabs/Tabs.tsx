@@ -1,4 +1,4 @@
-import React, { useId, useState } from 'react';
+import React, { useEffect, useId, useRef, useState } from 'react';
 import styles from './Tabs.module.css';
 
 export interface TabItem {
@@ -30,6 +30,8 @@ export const Tabs: React.FC<TabsProps> = ({
   className = '',
 }) => {
   const reactId = useId();
+  const tabListRef = useRef<HTMLDivElement>(null);
+  const tabRefs = useRef(new Map<string, HTMLButtonElement>());
   const firstEnabled = items.find((item) => !item.disabled)?.id;
   const [internalValue, setInternalValue] = useState(defaultValue || firstEnabled || items[0]?.id);
   const [focusedValue, setFocusedValue] = useState(internalValue);
@@ -48,6 +50,13 @@ export const Tabs: React.FC<TabsProps> = ({
   };
 
   const enabledItems = items.filter((item) => !item.disabled);
+
+  useEffect(() => {
+    const activeElement = document.activeElement;
+    if (!activeElement || !tabListRef.current?.contains(activeElement)) return;
+    tabRefs.current.get(focusedValue)?.focus();
+  }, [focusedValue]);
+
   const moveFocus = (direction: -1 | 1) => {
     if (enabledItems.length === 0) return;
     const baseIndex = enabledItems.findIndex((item) => item.id === focusedValue);
@@ -96,6 +105,7 @@ export const Tabs: React.FC<TabsProps> = ({
   return (
     <div className={[styles.tabs, styles[orientation], className].filter(Boolean).join(' ')}>
       <div
+        ref={tabListRef}
         className={styles.tabList}
         role="tablist"
         aria-label={ariaLabel}
@@ -110,6 +120,10 @@ export const Tabs: React.FC<TabsProps> = ({
 
           return (
             <button
+              ref={(node) => {
+                if (node) tabRefs.current.set(item.id, node);
+                else tabRefs.current.delete(item.id);
+              }}
               key={item.id}
               id={tabId}
               className={[styles.tab, isSelected ? styles.active : ''].filter(Boolean).join(' ')}

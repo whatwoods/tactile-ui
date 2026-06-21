@@ -1,11 +1,11 @@
 import React, { useId } from 'react';
 import styles from './Checkbox.module.css';
 
-interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: React.ReactNode;
 }
 
-export const Checkbox: React.FC<CheckboxProps> = ({ label, className, id, ...props }) => {
+export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(({ label, className, id, ...props }, ref) => {
   const reactId = useId();
   const generatedId = id || reactId;
 
@@ -13,6 +13,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({ label, className, id, ...pro
     <div className={`${styles.container} ${className || ''}`}>
       <div className={styles.checkboxWrapper}>
         <input 
+          ref={ref}
           type="checkbox" 
           id={generatedId} 
           className={styles.input} 
@@ -27,4 +28,6 @@ export const Checkbox: React.FC<CheckboxProps> = ({ label, className, id, ...pro
       {label && <label htmlFor={generatedId} className={styles.label}>{label}</label>}
     </div>
   );
-};
+});
+
+Checkbox.displayName = 'Checkbox';

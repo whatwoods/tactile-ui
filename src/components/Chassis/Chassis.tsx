@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from './Chassis.module.css';
 import { playPowerSound, playBuzzerSound } from '../../utils/sound';
 
-interface ChassisProps {
+export interface ChassisProps {
   title: string;
   model: string;
   ledColor?: 'green' | 'blue' | 'red' | 'orange' | 'cyan' | 'violet';

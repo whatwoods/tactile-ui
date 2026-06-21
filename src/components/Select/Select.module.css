@@ -118,6 +118,7 @@
 }
 
 .item:hover,
+.activeOption,
 .selected {
   background: var(--s-color-surface);
   color: var(--s-color-text-primary);

@@ -6,9 +6,10 @@ export interface SliderMark {
   label: string;
 }
 
-interface SliderProps {
+export interface SliderProps {
   min?: number;
   max?: number;
+  step?: number;
   value?: number;
   defaultValue?: number;
   onChange?: (value: number) => void;
@@ -17,11 +18,15 @@ interface SliderProps {
   iconLeft?: React.ReactNode;
   iconRight?: React.ReactNode;
   marks?: SliderMark[];
+  ariaLabel?: string;
+  getAriaValueText?: (value: number) => string;
+  className?: string;
 }
 
 export const Slider: React.FC<SliderProps> = ({
   min = 0,
   max = 100,
+  step = 1,
   value,
   defaultValue = 50,
   onChange,
@@ -29,86 +34,130 @@ export const Slider: React.FC<SliderProps> = ({
   fillColor = 'blue',
   iconLeft,
   iconRight,
-  marks
+  marks,
+  ariaLabel = 'Slider',
+  getAriaValueText,
+  className = '',
 }) => {
   const [internalValue, setInternalValue] = useState(defaultValue);
   const [isDragging, setIsDragging] = useState(false);
   const trackRef = useRef<HTMLDivElement>(null);
   const isControlled = value !== undefined;
-  const currentValue = isControlled ? value : internalValue;
-
-  const percentage = Math.min(Math.max(((currentValue - min) / (max - min)) * 100, 0), 100);
+  const rawValue = isControlled ? value : internalValue;
+  const range = Math.max(max - min, 0);
   const isStepped = Array.isArray(marks) && marks.length > 0;
+  const sortedMarks = isStepped ? [...marks].sort((a, b) => a.value - b.value) : [];
+
+  const normalizeValue = (nextValue: number) => {
+    const clamped = Math.min(max, Math.max(min, nextValue));
+    if (isStepped && sortedMarks.length > 0) {
+      return sortedMarks.reduce((prev, curr) =>
+        Math.abs(curr.value - clamped) < Math.abs(prev.value - clamped) ? curr : prev
+      ).value;
+    }
+    const safeStep = step > 0 ? step : 1;
+    const stepped = Math.round((clamped - min) / safeStep) * safeStep + min;
+    const precision = `${safeStep}`.split('.')[1]?.length ?? 0;
+    return Number(Math.min(max, Math.max(min, stepped)).toFixed(precision));
+  };
+
+  const currentValue = normalizeValue(rawValue);
+  const percentage = range === 0 ? 0 : Math.min(Math.max(((currentValue - min) / range) * 100, 0), 100);
+
+  const commitValue = (nextValue: number) => {
+    if (disabled) return;
+    const normalized = normalizeValue(nextValue);
+    if (!isControlled) {
+      setInternalValue(normalized);
+    }
+    onChange?.(normalized);
+  };
 
   const updateValueFromEvent = (clientX: number) => {
     if (disabled || !trackRef.current) return;
     const rect = trackRef.current.getBoundingClientRect();
     let newPercentage = ((clientX - rect.left) / rect.width);
     newPercentage = Math.max(0, Math.min(1, newPercentage));
-    
-    let newValue = newPercentage * (max - min) + min;
-    
-    if (isStepped) {
-      // Find the closest mark
-      const closestMark = marks.reduce((prev, curr) => 
-        Math.abs(curr.value - newValue) < Math.abs(prev.value - newValue) ? curr : prev
-      );
-      newValue = closestMark.value;
-    } else {
-      newValue = Math.round(newValue);
-    }
-    
-    if (!isControlled) {
-      setInternalValue(newValue);
-    }
-    onChange?.(newValue);
+    commitValue(newPercentage * range + min);
   };
 
-  const handlePointerDown = (e: React.PointerEvent) => {
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
     if (disabled) return;
-    (e.target as HTMLElement).setPointerCapture(e.pointerId);
+    e.currentTarget.focus();
+    e.currentTarget.setPointerCapture(e.pointerId);
     setIsDragging(true);
     updateValueFromEvent(e.clientX);
   };
 
-  const handlePointerMove = (e: React.PointerEvent) => {
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
     if (disabled || !e.buttons) return;
     updateValueFromEvent(e.clientX);
   };
 
-  const handlePointerUp = (e: React.PointerEvent) => {
+  const handlePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
     setIsDragging(false);
-    if (!disabled && e.target) {
+    if (!disabled) {
       try {
-        (e.target as HTMLElement).releasePointerCapture(e.pointerId);
+        e.currentTarget.releasePointerCapture(e.pointerId);
       } catch {
         // Safe check
       }
     }
   };
 
+  const moveToAdjacentMark = (direction: -1 | 1) => {
+    if (sortedMarks.length === 0) return;
+    const currentIndex = sortedMarks.findIndex((mark) => mark.value === currentValue);
+    const safeIndex = currentIndex >= 0
+      ? currentIndex
+      : sortedMarks.findIndex((mark) => mark.value >= currentValue);
+    const fallbackIndex = direction === 1 ? 0 : sortedMarks.length - 1;
+    const baseIndex = safeIndex >= 0 ? safeIndex : fallbackIndex;
+    const nextIndex = Math.min(sortedMarks.length - 1, Math.max(0, baseIndex + direction));
+    commitValue(sortedMarks[nextIndex].value);
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (disabled) return;
+
+    const largeStep = Math.max(step * 10, range / 10);
+    const keyHandlers: Record<string, () => void> = {
+      ArrowLeft: () => isStepped ? moveToAdjacentMark(-1) : commitValue(currentValue - step),
+      ArrowDown: () => isStepped ? moveToAdjacentMark(-1) : commitValue(currentValue - step),
+      ArrowRight: () => isStepped ? moveToAdjacentMark(1) : commitValue(currentValue + step),
+      ArrowUp: () => isStepped ? moveToAdjacentMark(1) : commitValue(currentValue + step),
+      PageDown: () => commitValue(currentValue - largeStep),
+      PageUp: () => commitValue(currentValue + largeStep),
+      Home: () => commitValue(min),
+      End: () => commitValue(max),
+    };
+
+    const handler = keyHandlers[event.key];
+    if (!handler) return;
+    event.preventDefault();
+    handler();
+  };
+
   return (
-    <div className={`${styles.container} ${disabled ? styles.disabled : ''} ${isDragging ? styles.dragging : ''}`}>
+    <div className={`${styles.container} ${disabled ? styles.disabled : ''} ${isDragging ? styles.dragging : ''} ${className}`.trim()}>
       {/* Stepped labels (above the track) */}
       {isStepped && (
         <div className={styles.marksContainer}>
-          {marks.map((mark) => {
-            const markPercentage = ((mark.value - min) / (max - min)) * 100;
+          {sortedMarks.map((mark) => {
+            const markPercentage = range === 0 ? 0 : ((mark.value - min) / range) * 100;
             const isActive = mark.value === currentValue;
             return (
-              <div 
+              <button
+                type="button"
                 key={mark.value} 
                 className={`${styles.markLabel} ${isActive ? styles.markLabelActive : ''}`}
                 style={{ left: `${markPercentage}%` }}
-                onClick={() => {
-                  if (!disabled) {
-                    if (!isControlled) setInternalValue(mark.value);
-                    onChange?.(mark.value);
-                  }
-                }}
+                onClick={() => commitValue(mark.value)}
+                disabled={disabled}
+                aria-pressed={isActive}
               >
                 {mark.label}
-              </div>
+              </button>
             );
           })}
         </div>
@@ -123,14 +172,23 @@ export const Slider: React.FC<SliderProps> = ({
           onPointerMove={handlePointerMove}
           onPointerUp={handlePointerUp}
           onPointerCancel={handlePointerUp}
+          onKeyDown={handleKeyDown}
           ref={trackRef}
+          role="slider"
+          tabIndex={disabled ? undefined : 0}
+          aria-label={ariaLabel}
+          aria-disabled={disabled || undefined}
+          aria-valuemin={min}
+          aria-valuemax={max}
+          aria-valuenow={currentValue}
+          aria-valuetext={getAriaValueText?.(currentValue)}
         >
           <div className={styles.track}>
             <div className={`${styles.fill} ${styles[`fill-${fillColor}`]}`} style={{ width: `${percentage}%` }}></div>
             
             {/* Stepped Nodes on the track */}
-            {isStepped && marks.map((mark) => {
-              const markPercentage = ((mark.value - min) / (max - min)) * 100;
+            {isStepped && sortedMarks.map((mark) => {
+              const markPercentage = range === 0 ? 0 : ((mark.value - min) / range) * 100;
               return (
                 <div 
                   key={mark.value}

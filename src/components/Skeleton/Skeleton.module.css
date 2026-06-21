@@ -6,13 +6,7 @@
 }
 
 .animated {
-  background:
-    linear-gradient(
-      90deg,
-      var(--s-color-surface-sunken),
-      var(--s-color-surface-hover),
-      var(--s-color-surface-sunken)
-    );
+  background: var(--s-gradient-gloss), var(--s-color-surface-sunken);
   background-size: 200% 100%;
   animation: shimmer var(--s-duration-slower) var(--s-ease-standard) infinite;
 }

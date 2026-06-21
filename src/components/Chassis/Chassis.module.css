@@ -22,8 +22,8 @@
   height: 8px;
   border-radius: var(--s-radius-pill);
   position: absolute;
-  background: radial-gradient(circle, var(--s-color-white) 0%, var(--s-color-button-gray-border) 60%, var(--s-color-text-secondary) 100%);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.4), 0 1px 0 var(--s-color-white);
+  background: var(--s-gradient-device-dial);
+  box-shadow: var(--s-shadow-device-dial);
   opacity: 0.85;
 }
 
@@ -137,13 +137,13 @@
 }
 
 .ledCyan {
-  background: radial-gradient(circle at 35% 35%, #9becf7 0%, #3ca7b8 60%, #1a7482 100%);
-  box-shadow: 0 0 8px rgba(60, 167, 184, 0.7);
+  background: var(--s-gradient-dot-blue);
+  box-shadow: var(--s-shadow-led-glow-blue);
 }
 
 .ledViolet {
-  background: radial-gradient(circle at 35% 35%, #eb9bf7 0%, #b83cb4 60%, #821a7d 100%);
-  box-shadow: 0 0 8px rgba(184, 60, 180, 0.7);
+  background: var(--s-gradient-dot-danger);
+  box-shadow: var(--s-shadow-led-glow-red);
 }
 
 /* Inner groove holding content */
@@ -215,7 +215,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(18, 18, 20, 0.94);
+  background: var(--s-color-progress-dialog-bg-dark);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -230,7 +230,7 @@
   align-items: center;
   font-family: 'SF Mono', SFMono-Regular, Consolas, monospace;
   color: var(--s-color-device-screen-off-text);
-  text-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+  text-shadow: var(--s-shadow-device-text);
   text-align: center;
 }
 
@@ -243,7 +243,7 @@
 
 .subText {
   font-size: 9px;
-  color: rgba(255, 255, 255, 0.3);
+  color: var(--s-color-device-screen-off-text);
   letter-spacing: 0.5px;
   margin-top: 8px;
 }
@@ -323,6 +323,6 @@
   height: 14px;
   background: var(--s-color-border-strong);
   border-radius: 1px;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--s-shadow-device-mini-switch);
   opacity: 0.7;
 }

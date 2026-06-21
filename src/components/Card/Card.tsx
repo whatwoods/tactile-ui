@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from '../Button/Button';
 import styles from './Card.module.css';
 
-interface CardProps {
+export interface CardProps {
   id?: string;
   children: React.ReactNode;
   title?: React.ReactNode;

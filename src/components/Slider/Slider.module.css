@@ -14,11 +14,21 @@
   position: absolute;
   transform: translateX(-50%);
   font-size: var(--s-font-size-emphasis);
+  font-family: inherit;
   color: var(--s-color-text-disabled-solid);
+  background: var(--s-color-transparent);
+  border: 0;
+  padding: 0;
   transition: color var(--s-transition-fast);
   cursor: pointer;
   white-space: nowrap;
   user-select: none;
+}
+
+.markLabel:focus-visible {
+  outline: none;
+  color: var(--s-color-text-primary);
+  text-shadow: var(--s-shadow-text-highlight);
 }
 
 .markLabelActive {
@@ -50,6 +60,14 @@
   cursor: pointer;
   touch-action: none;
   padding: 0 var(--s-size-slider-track-padding-x);
+}
+
+.slider:focus-visible {
+  outline: none;
+}
+
+.slider:focus-visible .thumb {
+  box-shadow: var(--s-shadow-focus-ring), var(--s-shadow-switch-ex-thumb);
 }
 
 .track {

@@ -1,12 +1,12 @@
 import React, { useId, useState } from 'react';
 import styles from './Input.module.css';
 
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   error?: string;
 }
 
-export const Input: React.FC<InputProps> = ({ label, error, className, id, type, ...props }) => {
+export const Input = React.forwardRef<HTMLInputElement, InputProps>(({ label, error, className, id, type, ...props }, ref) => {
   const reactId = useId();
   const generatedId = id || reactId;
   const [showPassword, setShowPassword] = useState(false);
@@ -19,6 +19,7 @@ export const Input: React.FC<InputProps> = ({ label, error, className, id, type,
       {label && <label htmlFor={generatedId} className={styles.label}>{label}</label>}
       <div className={`${styles.inputWrapper} ${isPassword ? styles.passwordWrapper : ''}`}>
         <input 
+          ref={ref}
           id={generatedId}
           type={inputType}
           className={`${styles.input} ${error ? styles.hasError : ''} ${isPassword ? styles.inputPassword : ''}`} 
@@ -48,4 +49,6 @@ export const Input: React.FC<InputProps> = ({ label, error, className, id, type,
       {error && <span className={styles.errorMessage}>{error}</span>}
     </div>
   );
-};
+});
+
+Input.displayName = 'Input';

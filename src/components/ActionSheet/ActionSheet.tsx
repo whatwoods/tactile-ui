@@ -9,7 +9,7 @@ export interface ActionSheetAction {
   disabled?: boolean;
 }
 
-interface ActionSheetProps {
+export interface ActionSheetProps {
   isOpen: boolean;
   onClose: () => void;
   title?: React.ReactNode;

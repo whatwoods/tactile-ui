@@ -1,14 +1,14 @@
 import React from 'react';
 import styles from './SegmentedControl.module.css';
 
-interface Option {
+export interface SegmentedControlOption {
   label: string;
   value: string;
   disabled?: boolean;
 }
 
-interface SegmentedControlProps {
-  options: Option[];
+export interface SegmentedControlProps {
+  options: SegmentedControlOption[];
   value?: string;
   defaultValue?: string;
   onChange?: (value: string) => void;
